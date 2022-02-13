@@ -1,7 +1,5 @@
 <script setup lang="ts">
 
-import {useStories} from '../../stores/storyblok'
-
 // const allProjects = useStories().getProject
 
 const props = defineProps({

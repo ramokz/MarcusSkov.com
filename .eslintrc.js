@@ -41,6 +41,7 @@ module.exports = {
 		],
 		'no-unused-vars': 'off',
 		'no-undef': 'off',
+		'vue/require-default-prop': 'off',
 		'@typescript-eslint/no-unused-vars': 'off',
 	}
 }

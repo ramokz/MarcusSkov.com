@@ -10,6 +10,7 @@ specifiers:
   critters: ^0.0.16
   eslint: ^8.9.0
   eslint-plugin-vue: ^8.4.1
+  gsap: ^3.9.1
   pinia: ^2.0.11
   pug: ^3.0.2
   sass: ^1.49.7
@@ -28,6 +29,7 @@ specifiers:
 dependencies:
   '@vueuse/head': 0.7.5_vue@3.2.31
   axios: 0.21.4
+  gsap: 3.9.1
   pinia: 2.0.11_typescript@4.5.5+vue@3.2.31
   storyblok-js-client: 4.2.1_axios@0.21.4
   vue: 3.2.31
@@ -3005,6 +3007,10 @@ packages:
   /graceful-fs/4.2.9:
     resolution: {integrity: sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==}
     dev: true
+
+  /gsap/3.9.1:
+    resolution: {integrity: sha512-JSGVYoC6da4pIjdF/yxFU6Rz8OojOIDkbooveZlfNg0+JIoFoRruyfWAEi6R/gUeNcuOiTqUIb0gi1nCNrHf8w==}
+    dev: false
 
   /gzip-size/6.0.0:
     resolution: {integrity: sha512-ax7ZYomf6jqPTQ4+XCpUGyXKHk5WweS+e05MBO4/y3WJ5RkmPXNKvX+bx1behVILVwr6JSQvZAku021CHPXG3Q==}

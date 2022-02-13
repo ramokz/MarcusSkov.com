@@ -5,8 +5,14 @@
 declare module 'vue' {
   export interface GlobalComponents {
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
-    ProjectListHeader: typeof import('./components/ProjectListHeader.vue')['default']
-    ProjectMetadata: typeof import('./components/ProjectMetadata.vue')['default']
+    ProjectContentImageMulti: typeof import('./components/Project/Content/ProjectContentImageMulti.vue')['default']
+    ProjectContentMedia: typeof import('./components/Project/Content/ProjectContentMedia.vue')['default']
+    ProjectContentMediaText: typeof import('./components/Project/Content/ProjectContentMediaText.vue')['default']
+    ProjectContentThree: typeof import('./components/Project/Content/ProjectContentThree.vue')['default']
+    ProjectContentVideo: typeof import('./components/Project/Content/ProjectContentVideo.vue')['default']
+    ProjectListHeader: typeof import('./components/Project/ProjectListHeader.vue')['default']
+    ProjectMetadata: typeof import('./components/Project/ProjectMetadata.vue')['default']
+    TheHeader: typeof import('./components/TheHeader.vue')['default']
   }
 }
 

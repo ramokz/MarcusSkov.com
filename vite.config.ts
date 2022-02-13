@@ -12,7 +12,6 @@ import Unocss from 'unocss/vite'
 export default defineConfig({
 	plugins: [
 		vue(),  
-		Unocss(),
 		Pages({
 			extensions: ['vue']
 		}),
@@ -21,7 +20,7 @@ export default defineConfig({
 			imports: [
 				'vue',
 				'vue-router',
-				'@vueuse/head'
+				'@vueuse/head',
 			],
 			eslintrc: {
 				enabled: true, // Default `false`
@@ -32,6 +31,27 @@ export default defineConfig({
 		}),
 		Components({
 			dts: 'src/components.d.ts',
-		})
+		}),
+		Unocss({
+			theme: {
+				extend: {
+					colors: {
+						dark: '#171717',
+						light: '#F2F2F2',
+						core: '#D32753'
+					},
+					fontFamily: {
+						sans: ['Kanit', 'sans-serif']
+					}
+				}
+			},
+			shortcuts: {
+				'projectTitle': 'text-5xl lg:text-6xl text-light uppercase font-bold no-underline',
+				'projectYear': 'text-2xl italic',
+				'textContentHeader': 'text-5xl font-bold font-semibold mb-2',
+				'textContentBody' : 'text-xl',
+				'navbarLinks': 'text-lg text-light no-underline uppercase hover:text-core'
+			}
+		}),
 	]
 })
