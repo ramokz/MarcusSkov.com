@@ -1,29 +1,29 @@
 <script setup lang="ts">
 
 useHead({
-  title: 'Marcus Skov',
-  meta: [
-    { name: 'description', content: 'My portfolio site!' },
-  ],
+	title: 'Marcus Skov',
+	meta: [
+		{ name: 'description', content: 'My portfolio site!' },
+	],
 })
 
-import {useStories} from "../stores/storyblok";
-import { useStoryblokApi } from "@storyblok/vue"; 
-const stories = useStories();
+import {useStories} from '../stores/storyblok' 
+import { useStoryblokApi } from '@storyblok/vue' 
+const stories = useStories()
 
-const storyblokApi = useStoryblokApi();
+const storyblokApi = useStoryblokApi()
 
 const allProjects = ref() 
 
 onBeforeMount( async() => {
-  const version = import.meta.env.DEV ? 'draft' : 'published';
-  const { data } = await storyblokApi.get("cdn/stories", { version: version })
+	const version = import.meta.env.DEV ? 'draft' : 'published'
+	const { data } = await storyblokApi.get('cdn/stories', { version: version })
   
-  stories.$patch({
-      storiesData: data.stories
-    })
+	stories.$patch({
+		storiesData: data.stories
+	})
   
-  allProjects.value = stories.getAllProjects
+	allProjects.value = stories.getAllProjects
 })
 
 </script>

@@ -1,27 +1,27 @@
 <script setup lang="ts">
 
-import {useStories} from "../../stores/storyblok";
+import {useStories} from '../../stores/storyblok'
 
-const allProjects = useStories().getProject
+// const allProjects = useStories().getProject
 
-  const props = defineProps({
-    projectName: {
-      type: String,
-      required: true
-    },
-    slug: {
-      type: String,
-      required: false
-    },
-    year: {
-      type: String,
-      required: false
-    }
-  })
+const props = defineProps({
+	projectName: {
+		type: String,
+		required: true
+	},
+	slug: {
+		type: String,
+		required: false
+	},
+	year: {
+		type: String,
+		required: false
+	}
+}) 
 
-  const projectSlug =  computed((): string => {
-    return '/project/' + props.slug
-  })
+const projectSlug =  computed((): string => {
+	return '/project/' + props.slug
+})
   
 </script>
 <template lang="pug">
