@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
 // const allProjects = useStories().getProject
+const router = useRouter()
 
 const props = defineProps({
 	projectName: {
@@ -34,12 +35,12 @@ div(class=`
   first:mt-48
 `)
   
-  router-link(:to="projectSlug")
+  RouterLink(:to="projectSlug")
     div(class="w-lg h-lg bg-red-500")
   
   div(class="flex flex-col mx-auto lg:mx-16")
     h3(class="projectYear") ({{ year }})
-    router-link(:to="projectSlug" class="projectTitle hover:text-core")
+    RouterLink(:to="projectSlug" class="projectTitle hover:text-core")
       h1 {{ projectName }}
     
 </template>

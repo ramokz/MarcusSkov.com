@@ -1,7 +1,5 @@
 <script setup lang="ts">
 
-import TheHeader from './components/TheHeader.vue'
-
 useHead({
 	title: 'Marcus Skov',
 	meta: [
@@ -9,13 +7,10 @@ useHead({
 	],
 })
 
-import {useStories} from '../stores/storyblok' 
+import {useStories} from '~/stores/storyblok'
 import { useStoryblokApi } from '@storyblok/vue' 
-const stories = useStories()
-
 const storyblokApi = useStoryblokApi()
-
-const allProjects = ref() 
+const stories = useStories()
 
 onBeforeMount( async() => {
 	const version = import.meta.env.DEV ? 'draft' : 'published'
@@ -24,18 +19,16 @@ onBeforeMount( async() => {
 	stories.$patch({
 		storiesData: data.stories
 	})
-  
-	allProjects.value = stories.getAllProjects
 })
 
 </script>
 
 <template lang="pug">
 #app
-  RouterView
   TheHeader
+  RouterView
   ProjectListHeader(
-    v-for="story in allProjects"
+    v-for="story in stories.getAllProjects"
     :key="story.id"
     :projectName="story.name"
     :year="story.content.year"

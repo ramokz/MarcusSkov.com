@@ -1,19 +1,3 @@
-<template lang="pug">
-div(v-if="mediaType() === assetTypeEnum.image"
-    :style="{background: assetColor}"
-    class="flex")
-  img(:alt="assetAlt" :src="asset" class="container mx-auto")
-  
-ProjectContentVideo(
-  :content="content"
-  v-if="mediaType() === assetTypeEnum.video")
-
-ProjectContentThree(
-  v-if="mediaType() === assetTypeEnum.three"
-  :content="content")
-
-</template>
-
 <script setup lang="ts">
 
 const props = defineProps({
@@ -23,9 +7,8 @@ const props = defineProps({
 	}
 })
   
-const asset: string = props.content.asset.filename
-const assetAlt: string = props.content.asset.alt
-  
+// const assetAlt: string = props.content.asset.alt
+ 
   enum assetTypeEnum {
     image = 'image',
     video = 'video',
@@ -33,7 +16,7 @@ const assetAlt: string = props.content.asset.alt
   }
   
 const mediaType = (): assetTypeEnum => {
-	const assetTypeString: string = asset.split('.').pop() as string
+	const assetTypeString: string = props.content.asset.filename.split('.').pop() as string
     
 	// Defaulting to type image
 	let assetTypeVar: assetTypeEnum = assetTypeEnum.image
@@ -48,11 +31,26 @@ const mediaType = (): assetTypeEnum => {
 
 	return assetTypeVar
 }
-  
-let assetColor  = ''
-  
-if (props.content.color && props.content.color.color) {
-	assetColor = props.content.color.color
-}
+
+let assetColor = computed(() => {
+	return props.content.color ? props.content.color.color : 'transparent'
+})
 
 </script>
+
+
+<template lang="pug">
+div(v-if="mediaType() === assetTypeEnum.image"
+    :style="{background: assetColor}"
+    class="flex")
+  //img(:alt="assetAlt" :src="asset" class="container mx-auto")
+ProjectContentVideo(
+  :content="content"
+  v-if="mediaType() === assetTypeEnum.video")
+
+ProjectContentThree(
+  v-if="mediaType() === assetTypeEnum.three"
+  :content="content")
+
+</template>
+

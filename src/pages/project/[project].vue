@@ -1,9 +1,35 @@
+<script setup lang="ts">
+
+import {useStories} from '~/stores/storyblok'
+
+const route = useRoute()
+const story = useStories()
+
+const projectRoute = route.params.project
+
+interface projectInterface {
+  content: object,
+  projectContent: {
+    role: string
+  }
+}
+
+const projectDataComputed = computed(() => {
+	return story.getProject(projectRoute as string)
+})
+
+
+// content.value = projectDataComputed.content.projectContent
+// const projectContent: object = project.content.projectContent
+  
+</script>
+
 <template lang="pug">
-div
+div(v-if="projectDataComputed")
   div(
-      class="w-screen h-3xl"
-      :style="{backgroundColor: project.content.color.color}")
-    div(class="w-lg h-lg mx-auto bg-red-500 pt-32")
+    class="w-screen h-3xl"
+    :style="{backgroundColor: projectDataComputed.content.color.color}")
+    div(class="w-lg h-lg mx-auto bg-red-500")
   div(class="container mx-auto")
     div(class=`
       project-header
@@ -14,25 +40,25 @@ div
       mb-32
       items-center`)
       div(class="flex flex-col mr-16 columns-4 w-1/2")
-        h3(class="text-xl") {{ project.content.year }}
-        h1(class="projectTitle") {{ project.name }}
+        h3(class="text-xl") {{ projectDataComputed.content.year }}
+        h1(class="projectTitle") {{ projectDataComputed.name }}
         div(class="flex space-x-8")
           ProjectMetadata(
             :slug="projectRoute"
             :title="'Role'"
-            :content="project.content.role")
+            :content="projectDataComputed.content.role")
           ProjectMetadata(
             :slug="projectRoute"
             :title="'Studio'"
-            :content="project.content.company")
+            :content="projectDataComputed.content.company")
           ProjectMetadata(
             :slug="projectRoute"
             :title="'Platforms'"
-            :content="project.content.platforms"
+            :content="projectDataComputed.content.platforms"
             :showShowIcon="true")
-      p(class="w-1/2") {{ project.content.intro }}
+      p(class="w-1/2") {{ projectDataComputed.content.intro }}
       
-  div(v-for="content in projectContent" class="mb-48 media-content")
+  div(v-for="content in projectDataComputed.content.projectContent" class="mb-48 media-content")
     ProjectContentMedia(
       v-if="content.component === 'media'"
       :content="content")
@@ -45,29 +71,9 @@ div
       :content="content")
 </template>
 
-<script setup lang="ts">
 
-  // import {useStories} from "~/stores/storyblok";
-  //
-  // const route = useRoute()
-  // const story = useStories();
-  //
-  // const projectRoute = route.params.project
-  //
-  // interface projectInterface {
-  //   content: object,
-  //   projectContent: {
-  //     role: string
-  //   }
-  // }
-  //
-  // const project: { content: projectInterface } = story.getProject(projectRoute as string)
-  // const projectContent: object = project.content.projectContent
-  
-</script>
-
-<style>
-.media-content:nth-child(even) > .multi-media {
-  flex-direction: row-reverse;
-}
-</style>
+<!--<style>-->
+<!--.media-content:nth-child(even) > .multi-media {-->
+<!--  flex-direction: row-reverse;-->
+<!--}-->
+<!--</style>-->

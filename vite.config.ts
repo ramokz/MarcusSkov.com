@@ -1,3 +1,4 @@
+import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -10,10 +11,14 @@ import Unocss from 'unocss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+	resolve: {
+		alias: {
+			'~/': `${path.resolve(__dirname, 'src')}/`,
+		},
+	},
 	plugins: [
 		vue(),  
 		Pages({
-			extensions: ['vue']
 		}),
 		VitePWA(),
 		AutoImport({
@@ -23,9 +28,9 @@ export default defineConfig({
 				'@vueuse/head',
 			],
 			eslintrc: {
-				enabled: true, // Default `false`
-				filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
-				globalsPropValue: true // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+				enabled: true,
+				filepath: './.eslintrc-auto-import.json',
+				globalsPropValue: true
 			},
 			dts: 'src/auto-imports.d.ts',
 		}),

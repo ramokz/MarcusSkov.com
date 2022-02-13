@@ -4,11 +4,19 @@ import { StoryblokVue, apiPlugin } from '@storyblok/vue'
 import { createPinia } from 'pinia'
 import { createHead } from '@vueuse/head'
 import {createRouter, createWebHistory} from 'vue-router'
+import routes from '~pages'
+
+// StyleSheet imports
+import 'uno.css'
+import '@unocss/reset/eric-meyer.css'
+import './styles/main.sass'
+
 const app = createApp(App)
 
-import 'uno.css'
-import './styles/fonts.sass'
-import './styles/main.sass'
+const router = createRouter({
+	history: createWebHistory(),
+	routes,
+})
 
 app
 	.use(createPinia())
@@ -17,4 +25,5 @@ app
 		use: [apiPlugin],
 	})
 	.use(createHead())
+	.use(router)
 	.mount('#app')

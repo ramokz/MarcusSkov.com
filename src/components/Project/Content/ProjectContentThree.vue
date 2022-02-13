@@ -4,8 +4,8 @@ div(class="text-2xl text-center") Three Model
 
 <script setup lang="ts">
 
-import {useThreeSetup} from '~/composables/ModelRender'
-import {onMounted} from 'vue'
+// import {useThreeSetup} from '~/composables/ModelRender'
+// import {onMounted} from 'vue'
 
 const props = defineProps({
 	content: {

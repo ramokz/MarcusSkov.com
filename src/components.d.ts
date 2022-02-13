@@ -4,7 +4,6 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     ProjectContentImageMulti: typeof import('./components/Project/Content/ProjectContentImageMulti.vue')['default']
     ProjectContentMedia: typeof import('./components/Project/Content/ProjectContentMedia.vue')['default']
     ProjectContentMediaText: typeof import('./components/Project/Content/ProjectContentMediaText.vue')['default']
