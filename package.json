@@ -15,6 +15,7 @@
     "gsap": "^3.9.1",
     "pinia": "^2.0.11",
     "storyblok-js-client": "^4.2.1",
+    "three": "^0.137.5",
     "vue": "^3.2.25",
     "vue-router": "^4"
   },

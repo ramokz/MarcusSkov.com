@@ -20,7 +20,7 @@ module.exports = {
 	},
 	'plugins': [
 		'vue',
-		'@typescript-eslint' 
+		'@typescript-eslint'
 	],
 	'rules': {
 		'indent': [
@@ -43,5 +43,11 @@ module.exports = {
 		'no-undef': 'off',
 		'vue/require-default-prop': 'off',
 		'@typescript-eslint/no-unused-vars': 'off',
+		'comma-dangle': [
+			'error',
+			'never'
+		],
+		'no-trailing-spaces': 'error',
+		'object-curly-spacing': ['error', 'always']
 	}
 }

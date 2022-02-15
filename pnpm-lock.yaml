@@ -16,6 +16,7 @@ specifiers:
   pug: ^3.0.2
   sass: ^1.49.7
   storyblok-js-client: ^4.2.1
+  three: ^0.137.5
   typescript: ^4.5.4
   unocss: ^0.24.3
   unplugin-auto-import: ^0.5.11
@@ -34,6 +35,7 @@ dependencies:
   gsap: 3.9.1
   pinia: 2.0.11_typescript@4.5.5+vue@3.2.31
   storyblok-js-client: 4.2.1_axios@0.21.4
+  three: 0.137.5
   vue: 3.2.31
   vue-router: 4.0.12_vue@3.2.31
 
@@ -4176,6 +4178,10 @@ packages:
   /text-table/0.2.0:
     resolution: {integrity: sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=}
     dev: true
+
+  /three/0.137.5:
+    resolution: {integrity: sha512-rTyr+HDFxjnN8+N/guZjDgfVxgHptZQpf6xfL/Mo7a5JYIFwK6tAq3bzxYYB4Ae0RosDZlDuP+X5aXDXz+XnHQ==}
+    dev: false
 
   /tinypool/0.1.2:
     resolution: {integrity: sha512-fvtYGXoui2RpeMILfkvGIgOVkzJEGediv8UJt7TxdAOY8pnvUkFg/fkvqTfXG9Acc9S17Cnn1S4osDc2164guA==}
