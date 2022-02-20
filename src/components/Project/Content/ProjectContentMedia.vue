@@ -36,6 +36,11 @@ let assetColor = computed(() => {
 	return props.content.color ? props.content.color.color : 'transparent'
 })
 
+
+onMounted(() => {
+	console.log(props.content.asset.filename);
+})
+
 </script>
 
 
@@ -43,7 +48,7 @@ let assetColor = computed(() => {
 div(v-if="mediaType() === assetTypeEnum.image"
     :style="{background: assetColor}"
     class="flex")
-  //img(:alt="assetAlt" :src="asset" class="container mx-auto")
+		img(:src="content.asset.filename" class="container mx-auto shadow-xl")
 ProjectContentVideo(
   :content="content"
   v-if="mediaType() === assetTypeEnum.video")

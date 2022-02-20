@@ -4,16 +4,19 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { gsap } from 'gsap'
 import { useScreenState } from '~/stores/screenState'
 
+/////////////////////////////
+// Variables
+/////////////////////////////
 let scene
 let renderer
-
-const isMobile = false
-
+let isMobile = false
 let modelRenderRequest
 const projectScenes = []
 let controls
 
-
+/////////////////////////////
+// Interfaces
+/////////////////////////////
 interface RenderModal {
     modal: string,
     target: HTMLElement,
@@ -26,17 +29,13 @@ interface RenderModal {
 /////////////////////////////
 export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
 
-	onMounted(() => {
-	// Canvas reference
+	onMounted( () => {
 		const canvas = unref(canvasRef)
 		const screenState = useScreenState()
 
-		const screenChange = () => {
-			screenState.setScreenStates()
-		}
+		const screenChange = () => screenState.setScreenStates()
 
-		screenState.setScreenStates()
-		console.log('Hi')
+		screenChange()
 		window.addEventListener('resize', screenChange)
 
 		renderer = new THREE.WebGL1Renderer({

@@ -1,8 +1,3 @@
-<template lang="pug">
-div
-  h3(class="uppercase") {{title}}
-  h3 {{contentString}}
-</template>
 
 <script setup lang="ts">
 
@@ -43,6 +38,11 @@ const contentString = computed(() => {
 })
 
 </script>
+<template lang="pug">
+div
+	h3(class="uppercase") {{title}}
+	h3 {{contentString}}
+</template>
 
 <style scoped lang="sass">
  //.project-header

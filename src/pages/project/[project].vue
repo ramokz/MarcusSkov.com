@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
 import {useStories} from '~/stores/storyblok'
+import ProjectContentMediaGallery from '../../components/Project/Content/ProjectContentMediaGallery.vue'
 
 const route = useRoute()
 const story = useStories()
@@ -69,6 +70,10 @@ div(v-if="projectDataComputed")
     ProjectContentImageMulti(
       v-if="content.component === 'mediaMulti'"
       :content="content")
+    ProjectContentMediaGallery(
+      v-if="content.component === 'mediaGallery'"
+      :content="content")
+  
 </template>
 
 

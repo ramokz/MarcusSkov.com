@@ -1,30 +1,3 @@
-<template lang="pug">
-div(ref="mediaContainer")
-  div(
-    class="relative mx-auto"
-  )
-    //:style="{width: videoOverlayComputed.width, height: videoOverlayComputed.height}"
-    video(
-      :id="props.content.asset.filename"
-      ref="video"
-      class="flex max-h-screen-md mx-auto max-w-full"
-      loop muted controls
-    )
-      source(
-        :src="props.content.asset.filename"
-        type="video/mp4"
-      )
-    //.video-overlay(
-    //  v-show="videoOverlayVisible"
-    //  class="absolute opacity-80 top-0 bg-dark w-full h-full")
-    //h2(class="text-white") {{videoOverlayComputed}}
-    .video-play
-        img(
-          ref="videoPlay"
-        )
-        //src="~/assets/play.svg"
-
-</template>
 
 <script setup lang="ts">
 
@@ -48,7 +21,7 @@ let options = {
 }
 
 // const videoOverlayComputed = computed(() => {
-//   const videoWidth = `${video.value?.offsetWidth.toString()}px`
+	//   const videoWidth = `${video.value?.offsetWidth.toString()}px`
 //   const videoHeight = `${video.value?.offsetHeight.toString()}px`
 //
 //   return {width: videoWidth, height: videoHeight}
@@ -67,17 +40,17 @@ gsap.registerEffect({
 
 
 onMounted(() => {
-
+	
 	const videoObserver = (target: HTMLVideoElement) => {
 		const io = new IntersectionObserver((entries,observer)=>{
-      
+			
 			entries.forEach(entry=>{
-        
+				
 				if (entry.isIntersecting) {
 					// console.log('Playing')
           
 					// gsap.to(video.value, {
-					//   opacity: 1,
+						//   opacity: 1,
 					//   duration: 0.4
 					// })
 
@@ -90,7 +63,7 @@ onMounted(() => {
 					gsap.effects.videoFade(video.value, {opacity: 0.2})
             
 					// gsap.to(video.value, {
-					//     opacity: 0.2,
+						//     opacity: 0.2,
 					//     duration: 0.4
 					//   })
           
@@ -114,14 +87,14 @@ const asset = null
 const trigger = null
 
 // const playBtn = (shouldPlay : boolean = false, shouldPause : boolean = false) => {
-//   if (!video.value) return
+	//   if (!video.value) return
 //   if (video.value.paused && !shouldPause || shouldPlay) {
-//
+	//
 //     const playbackPromise = video.value.play()
 //     if (playbackPromise !== undefined) {
-//       playbackPromise.then(_ => {
-//         gsap.set([videoOverlay.value, videoPlay.value], {
-//           // opacity: 0,
+	//       playbackPromise.then(_ => {
+		//         gsap.set([videoOverlay.value, videoPlay.value], {
+			//           // opacity: 0,
 //           visibility: 'hidden',
 //           pointerEvents: 'inherit'
 //         })
@@ -129,21 +102,47 @@ const trigger = null
 //         videoOverlay.value.style.opacity = '0';
 //         videoPlay.value.style.opacity = '0'
 //       }).catch(err => {
-//         console.log(err)
+	//         console.log(err)
 //       })
 //     }
 //   } else {
-//     video.value.pause();
+	//     video.value.pause();
 //     gsap.set(videoOverlay.value, {
-//       opacity: overlayOpacity,
+	//       opacity: overlayOpacity,
 //       visibility: 'visible',
 //       pointerEvents: 'none'
 //     })
 //     video.value.controls = false
 //     // gsap.set(this.$refs.videoPlay, {
-//     //   opacity: 1,
+	//     //   opacity: 1,
 //     //   visibility: 'visible'
 //     // })
 //   }
 // }
 </script>
+
+<template lang="pug">
+div(ref="mediaContainer")
+	div(
+	class="relative mx-auto"
+	)
+	//:style="{width: videoOverlayComputed.width, height: videoOverlayComputed.height}"
+	video(
+		:id="props.content.asset.filename"
+		ref="video"
+		class="flex max-h-screen-md mx-auto max-w-full"
+		loop muted controls)
+		source(
+		:src="props.content.asset.filename"
+		type="video/mp4")
+	//.video-overlay(
+	//  v-show="videoOverlayVisible"
+	//  class="absolute opacity-80 top-0 bg-dark w-full h-full")
+	//h2(class="text-white") {{videoOverlayComputed}}
+	.video-play
+		img(
+			ref="videoPlay"
+		)
+		//src="~/assets/play.svg"
+
+</template>

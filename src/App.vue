@@ -12,12 +12,10 @@ useHead({
 /////////////////////////
 // Data Fetching and Setup
 /////////////////////////
-
 import { useStories } from '~/stores/storyblok'
 import { useStoryblokApi } from '@storyblok/vue'
 const storyblokApi = useStoryblokApi()
 const stories = useStories()
-
 
 onBeforeMount( async() => {
 	const version = import.meta.env.DEV ? 'draft' : 'published'
@@ -31,16 +29,17 @@ onBeforeMount( async() => {
 /////////////////////////////
 // Sets up the
 /////////////////////////////
-
 const canvas = ref<HTMLCanvasElement>()
-
 useThreeInit(canvas)
+
+/////////////////////////////
+// Adds
+/////////////////////////////
 
 </script>
 
 <template lang="pug">
 #app(class="antialiasing")
-  canvas(ref="canvas" class="fixed top-0 left-0 outline-none")
   TheHeader
   RouterView
   ProjectListHeader(
@@ -50,4 +49,5 @@ useThreeInit(canvas)
     :year="story.content.year"
     :slug="story.slug"
     class="even:flex-row-reverse")
+  canvas(ref="canvas" class="fixed top-0 left-0 outline-none -z-1")
 </template>

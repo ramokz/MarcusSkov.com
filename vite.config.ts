@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import Pages from 'vite-plugin-pages'
-import {VitePWA} from 'vite-plugin-pwa'
+import { VitePWA } from 'vite-plugin-pwa'
 
 import Unocss from 'unocss/vite'
 
@@ -13,11 +13,11 @@ import Unocss from 'unocss/vite'
 export default defineConfig({
 	resolve: {
 		alias: {
-			'~/': `${path.resolve(__dirname, 'src')}/`,
-		},
+			'~/': `${path.resolve(__dirname, 'src')}/`
+		}
 	},
 	plugins: [
-		vue(),  
+		vue(),
 		Pages({
 		}),
 		VitePWA(),
@@ -25,17 +25,17 @@ export default defineConfig({
 			imports: [
 				'vue',
 				'vue-router',
-				'@vueuse/head',
+				'@vueuse/head'
 			],
 			eslintrc: {
 				enabled: true,
 				filepath: './.eslintrc-auto-import.json',
 				globalsPropValue: true
 			},
-			dts: 'src/auto-imports.d.ts',
+			dts: 'src/auto-imports.d.ts'
 		}),
 		Components({
-			dts: 'src/components.d.ts',
+			dts: 'src/components.d.ts'
 		}),
 		Unocss({
 			theme: {
@@ -57,6 +57,6 @@ export default defineConfig({
 				'textContentBody' : 'text-xl',
 				'navbarLinks': 'text-lg text-light no-underline uppercase hover:text-core'
 			}
-		}),
+		})
 	]
 })
