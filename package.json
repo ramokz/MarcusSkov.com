@@ -13,6 +13,7 @@
     "@vueuse/head": "^0.7.5",
     "axios": "^0.21.4",
     "gsap": "^3.9.1",
+    "lightgallery": "^2.4.0",
     "pinia": "^2.0.11",
     "storyblok-js-client": "^4.2.1",
     "three": "^0.137.5",

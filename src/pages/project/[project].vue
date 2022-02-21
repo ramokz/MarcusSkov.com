@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {useStories} from '~/stores/storyblok'
+import { useStories } from '~/stores/storyblok'
 import ProjectContentMediaGallery from '../../components/Project/Content/ProjectContentMediaGallery.vue'
 
 const route = useRoute()
@@ -22,13 +22,13 @@ const projectDataComputed = computed(() => {
 
 // content.value = projectDataComputed.content.projectContent
 // const projectContent: object = project.content.projectContent
-  
+
 </script>
 
 <template lang="pug">
 div(v-if="projectDataComputed")
   div(
-    class="w-screen h-3xl"
+    class="h-3xl m-0 p-0"
     :style="{backgroundColor: projectDataComputed.content.color.color}")
     div(class="w-lg h-lg mx-auto bg-red-500")
   div(class="container mx-auto")
@@ -58,7 +58,7 @@ div(v-if="projectDataComputed")
             :content="projectDataComputed.content.platforms"
             :showShowIcon="true")
       p(class="w-1/2") {{ projectDataComputed.content.intro }}
-      
+
   div(v-for="content in projectDataComputed.content.projectContent" class="mb-48 media-content")
     ProjectContentMedia(
       v-if="content.component === 'media'"
@@ -73,7 +73,7 @@ div(v-if="projectDataComputed")
     ProjectContentMediaGallery(
       v-if="content.component === 'mediaGallery'"
       :content="content")
-  
+
 </template>
 
 

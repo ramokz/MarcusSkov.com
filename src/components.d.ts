@@ -13,7 +13,6 @@ declare module 'vue' {
     ProjectListHeader: typeof import('./components/Project/ProjectListHeader.vue')['default']
     ProjectMetadata: typeof import('./components/Project/ProjectMetadata.vue')['default']
     TheHeader: typeof import('./components/TheHeader.vue')['default']
-    TheModal: typeof import('./components/TheModal.vue')['default']
   }
 }
 

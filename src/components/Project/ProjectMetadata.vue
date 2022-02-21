@@ -20,19 +20,19 @@ const props = defineProps({
 		default: false
 	}
 })
-  
+
 const contentString = computed(() => {
-	// Need a type checker to convert array<strings> 
-  
+	// Need a type checker to convert array<strings>
+
 	// Studio name
 	if (typeof props.content === 'string') {
 		return props.content
-  
+
 		// Platforms
 	} else if (props.showShowIcon) {
 		// TODO - Render platform icons
 	}
-  
+
 	// Roles
 	return props.content.join(', ')
 })

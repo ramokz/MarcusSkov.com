@@ -16,12 +16,12 @@ const props = defineProps({
 		type: String,
 		required: false
 	}
-}) 
+})
 
 const projectSlug =  computed((): string => {
 	return '/project/' + props.slug
 })
-  
+
 </script>
 <template lang="pug">
 div(class=`
@@ -34,14 +34,14 @@ div(class=`
   items-center
   first:mt-48
 `)
-  
+
   RouterLink(:to="projectSlug")
     div(class="w-lg h-lg bg-red-500")
-  
+
   div(class="flex flex-col mx-auto lg:mx-16")
     h3(class="projectYear") ({{ year }})
     RouterLink(:to="projectSlug" class="projectTitle hover:text-core")
       h1 {{ projectName }}
-    
+
 </template>
 

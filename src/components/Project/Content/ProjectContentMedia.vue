@@ -6,21 +6,21 @@ const props = defineProps({
 		required: true
 	}
 })
-  
+
 // const assetAlt: string = props.content.asset.alt
- 
+
   enum assetTypeEnum {
     image = 'image',
     video = 'video',
     three = 'three'
   }
-  
+
 const mediaType = (): assetTypeEnum => {
 	const assetTypeString: string = props.content.asset.filename.split('.').pop() as string
-    
+
 	// Defaulting to type image
 	let assetTypeVar: assetTypeEnum = assetTypeEnum.image
-    
+
 	switch (assetTypeString) {
 	case 'mp4':
 		assetTypeVar = assetTypeEnum.video
@@ -34,11 +34,6 @@ const mediaType = (): assetTypeEnum => {
 
 let assetColor = computed(() => {
 	return props.content.color ? props.content.color.color : 'transparent'
-})
-
-
-onMounted(() => {
-	console.log(props.content.asset.filename);
 })
 
 </script>
