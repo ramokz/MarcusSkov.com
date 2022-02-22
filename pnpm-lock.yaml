@@ -12,7 +12,6 @@ specifiers:
   eslint: ^8.9.0
   eslint-plugin-vue: ^8.4.1
   gsap: ^3.9.1
-  lightgallery: ^2.4.0
   pinia: ^2.0.11
   pug: ^3.0.2
   sass: ^1.49.8
@@ -34,7 +33,6 @@ dependencies:
   '@vueuse/head': 0.7.5_vue@3.2.31
   axios: 0.21.4
   gsap: 3.9.1
-  lightgallery: 2.4.0
   pinia: 2.0.11_typescript@4.5.5+vue@3.2.31
   storyblok-js-client: 4.2.1_axios@0.21.4
   three: 0.137.5
@@ -3416,11 +3414,6 @@ packages:
       prelude-ls: 1.2.1
       type-check: 0.4.0
     dev: true
-
-  /lightgallery/2.4.0:
-    resolution: {integrity: sha512-9i/E/w3yaqs56y3k6SWIUS3JTLpeDCZIVnIuNppzAmj5KjLGy5wrFisoDUD0HdxVUdX0wHG5mjvB4h0TXtyf/w==}
-    engines: {node: '>=6.0.0'}
-    dev: false
 
   /local-pkg/0.4.1:
     resolution: {integrity: sha512-lL87ytIGP2FU5PWwNDo0w3WhIo2gopIAxPg9RxDYF7m4rr5ahuZxP22xnJHIvaLTe4Z9P6uKKY2UHiwyB4pcrw==}

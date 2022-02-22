@@ -39,6 +39,7 @@ module.exports = {
 			'error',
 			'never'
 		],
+		'no-mixed-spaces-and-tabs': ['error'],
 		'no-unused-vars': 'off',
 		'no-undef': 'off',
 		'vue/require-default-prop': 'off',
