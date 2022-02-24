@@ -39,15 +39,13 @@ export default defineConfig({
 		}),
 		Unocss({
 			theme: {
-				extend: {
-					colors: {
-						dark: '#171717',
-						light: '#F2F2F2',
-						core: '#D32753'
-					},
-					fontFamily: {
-						sans: ['Kanit', 'sans-serif']
-					}
+				colors: {
+					dark: '#171717',
+					light: '#F2F2F2',
+					core: '#D32753'
+				},
+				fontFamily: {
+					sans: ['Kanit', 'sans-serif']
 				}
 			},
 			shortcuts: {
