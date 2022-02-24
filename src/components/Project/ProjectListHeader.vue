@@ -1,30 +1,49 @@
 <script setup lang="ts">
 
-// const allProjects = useStories().getProject
-const router = useRouter()
+/////////////////////////
+// Data Fetching and Setup
+/////////////////////////
+import { useStories } from '~/stores/storyblok'
+import { useStoryblokApi } from '@storyblok/vue'
 
-const props = defineProps({
-	projectName: {
-		type: String,
-		required: true
-	},
-	slug: {
-		type: String,
-		required: false
-	},
-	year: {
-		type: String,
-		required: false
-	}
+const storyblokApi = useStoryblokApi()
+const stories = useStories()
+
+const version = import.meta.env.DEV ? 'draft' : 'published'
+const { data } = await storyblokApi.get('cdn/stories', {
+	version: version,
+	starts_with: 'project/'
+})
+const state = reactive( data.stories )
+
+stories.$patch({
+	projectData: data.stories
 })
 
-const projectSlug =  computed((): string => {
-	return '/project/' + props.slug
+/////////////////////////////
+// Sets up the three renderer
+/////////////////////////////
+import { addModel, useThreeInit } from '~/composables/ModelRender'
+
+
+const canvas = ref<InstanceType<typeof HTMLCanvasElement> | null>(null)
+
+onMounted(() => {
+	useThreeInit(canvas)
+
+	data.stories.forEach(story => {
+		addModel(story.content.projectHeader.filename)
+	})
 })
+
 
 </script>
+
 <template lang="pug">
-div(class=`
+div(
+  v-for="story in stories.projectData"
+  :key="story.id"
+  class=`
   container
   project-header
   flex
@@ -33,15 +52,15 @@ div(class=`
   mb-48
   items-center
   first:mt-48
+  even:flex-row-reverse
 `)
-
-  RouterLink(:to="projectSlug")
+  RouterLink(:to="`/project/${story.slug}`")
     div(class="w-lg h-lg bg-red-500")
 
   div(class="flex flex-col mx-auto lg:mx-16")
-    h3(class="projectYear") ({{ year }})
-    RouterLink(:to="projectSlug" class="projectTitle hover:text-core")
-      h1 {{ projectName }}
-
+    h3(class="projectYear") ({{ story.content.year }})
+    RouterLink(:to="`/project/${story.slug}`" class="projectTitle hover:text-core")
+      h1 {{ story.name }}
+canvas(ref="canvas" class="fixed top-0 left-0 outline-none -z-1")
 </template>
 
