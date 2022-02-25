@@ -5,6 +5,7 @@
 declare module 'vue' {
   export interface GlobalComponents {
     ProjectContentImageMulti: typeof import('./components/Project/Content/ProjectContentImageMulti.vue')['default']
+    ProjectContentImageScrollReveal: typeof import('./components/Project/Content/ProjectContentImageScrollReveal.vue')['default']
     ProjectContentMedia: typeof import('./components/Project/Content/ProjectContentMedia.vue')['default']
     ProjectContentMediaGallery: typeof import('./components/Project/Content/ProjectContentMediaGallery.vue')['default']
     ProjectContentMediaText: typeof import('./components/Project/Content/ProjectContentMediaText.vue')['default']

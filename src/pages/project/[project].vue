@@ -67,7 +67,7 @@ div(v-if="projectDataComputed")
       v-if="content.component === 'mediaText'"
       class="multi-media"
       :content="content")
-    ProjectContentImageMulti(
+    ProjectContentImageScrollReveal(
       v-if="content.component === 'mediaMulti'"
       :content="content")
     ProjectContentMediaGallery(
