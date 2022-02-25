@@ -14,5 +14,5 @@ div(class="antialiasing")
 	TheHeader
 	RouterView
 	Suspense
-		ProjectListHeader
+		ProjectList
 </template>
