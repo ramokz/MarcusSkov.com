@@ -1,10 +1,10 @@
 <script setup lang="ts">
 
 const props = defineProps({
-	content: {
-		type: Object,
-		required: true
-	}
+  content: {
+    type: Object,
+    required: true
+  }
 })
 
 // const assetAlt: string = props.content.asset.alt
@@ -16,41 +16,49 @@ const props = defineProps({
   }
 
 const mediaType = (): assetTypeEnum => {
-	const assetTypeString: string = props.content.asset.filename.split('.').pop() as string
+  const assetTypeString: string = props.content.asset.filename.split('.').pop() as string
 
-	// Defaulting to type image
-	let assetTypeVar: assetTypeEnum = assetTypeEnum.image
+  // Defaulting to type image
+  let assetTypeVar: assetTypeEnum = assetTypeEnum.image
 
-	switch (assetTypeString) {
-	case 'mp4':
-		assetTypeVar = assetTypeEnum.video
-		break
-	case 'glb':
-		assetTypeVar = assetTypeEnum.three
-	}
+  switch (assetTypeString) {
+    case 'mp4':
+      assetTypeVar = assetTypeEnum.video
+      break
+    case 'glb':
+      assetTypeVar = assetTypeEnum.three
+  }
 
-	return assetTypeVar
+  return assetTypeVar
 }
 
 let assetColor = computed(() => {
-	return props.content.color ? props.content.color.color : 'transparent'
+  return props.content.color ? props.content.color.color : 'transparent'
 })
 
 </script>
 
 
-<template lang="pug">
-div(v-if="mediaType() === assetTypeEnum.image"
+<template>
+  <div
+    v-if="mediaType() === assetTypeEnum.image"
     :style="{background: assetColor}"
-    class="flex")
-		img(:src="content.asset.filename" class="container mx-auto shadow-xl")
-ProjectContentVideo(
-  :content="content"
-  v-if="mediaType() === assetTypeEnum.video")
+    class="flex"
+  >
+    <img
+      :src="content.asset.filename"
+      class="container mx-auto shadow-xl"
+    >
+  </div>
 
-ProjectContentThree(
-  v-if="mediaType() === assetTypeEnum.three"
-  :content="content")
+  <ProjectContentVideo
+    v-if="mediaType() === assetTypeEnum.video"
+    :content="content"
+  />
 
+  <ProjectContentThree
+    v-if="mediaType() === assetTypeEnum.three"
+    :content="content"
+  />
 </template>
 

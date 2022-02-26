@@ -3,10 +3,10 @@
 import { gsap } from 'gsap'
 
 const props = defineProps({
-	content: {
-		type: Object,
-		required: true
-	}
+  content: {
+    type: Object,
+    required: true
+  }
 })
 
 const modalOpen = ref<boolean>(false)
@@ -16,12 +16,12 @@ const lightBox = ref<HTMLMediaElement>()
 const lightBoxTarget = ref<HTMLElement>()
 
 const transitionVal = {
-	offsetLeft: 0,
-	offsetTop: 0,
-	mediaElementWidth: 0,
-	mediaElementHeight: 0,
-	endWidth: 0,
-	endHeight: 0
+  offsetLeft: 0,
+  offsetTop: 0,
+  mediaElementWidth: 0,
+  mediaElementHeight: 0,
+  endWidth: 0,
+  endHeight: 0
 }
 
 const xPos = () => window.innerWidth / 2 - transitionVal.endWidth / 2
@@ -29,118 +29,128 @@ const yPos = () => window.innerHeight / 2 - transitionVal.endHeight / 2
 
 const mediaModal = (event: Event) => {
 
-	if (!modalOpen.value && event.target && lightBox.value) {
-		mediaElement.value = event.target as HTMLMediaElement
+  if (!modalOpen.value && event.target && lightBox.value) {
+    mediaElement.value = event.target as HTMLMediaElement
 
-		transitionVal.offsetLeft = mediaElement.value.getBoundingClientRect().left
-		transitionVal.offsetTop = mediaElement.value.getBoundingClientRect().top
-		transitionVal.mediaElementWidth = mediaElement.value.clientWidth
-		transitionVal.mediaElementHeight = mediaElement.value.clientHeight
-		transitionVal.endWidth = window.innerWidth / 100 * 90
-		transitionVal.endHeight = window.innerHeight / 100 * 90
+    transitionVal.offsetLeft = mediaElement.value.getBoundingClientRect().left
+    transitionVal.offsetTop = mediaElement.value.getBoundingClientRect().top
+    transitionVal.mediaElementWidth = mediaElement.value.clientWidth
+    transitionVal.mediaElementHeight = mediaElement.value.clientHeight
+    transitionVal.endWidth = window.innerWidth / 100 * 90
+    transitionVal.endHeight = window.innerHeight / 100 * 90
 
-		lightBox.value.src = mediaElement.value.src
+    lightBox.value.src = mediaElement.value.src
 
-		gsap.fromTo(lightBox.value, {
-			width: transitionVal.mediaElementWidth,
-			height: transitionVal.mediaElementHeight,
-			x: transitionVal.offsetLeft,
-			y: transitionVal.offsetTop
-		}, {
-			width: transitionVal.endWidth,
-			height: transitionVal.endHeight,
-			x: xPos,
-			y: yPos,
-			duration: 0.3,
-			ease: 'power1.out',
-			onStart: () => {
+    gsap.fromTo(lightBox.value, {
+      width: transitionVal.mediaElementWidth,
+      height: transitionVal.mediaElementHeight,
+      x: transitionVal.offsetLeft,
+      y: transitionVal.offsetTop
+    }, {
+      width: transitionVal.endWidth,
+      height: transitionVal.endHeight,
+      x: xPos,
+      y: yPos,
+      duration: 0.3,
+      ease: 'power1.out',
+      onStart: () => {
 
-				modalOpen.value = true
+        modalOpen.value = true
 
-				gsap.set(lightBox.value, {
-					src: mediaElement.value.src,
-					visibility: 'inherit'
-				})
+        gsap.set(lightBox.value, {
+          src: mediaElement.value.src,
+          visibility: 'inherit'
+        })
 
-				gsap.set(mediaElement.value, {
-					height: 'auto',
-					visibility: 'hidden'
-				})
+        gsap.set(mediaElement.value, {
+          height: 'auto',
+          visibility: 'hidden'
+        })
 
-				gsap.set('body', {
-					overflow: 'hidden'
-				})
-			},
-			onComplete: () => {
+        gsap.set('body', {
+          overflow: 'hidden'
+        })
+      },
+      onComplete: () => {
 
-				gsap.set(lightBox.value, {
-					width: '90vw',
-					height: '90vh',
-					x: '-50%',
-					y: '-50%',
-					left: '50%',
-					top: '50%'
-				})
-			}
-		})
-	} else {
-		gsap.fromTo(lightBox.value, {
-			width: transitionVal.endWidth,
-			height: transitionVal.endHeight,
-			x: xPos,
-			y: yPos,
-			left: null,
-			top: null
-		}, {
-			x: mediaElement.value?.getBoundingClientRect().left,
-			y: mediaElement.value?.getBoundingClientRect().top,
-			width: mediaElement.value?.clientWidth,
-			height: mediaElement.value?.clientHeight,
-			duration: 0.2,
-			onComplete: () => {
+        gsap.set(lightBox.value, {
+          width: '90vw',
+          height: '90vh',
+          x: '-50%',
+          y: '-50%',
+          left: '50%',
+          top: '50%'
+        })
+      }
+    })
+  }
+  else {
+    gsap.fromTo(lightBox.value, {
+      width: transitionVal.endWidth,
+      height: transitionVal.endHeight,
+      x: xPos,
+      y: yPos,
+      left: null,
+      top: null
+    }, {
+      x: mediaElement.value?.getBoundingClientRect().left,
+      y: mediaElement.value?.getBoundingClientRect().top,
+      width: mediaElement.value?.clientWidth,
+      height: mediaElement.value?.clientHeight,
+      duration: 0.2,
+      onComplete: () => {
 
-				modalOpen.value = false
+        modalOpen.value = false
 
-				gsap.set('body', {
-					overflow: 'inherit'
-				})
+        gsap.set('body', {
+          overflow: 'inherit'
+        })
 
-				gsap.set(lightBox.value, {
-					src: null,
-					x: null,
-					y: null,
-					width: null,
-					height: null,
-					visibility: 'hidden'
-				})
+        gsap.set(lightBox.value, {
+          src: null,
+          x: null,
+          y: null,
+          width: null,
+          height: null,
+          visibility: 'hidden'
+        })
 
-				gsap.set(mediaElement.value, {
-					visibility: 'initial'
-				})
-			}
-		})
-	}
+        gsap.set(mediaElement.value, {
+          visibility: 'initial'
+        })
+      }
+    })
+  }
 }
 </script>
 
-<template lang="pug">
-div(class="grid grid-cols-3 gap-6 container mx-auto")
-    div(class="h-full w-full mx-auto"
-        v-for="media in props.content.media"
-        :key="media.id"
-        @click="mediaModal")
-        img(
-            :src="media.filename"
-            class=`
-                w-full
-                cursor-pointer
-                object-cover
-                shadow-xl`)
-div(
+<template>
+  <div class="grid grid-cols-3 gap-6 container mx-auto">
+    <div
+      v-for="media in props.content.media"
+      :key="media.id"
+      class="h-full w-full mx-auto"
+      @click="mediaModal"
+    >
+      <img
+        :src="media.filename"
+        class="
+					w-full
+					cursor-pointer
+					object-cover
+					shadow-xl"
+      >
+    </div>
+  </div>
+  <div
+    v-if="modalOpen"
     class="fixed z-1 top-0 left-0 opacity-80 w-screen h-screen bg-dark cursor-pointer"
     @click="mediaModal"
-    v-if="modalOpen")
-img(ref="lightBox" class="lightBox fixed z-2 top-0 pointer-events-none w-11/12 object-contain")
+  />
+  <img
+    ref="lightBox"
+    class="lightBox fixed z-2 top-0 pointer-events-none w-11/12 object-contain"
+  >
 </template>
 
 

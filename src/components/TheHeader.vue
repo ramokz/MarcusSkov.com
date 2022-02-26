@@ -1,6 +1,7 @@
-<template lang="pug">
-div()
-  nav(class=`
+<template>
+  <div>
+    <nav
+      class="
       w-full
       flex
       fixed
@@ -10,7 +11,20 @@ div()
       bg-core
       shadow-2xl
       py-4
-    `)
-    router-link(to="/" class="navbarLinks") Project
-    router-link(to="/about" class="navbarLinks") About me
+    "
+    >
+      <router-link
+        to="/"
+        class="navbarLinks"
+      >
+        Project
+      </router-link>
+      <router-link
+        to="/about"
+        class="navbarLinks"
+      >
+        About me
+      </router-link>
+    </nav>
+  </div>
 </template>

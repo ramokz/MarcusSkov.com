@@ -1,6 +1,3 @@
-<template lang="pug">
-div(class="text-2xl text-center") Three Model
-</template>
 
 <script setup lang="ts">
 
@@ -8,10 +5,10 @@ div(class="text-2xl text-center") Three Model
 // import {onMounted} from 'vue'
 
 const props = defineProps({
-	content: {
-		type: Object,
-		required: true
-	}
+  content: {
+    type: Object,
+    required: true
+  }
 })
 
 // const {testFunc} = useThreeSetup()
@@ -22,6 +19,8 @@ const props = defineProps({
 
 </script>
 
-<style scoped>
-
-</style>
+<template>
+  <div class="text-2xl text-center">
+    Three Model
+  </div>
+</template>
