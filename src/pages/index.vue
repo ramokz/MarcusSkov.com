@@ -2,6 +2,6 @@
 
 </script>
 
-<template lang="pug">
-h2 Hello there
+<template>
+  <h2> Hello there </h2>
 </template>
