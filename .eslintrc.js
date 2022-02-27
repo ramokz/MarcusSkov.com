@@ -23,7 +23,18 @@ module.exports = {
     '@typescript-eslint'
   ],
   'rules': {
+
+    // Vue
     'vue/require-default-prop': 'off',
+    'vue/first-attribute-linebreak': ['error', {
+      'singleline': 'ignore',
+      'multiline': 'below'
+    }],
+    'vue/html-closing-bracket-newline': ['error', {
+      'singleline': 'never',
+      'multiline': 'always'
+    }],
+
     '@typescript-eslint/no-unused-vars': 'off',
     'linebreak-style': ['error', 'unix'],
     'quotes': ['error', 'single'],
