@@ -42,14 +42,21 @@ module.exports = {
     'no-mixed-spaces-and-tabs': ['error'],
     'no-unused-vars': 'off',
     'array-bracket-spacing': ['error', 'never'],
-    'comma-spacing': ['error', { before: false, after: true }],
+    'comma-spacing': ['error', {
+      before: false, after: true
+    }],
     'comma-style': ['error', 'last'],
     'no-cond-assign': ['error', 'always'],
     'func-call-spacing': ['off', 'never'],
-    'key-spacing': ['error', { beforeColon: false, afterColon: true }],
-    'indent': ['error', 2, { SwitchCase: 1, VariableDeclarator: 1, outerIIFEBody: 1 }],
+    'key-spacing': ['error', {
+      beforeColon: false, afterColon: true
+    }],
+    'indent': ['error', 2, {
+      SwitchCase: 1, VariableDeclarator: 1, outerIIFEBody: 1
+    }],
     'no-undef': 'off',
-    'curly': ['error', 'multi-or-nest', 'consistent'],
+    'curly': ['error'],
+    'object-curly-newline': ['error', { 'minProperties': 2 }],
     'comma-dangle': ['error', 'never'],
     'no-multi-spaces': 'error',
     'no-trailing-spaces': 'error',
@@ -80,7 +87,9 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': ['error', { 'ts-ignore': 'allow-with-description' }],
     '@typescript-eslint/member-delimiter-style': ['error', { multiline: { delimiter: 'none' } }],
     '@typescript-eslint/type-annotation-spacing': ['error', {}],
-    '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports', disallowTypeAnnotations: false }],
+    '@typescript-eslint/consistent-type-imports': ['error', {
+      prefer: 'type-imports', disallowTypeAnnotations: false
+    }],
     '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
     '@typescript-eslint/consistent-indexed-object-style': ['error', 'record'],
     '@typescript-eslint/prefer-ts-expect-error': 'error',
@@ -89,7 +98,9 @@ module.exports = {
     'no-redeclare': 'off',
     '@typescript-eslint/no-redeclare': 'error',
     'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': ['error', { functions: false, classes: false, variables: true }],
+    '@typescript-eslint/no-use-before-define': ['error', {
+      functions: false, classes: false, variables: true
+    }],
     'brace-style': 'off',
     '@typescript-eslint/brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
     '@typescript-eslint/object-curly-spacing': ['error', 'always'],
