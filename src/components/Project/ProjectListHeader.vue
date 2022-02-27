@@ -1,32 +1,74 @@
 <script setup lang="ts">
 
-defineProps({
-	story: {
-		type: Object,
-		required: true
-	}
+import { gsap } from 'gsap'
+
+const props = defineProps({
+  story: {
+    type: Object,
+    required: true
+  },
+  index: {
+    type: Number,
+    required: true
+  }
 })
+
+const threeFG = ref(null)
+const mouseEvent = ref<boolean>(false)
+
+const fadeBackground = (hover: boolean) => {
+  if(hover) {
+    gsap.to(threeFG.value, {
+      opacity: 0,
+      duration: 0.8
+    })
+  }
+  else {
+    gsap.to(threeFG.value, {
+      opacity: 0.5,
+      duration: 0.6
+    })
+  }
+}
+
+const projectSelect = () => {
+  console.log(`Selected projcet with index:${props.index}`)
+
+}
 
 </script>
 
-<template lang="pug">
-div(
-  class=`
-  container
-  project-header
-  mx-auto
-  flex
-  flex-col
-  lg:flex-row
-  items-center
-  h-screen
-  even:flex-row-reverse
-`)
-  RouterLink(:to="`/project/${story.slug}`")
-    div(class="w-lg h-lg bg-red-500")
-  div(class="flex flex-col mx-auto lg:mx-16")
-    h3(class="projectYear") ({{ story.content.year }})
-    RouterLink(:to="`/project/${story.slug}`" class="projectTitle hover:text-core")
-      h1 {{ story.name }}
+<template>
+  <div class="relative">
+    <div
+      ref="threeFG"
+      class="bg-dark w-full h-full absolute top-0 opacity-60 -z-1"
+    />
+    <div
+      class="
+        container
+        project-header
+        mx-auto
+        flex
+        lg:flex-row
+        items-center
+        h-screen
+        even:flex-row-reverse"
+    >
+      <div class="flex mx-auto">
+        <RouterLink
+          :to="`/project/${story.slug}`"
+          class="projectTitle hover:text-core"
+          @click="projectSelect"
+          @mouseenter="fadeBackground(true)"
+          @mouseleave="fadeBackground(false)"
+        >
+          <h3 class="projectYear mx-auto text-center">
+            ({{ story.content.year }})
+          </h3>
+          <h1> {{ story.name }} </h1>
+        </RouterLink>
+      </div>
+    </div>
+  </div>
 </template>
-
