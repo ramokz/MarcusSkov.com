@@ -39,7 +39,7 @@ module.exports = {
     'linebreak-style': ['error', 'unix'],
     'quotes': ['error', 'single'],
     'semi': ['error', 'never'],
-    'no-mixed-spaces-and-tabs': ['error'],
+    'no-mixed-spaces-and-tabs': ['error', 'smart-tabs'],
     'no-unused-vars': 'off',
     'array-bracket-spacing': ['error', 'never'],
     'comma-spacing': ['error', {
@@ -56,13 +56,31 @@ module.exports = {
     }],
     'no-undef': 'off',
     'curly': ['error'],
-    'object-curly-newline': ['error', { 'minProperties': 2 }],
+    'object-curly-newline': ['error', {
+      'ObjectExpression': 'always',
+      'ObjectPattern': {
+        'multiline': true
+      },
+      'ImportDeclaration': 'never',
+      'ExportDeclaration': {
+        'multiline': true, 'minProperties': 3
+      }
+    }],
     'comma-dangle': ['error', 'never'],
     'no-multi-spaces': 'error',
     'no-trailing-spaces': 'error',
     'object-curly-spacing': ['error', 'always'],
     'no-return-await': 'off',
     'space-before-function-paren': ['error', 'never'],
+    'padding-line-between-statements': [
+      'error',
+
+      {
+        blankLine: 'always', prev: ['const', 'let', 'var', 'case', 'class', 'default'], next: '*'
+      },
+      {
+        blankLine: 'never', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var']
+      }],
 
     // Test
     'array-callback-return': 'error',
@@ -84,9 +102,16 @@ module.exports = {
 
     // Typescript
     '@typescript-eslint/semi': ['error', 'never'],
-    '@typescript-eslint/ban-ts-comment': ['error', { 'ts-ignore': 'allow-with-description' }],
-    '@typescript-eslint/member-delimiter-style': ['error', { multiline: { delimiter: 'none' } }],
-    '@typescript-eslint/type-annotation-spacing': ['error', {}],
+    '@typescript-eslint/ban-ts-comment': ['error', {
+      'ts-ignore': 'allow-with-description'
+    }],
+    '@typescript-eslint/member-delimiter-style': ['error', {
+      multiline: {
+        delimiter: 'none'
+      }
+    }],
+    '@typescript-eslint/type-annotation-spacing': ['error', {
+    }],
     '@typescript-eslint/consistent-type-imports': ['error', {
       prefer: 'type-imports', disallowTypeAnnotations: false
     }],
@@ -102,7 +127,9 @@ module.exports = {
       functions: false, classes: false, variables: true
     }],
     'brace-style': 'off',
-    '@typescript-eslint/brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
+    '@typescript-eslint/brace-style': ['error', 'stroustrup', {
+      allowSingleLine: true
+    }],
     '@typescript-eslint/object-curly-spacing': ['error', 'always'],
     '@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
