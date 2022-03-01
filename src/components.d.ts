@@ -10,7 +10,6 @@ declare module 'vue' {
     ProjectContentMediaText: typeof import('./components/Project/Content/ProjectContentMediaText.vue')['default']
     ProjectContentThree: typeof import('./components/Project/Content/ProjectContentThree.vue')['default']
     ProjectContentVideo: typeof import('./components/Project/Content/ProjectContentVideo.vue')['default']
-    ProjectList: typeof import('./components/ProjectList.vue')['default']
     ProjectListHeader: typeof import('./components/Project/ProjectListHeader.vue')['default']
     ProjectMetadata: typeof import('./components/Project/ProjectMetadata.vue')['default']
     ProjectModels: typeof import('./components/ProjectModels.vue')['default']

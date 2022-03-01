@@ -4,7 +4,6 @@ import { useStories } from '~/stores/storyblok'
 
 const route = useRoute()
 const story = useStories()
-
 const projectRoute: string = route.params.project as string
 
 interface projectInterface {
@@ -27,7 +26,7 @@ const projectDataComputed = computed(() => {
 <template>
   <div v-if="projectDataComputed">
     <div
-      class="h-3xl m-0 p-0"
+      class="relative h-3xl m-0 p-0 -z-5"
       :style="{backgroundColor: projectDataComputed.content.color.color}"
     />
     <div class="container mx-auto">

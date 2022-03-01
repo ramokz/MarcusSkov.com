@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
 import { gsap } from 'gsap'
+import { projectPageSetter } from '~/composables/ModelRender'
 
 const props = defineProps({
   story: {
@@ -12,10 +13,8 @@ const props = defineProps({
     required: true
   }
 })
-
 const threeFG = ref(null)
 const mouseEvent = ref<boolean>(false)
-
 const fadeBackground = (hover: boolean) => {
   if(hover) {
     gsap.to(threeFG.value, {
@@ -30,10 +29,9 @@ const fadeBackground = (hover: boolean) => {
     })
   }
 }
-
 const projectSelect = () => {
   console.log(`Selected projcet with index:${props.index}`)
-
+  projectPageSetter(props.index as number)
 }
 
 </script>

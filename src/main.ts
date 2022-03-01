@@ -12,18 +12,22 @@ import '@unocss/reset/eric-meyer.css'
 import './styles/main.sass'
 
 const app = createApp(App)
-
 const router = createRouter({
-	history: createWebHistory(),
-	routes
+  history: createWebHistory(),
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+	  return {
+      top: 0
+    }
+  }
 })
 
 app
-	.use(createPinia())
-	.use(StoryblokVue, {
-		accessToken: import.meta.env.VITE_ACCESS_TOKEN,
-		use: [apiPlugin]
-	})
-	.use(createHead())
-	.use(router)
-	.mount('#app')
+  .use(createPinia())
+  .use(StoryblokVue, {
+    accessToken: import.meta.env.VITE_ACCESS_TOKEN,
+    use: [apiPlugin]
+  })
+  .use(createHead())
+  .use(router)
+  .mount('#app')

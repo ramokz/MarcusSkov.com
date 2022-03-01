@@ -17,7 +17,6 @@ const props = defineProps({
 
 const mediaType = (): assetTypeEnum => {
   const assetTypeString: string = props.content.asset.filename.split('.').pop() as string
-
   // Defaulting to type image
   let assetTypeVar: assetTypeEnum = assetTypeEnum.image
 
@@ -25,13 +24,13 @@ const mediaType = (): assetTypeEnum => {
     case 'mp4':
       assetTypeVar = assetTypeEnum.video
       break
+
     case 'glb':
       assetTypeVar = assetTypeEnum.three
   }
 
   return assetTypeVar
 }
-
 let assetColor = computed(() => {
   return props.content.color ? props.content.color.color : 'transparent'
 })
@@ -56,9 +55,10 @@ let assetColor = computed(() => {
     :content="content"
   />
 
-  <ProjectContentThree
-    v-if="mediaType() === assetTypeEnum.three"
-    :content="content"
-  />
+<!--  TODO - Setup with correct -->
+<!--  <ProjectContentThree-->
+<!--    v-if="mediaType() === assetTypeEnum.three"-->
+<!--    :content="content"-->
+<!--  />-->
 </template>
 

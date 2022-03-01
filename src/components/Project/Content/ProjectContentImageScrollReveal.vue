@@ -1,6 +1,5 @@
 <script setup lang="ts">
 
-import { onMounted, ref, watchEffect } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
@@ -11,18 +10,10 @@ const props = defineProps({
     required: true
   }
 })
-
-
 const imagesRefs = ref()
-
-// watchEffect(() => {
-//   console.log(imagesRefs.value)
-// })
-
 const assetUrls = computed(() => {
   return [props.content.asset_1.filename, props.content.asset_2.filename]
 })
-
 const imageMulti = ref()
 
 onMounted(() => {
@@ -43,23 +34,32 @@ onMounted(() => {
         scrub: true,
         pin: true,
         anticipatePin: 1
-      }, defaults: { ease: 'none' }
+      }, defaults: {
+        ease: 'none'
+      }
     })
 
     tl.fromTo(
           imageMulti.value!.querySelector('.image-after'),
-          { xPercent: 100, x: 0 },
-          { xPercent: 0 })
+          {
+            xPercent: 100, x: 0
+          },
+          {
+            xPercent: 0
+          })
       .fromTo(
               imageMulti.value!.querySelector('.image-after img'),
-              { xPercent: -100, x: 0 },
-              { xPercent: 0 },
+              {
+                xPercent: -100, x: 0
+              },
+              {
+                xPercent: 0
+              },
               0)
   }, 500)
 })
 
 </script>
-
 
 <template>
   <div

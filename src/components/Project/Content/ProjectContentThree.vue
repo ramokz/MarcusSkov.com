@@ -1,26 +1,25 @@
 
 <script setup lang="ts">
 
-// import {useThreeSetup} from '~/composables/ModelRender'
-// import {onMounted} from 'vue'
+import { renderModels } from '~/composables/ModelRender'
 
 const props = defineProps({
-  content: {
-    type: Object,
+  model: {
+    type: String,
     required: true
   }
 })
+const threeModelRef = ref()
 
-// const {testFunc} = useThreeSetup()
-//
-// onMounted(() => {
-//   testFunc()
-// })
+onMounted(() => {
+  renderModels({
+    model: props.model,
+    target: threeModelRef.value
+  })
+})
 
 </script>
 
 <template>
-  <div class="text-2xl text-center">
-    Three Model
-  </div>
+  <div ref="threeModelRef" />
 </template>
