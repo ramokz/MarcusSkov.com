@@ -1,10 +1,12 @@
 <script setup lang="ts">
 
+import { useStoryblok } from '@storyblok/vue'
 import { useStories } from '~/stores/storyblok'
+import { gsap } from 'gsap'
 
 const route = useRoute()
-const story = useStories()
 const projectRoute: string = route.params.project as string
+const storyStore = useStories()
 
 interface projectInterface {
   content: object
@@ -13,21 +15,29 @@ interface projectInterface {
   }
 }
 
-const projectDataComputed = computed(() => {
-  return story.getProject(projectRoute as string)
+// const projectDataComputed = computed(() => {
+//   return storyStore.getProject(projectRoute as string)
+// })
+const projectData = await useStoryblok(`project/${projectRoute as string}`, {
+  version: 'draft'
 })
+const headerBG = ref()
 
+onMounted(() => {
 
-// content.value = projectDataComputed.content.projectContent
-// const projectContent: object = project.content.projectContent
+  gsap.set(headerBG.value, {
+    visibility: 'hidden'
+  })
+})
 
 </script>
 
 <template>
-  <div v-if="projectDataComputed">
+  <div>
     <div
+      ref="headerBG"
       class="relative h-3xl m-0 p-0 -z-5"
-      :style="{backgroundColor: projectDataComputed.content.color.color}"
+      :style="{backgroundColor: projectData.content.color.color}"
     />
     <div class="container mx-auto">
       <div
@@ -42,34 +52,34 @@ const projectDataComputed = computed(() => {
       >
         <div class="flex flex-col mr-16 columns-4 w-1/2">
           <h3 class="text-xl">
-            {{ projectDataComputed.content.year }}
+            {{ projectData.content.year }}
           </h3>
           <h1 class="projectTitle">
-            {{ projectDataComputed.name }}
+            {{ projectData.name }}
           </h1>
           <div class="flex space-x-8">
             <ProjectMetadata
               :title="'Role'"
-              :content="projectDataComputed.content.role"
+              :content="projectData.content.role"
             />
             <ProjectMetadata
               :title="'Studio'"
-              :content="projectDataComputed.content.company"
+              :content="projectData.content.company"
             />
             <ProjectMetadata
               :title="'Platforms'"
-              :content="projectDataComputed.content.platforms"
+              :content="projectData.content.platforms"
               :show-show-icon="true"
             />
           </div>
         </div>
         <p class="w-1/2">
-          {{ projectDataComputed.content.intro }}
+          {{ projectData.content.intro }}
         </p>
       </div>
 
       <div
-        v-for="content in projectDataComputed.content.projectContent"
+        v-for="content in projectData.content.projectContent"
         :key="content"
         class="mb-48 media-content"
       >
