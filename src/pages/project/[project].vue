@@ -5,8 +5,8 @@ import { useStories } from '~/stores/storyblok'
 import { gsap } from 'gsap'
 
 const route = useRoute()
-const projectRoute: string = route.params.project as string
 const storyStore = useStories()
+const projectRoute: string = route.params.project as string
 
 interface projectInterface {
   content: object
@@ -18,22 +18,41 @@ interface projectInterface {
 // const projectDataComputed = computed(() => {
 //   return storyStore.getProject(projectRoute as string)
 // })
-const projectData = await useStoryblok(`project/${projectRoute as string}`, {
+const projectData = await useStoryblok(`project/${projectRoute}`, {
   version: 'draft'
 })
 const headerBG = ref()
+const projectContainer = ref()
 
 onMounted(() => {
 
   gsap.set(headerBG.value, {
     visibility: 'hidden'
   })
+
+  gsap.from(projectContainer.value, {
+    opacity: 0,
+    delay: 0.5
+  })
+
+  const projectIndex = storyStore.projectData.findIndex((project: object) => project.slug === route.params.project)
+
+  // console.log(`ProjectIndex is ${projectIndex}`)
+  // console.log(`StoreIndex is ${storyStore.projectIndex}`)
+  // console.log(projectIndex === storyStore.projectIndex)
+
+  if (projectIndex !== storyStore.projectIndex) {
+    storyStore.$patch({
+      projectIndex: projectIndex
+    })
+  }
+
 })
 
 </script>
 
 <template>
-  <div>
+  <div ref="projectContainer">
     <div
       ref="headerBG"
       class="relative h-3xl m-0 p-0 -z-5"

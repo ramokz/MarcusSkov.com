@@ -4,37 +4,56 @@
 // Data Fetching and Setup
 /////////////////////////
 import { useStories } from '~/stores/storyblok'
-import { useThreeStore } from '~/stores/threeStore'
-import { useStoryblokApi } from '@storyblok/vue'
+import { useStoryblokBridge, useStoryblokApi } from '@storyblok/vue'
+import { addProjectModels, projectPageSetter, useThreeInit } from '../composables/ModelRender'
+
 
 const storyblokApi = useStoryblokApi()
-const stories = useStories()
 const version = import.meta.env.DEV ? 'draft' : 'published'
 const { data } = await storyblokApi.get('cdn/stories', {
   version: version,
   starts_with: 'project/'
 })
-// const state = reactive( data.stories )
+const story = ref()
 
-stories.$patch({
+story.value = data.stories
+
+
+const storyStore = useStories()
+const route = useRoute()
+const projectRoute: string = route.params.project as string
+
+
+
+storyStore.$patch({
   projectData: data.stories
 })
 
 /////////////////////////////
 // Sets up the three renderer
 /////////////////////////////
-import { addProjectModels, useThreeInit } from '../composables/ModelRender'
-
-const canvasRef = ref<InstanceType<typeof HTMLCanvasElement> | null>(null)
+const canvasRef = ref<HTMLCanvasElement>(null)
 const modelArr = reactive({
   models: []
 })
 
 data.stories.forEach((story: object) => modelArr.models.push(story.content.projectHeader.filename))
+
 onMounted(() => {
-  useThreeInit(canvasRef)
+  // useStoryblokBridge(story.value.id, (evStory) => (story.value = evStory))
+  useThreeInit(canvasRef.value)
   addProjectModels(modelArr.models)
 
+  if (storyStore.projectIndex < 0 && route.name === 'project-project') {
+
+    const projectIndex = data.stories.findIndex((project: object) => project.slug === route.params.project)
+
+    storyStore.$patch({
+      projectIndex: projectIndex
+    })
+
+    projectPageSetter(projectIndex, true)
+  }
 })
 
 </script>

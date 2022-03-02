@@ -29,8 +29,12 @@ const fadeBackground = (hover: boolean) => {
     })
   }
 }
+const emit = defineEmits(['projectListFade'])
 const projectSelect = () => {
   console.log(`Selected projcet with index:${props.index}`)
+
+  emit('projectListFade')
+
   projectPageSetter(props.index as number)
 }
 

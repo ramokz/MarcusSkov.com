@@ -155,7 +155,7 @@ export const modelToScene = (model: string) => {
   })
 }
 
-export const projectPageSetter = (index: number) => {
+export const projectPageSetter = (index: number, noAnimation = false) => {
   // console.log(projectModels[index])
   projectListPage = false
 
@@ -165,15 +165,38 @@ export const projectPageSetter = (index: number) => {
 
   // console.log(camera.position.y)
 
-  gsap.to(camera.position, {
-    y: -index * 4 - 0.5
-  })
-
-  gsap.set(canvas, {
-    position: 'absolute'
-  })
+  if (noAnimation) {
+    gsap.set(camera.position, {
+      y: -index * 4 - 0.5
+    })
+    gsap.set(canvas, {
+      position: 'absolute'
+    })
+  }
+  else {
+    gsap.to(camera.position, {
+      y: -index * 4 - 0.5,
+      duration: 0.5,
+      onComplete: () => {
+        gsap.set(canvas, {
+          position: 'absolute'
+        })
+      }
+    })
+  }
   // camera.position.y =
   // console.log(camera.position.y)
+}
+
+export const projectPageExiter = () => {
+
+  /////////////////////////////
+  // TODO - Make a smoother transition
+  /////////////////////////////
+  projectListPage = true
+  gsap.set(canvas, {
+    position: 'fixed'
+  })
 }
 
 // export const use
