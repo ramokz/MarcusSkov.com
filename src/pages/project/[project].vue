@@ -53,30 +53,33 @@ onMounted(() => {
 
 <template>
   <div ref="projectContainer">
+    <BackButton />
     <div
       ref="headerBG"
       class="relative h-3xl m-0 p-0 -z-5"
       :style="{backgroundColor: projectData.content.color.color}"
     />
-    <div class="container mx-auto">
+    <div class="mx-auto">
       <div
         class="
           project-header
+          container
+          mx-auto
           flex
           flex-col
           lg:flex-row
           mt-10
           mb-32
-          items-center"
+          items-start"
       >
-        <div class="flex flex-col mr-16 columns-4 w-1/2">
+        <div class="flex flex-col mr-16 w-1/2">
           <h3 class="text-xl">
             {{ projectData.content.year }}
           </h3>
           <h1 class="projectTitle">
             {{ projectData.name }}
           </h1>
-          <div class="flex space-x-8">
+          <div class="flex mt-6 space-x-8">
             <ProjectMetadata
               :title="'Role'"
               :content="projectData.content.role"
@@ -92,15 +95,31 @@ onMounted(() => {
             />
           </div>
         </div>
-        <p class="w-1/2">
-          {{ projectData.content.intro }}
-        </p>
+        <div class="w-1/2">
+          <div>
+            <h4 class="h4">
+              About
+            </h4>
+            <p class="body">
+              {{ projectData.content.intro }}
+            </p>
+          </div>
+
+          <div class="mt-4">
+            <h4 class="h4">
+              Responsibilities
+            </h4>
+            <p class="body">
+              {{ projectData.content.intro }}
+            </p>
+          </div>
+        </div>
       </div>
 
       <div
         v-for="content in projectData.content.projectContent"
         :key="content"
-        class="mb-48 media-content"
+        class="mb-48"
       >
         <ProjectContentMedia
           v-if="content.component === 'media'"

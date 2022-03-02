@@ -42,11 +42,11 @@ let assetColor = computed(() => {
   <div
     v-if="mediaType() === assetTypeEnum.image"
     :style="{background: assetColor}"
-    class="flex"
   >
     <img
+      class="max-w-full mx-auto block"
+      :alt="props.content.asset.alt"
       :src="content.asset.filename"
-      class="container mx-auto shadow-xl"
     >
   </div>
 

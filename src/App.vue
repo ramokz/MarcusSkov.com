@@ -45,7 +45,7 @@ const indexPage = 'index'
 const projectPage = 'project-project'
 const aboutPage = 'about'
 
-router.afterEach((to, from) => {
+router.beforeEach((to, from) => {
 
   stories.$patch({
     projectSlug: to.params.project
@@ -54,34 +54,48 @@ router.afterEach((to, from) => {
   /////////////////////////////
   // TODO - Check if needed
   /////////////////////////////
-  // if (from.name === indexPage && to.name === projectPage) {
-  //   console.log('Going to a project page from the index page')
-  // }
-  // else if (from.name === projectPage && to.name === indexPage) {
-  //   console.log('Returning to the index page from the project page')
-  //   projectPageExiter()
-  // }
-  // else if (to.name === projectPage) {
-  //   console.log('Opening project page directly or refreshing')
-  // }
+  if (from.name === indexPage && to.name === projectPage) {
+    // console.log(stories.projectIndex)
+    // console.log('Going to a project page from the index page')
+  }
+  else if (from.name === projectPage && to.name === indexPage) {
+    // console.log('Returning to the index page from the project page')
+    projectPageExiter()
+  }
+  else if (!from.name && to.name === projectPage) {
+    // console.log(stories.projectIndex)
+    // console.log('Navigating with history keys')
+  }
+  else if (to.name !== projectPage && to.name !== indexPage) {
+    // console.log('About page')
+  }
+  else if (to.name === projectPage) {
+    // console.log('Opening project page directly or refreshing')
+  }
   // else if (to.name === indexPage) {
   //   console.log('Opening index page directly or refreshing')
   // }
 
+  // if (stories.projectIndex >= 0) {
+  //   if (to.name === projectPage) {
+  //     projectPageSetter(stories.projectIndex)
+  //   }
+  // }
+
   // console.log(from)
-  // console.log(from.name)
+  // console.log(`Coming from ${String(from.name)}`)
+  // console.log(`Going to ${String(to.name)}`)
   // console.log(to)
   // console.log(to.params.project)
-  // console.log(to.name)
 })
 
 </script>
 
 <template>
   <div class="antialiasing">
-    <TheHeader />
+<!--    <TheHeader />-->
 
-    <RouterView v-slot="{Component, route}">
+    <RouterView v-slot="{Component}">
       <Transition>
         <Suspense>
           <component :is="Component" />

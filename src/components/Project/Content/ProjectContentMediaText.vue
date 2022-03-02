@@ -13,13 +13,14 @@ defineProps({
     class="container
     mx-auto
     flex
+    space-x-4
     items-center"
   >
     <div class="w-1/2">
-      <h2 class="textContentHeader">
+      <h2 class="h2">
         {{ content.header }}
       </h2>
-      <p class="textContentBody">
+      <p class="body">
         {{ content.text }}
       </p>
     </div>

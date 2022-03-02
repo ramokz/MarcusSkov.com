@@ -6,8 +6,6 @@
 import { useStories } from '~/stores/storyblok'
 import { useStoryblokBridge, useStoryblokApi } from '@storyblok/vue'
 import { addProjectModels, projectPageSetter, useThreeInit } from '../composables/ModelRender'
-
-
 const storyblokApi = useStoryblokApi()
 const version = import.meta.env.DEV ? 'draft' : 'published'
 const { data } = await storyblokApi.get('cdn/stories', {
@@ -18,12 +16,9 @@ const story = ref()
 
 story.value = data.stories
 
-
 const storyStore = useStories()
 const route = useRoute()
 const projectRoute: string = route.params.project as string
-
-
 
 storyStore.$patch({
   projectData: data.stories

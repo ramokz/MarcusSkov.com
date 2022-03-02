@@ -190,6 +190,8 @@ export const projectPageSetter = (index: number, noAnimation = false) => {
 
 export const projectPageExiter = () => {
 
+  console.log('Exiting page')
+
   /////////////////////////////
   // TODO - Make a smoother transition
   /////////////////////////////
@@ -328,6 +330,8 @@ export const addProjectModels = (models: string[]) => {
 
       const modelScene = gltf.scene
 
+      projectModels.push(modelScene)
+
       rotateModel(modelScene)
 
       // modelScene.scale.x = 1
@@ -343,5 +347,12 @@ export const addProjectModels = (models: string[]) => {
 
       scene.add(modelScene)
     })
+  }
+}
+
+export const hideProjectModels = () => {
+
+  for (let i = 0; i < projectModels.length; i++) {
+    console.log(projectModels[i])
   }
 }

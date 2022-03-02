@@ -42,6 +42,7 @@ export default defineConfig({
         colors: {
           dark: '#171717',
           light: '#F2F2F2',
+          grey: '#424242',
           core: '#D32753'
         },
         fontFamily: {
@@ -58,7 +59,12 @@ export default defineConfig({
         'projectYear': 'text-2xl italic',
         'textContentHeader': 'text-5xl font-bold font-semibold mb-2',
         'textContentBody': 'text-xl',
-        'navbarLinks': 'text-lg text-light no-underline uppercase hover:text-core'
+        'navbarLinks': 'text-lg text-light no-underline uppercase hover:text-core',
+        'h1': 'font-black text-8xl',
+        'h2': 'font-black text-6xl mb-4',
+        'h3': 'font-bold text-lg',
+        'body': 'font-light text-xl',
+        'h4': 'text-lg uppercase'
       }
     })
   ]
