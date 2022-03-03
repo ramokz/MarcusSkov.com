@@ -49,11 +49,11 @@ export default defineConfig({
           sans: ['Kanit', 'sans-serif']
         }
       },
-      // rules: [
-      //   ['left-1/2', {
-      //     left: '50%'
-      //   }]
-      // ],
+      rules: [
+        ['h-screen-1/2', {
+          height: '50vh'
+        }]
+      ],
       shortcuts: {
         'projectTitle': 'text-5xl lg:text-6xl text-light uppercase font-bold no-underline',
         'projectYear': 'text-2xl italic',

@@ -26,6 +26,22 @@ const projectListFade = () => {
 
 <template>
   <div ref="projectList">
+    <div
+      class="
+        flex
+        flex-col
+        items-center
+        justify-center
+        h-screen-1/2
+        shadow-xl"
+    >
+      <h1 class="h1">
+        Hi
+      </h1>
+      <h2 class="h4 mt-12">
+        I'm a UI Designer and Developer working in games
+      </h2>
+    </div>
     <ProjectListHeader
       v-for="(story, index) in storyStore.projectData"
       :key="story.id"

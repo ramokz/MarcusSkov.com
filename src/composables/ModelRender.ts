@@ -88,7 +88,7 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
   const render = () => {
 
     if (projectListPage) {
-      camera.position.y = -scrollY / screenState.screenHeight * modelDistance
+      camera.position.y = -scrollY / screenState.screenHeight * modelDistance + 2
     }
     // / useScreenState.screenHeight * modelCount
 
