@@ -1,5 +1,5 @@
 <template>
-  <div class="sticky z-1 top-6 container mx-auto">
+  <div class="sticky z-1 top-6 container mx-auto h-0">
     <router-link to="/">
       <div class="inline-block">
         <div
