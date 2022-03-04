@@ -1,8 +1,6 @@
-
 <script setup lang="ts">
 
-import { renderModels } from '~/composables/ModelRender'
-
+import { addModelToScene } from '~/composables/ThreeRenderProjectPage'
 const props = defineProps({
   model: {
     type: String,
@@ -14,11 +12,14 @@ const threeModelRef = ref()
 // console.log(props.content.asset.filename)
 
 onMounted(() => {
-  // renderModels(props.model, threeModelRef.value)
+  addModelToScene(props.model, threeModelRef.value)
 })
 
 </script>
 
 <template>
-  <div ref="threeModelRef" />
+  <div
+    ref="threeModelRef"
+    class="h-120"
+  />
 </template>

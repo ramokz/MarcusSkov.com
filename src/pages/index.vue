@@ -15,7 +15,7 @@ const projectList = ref()
 // Methods
 /////////////////////////////
 const projectListFade = () => {
-  console.log('Fading project list')
+  // console.log('Fading project list')
   gsap.to(projectList.value, {
     opacity: 0,
     duration: 0

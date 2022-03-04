@@ -1,26 +1,46 @@
 import * as THREE from 'three'
 import { sRGBEncoding } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import { makeScene } from './ModelRender'
-
+import { gsap } from 'gsap'
 
 let canvas: HTMLCanvasElement
-let scene: THREE.scene
 let renderer: THREE.renderer
-let camera: THREE.PerspectiveCamera
+const projectScenes = []
+const clearColor = new THREE.Color('#000')
 
+export const threeProjectPageInit = (canvasRef: HTMLCanvasElement) => {
+  canvas = unref(canvasRef)
+  renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    alpha: true,
+    antialias: true
+  })
+  renderer.outputEncoding = sRGBEncoding
 
+  requestAnimationFrame(render)
+}
 
-export const makeScene = (domEl: HTMLDivElement) => {
+interface sceneElement {
+  domEl: HTMLDivElement
+  fn: any
+}
+
+const sceneElements: sceneElement[] = []
+const addSceneToArray = (domEl: HTMLDivElement, fn) => {
+  sceneElements.push({
+    domEl, fn
+  })
+}
+const makeScene2 = () => {
   const scene = new THREE.Scene()
   const fov = 45
-  const aspect = 2 // the canvas default
+  const aspect = 2
   const near = 0.1
-  const far = 5
+  const far = 100
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far)
 
-  camera.position.set(0, 0, 3)
-  camera.lookAt(0, -0.25, 0)
+  camera.position.set(1, 0, 2)
+  camera.lookAt(0, 0, 0)
   scene.add(camera)
 
   const ambientLight = new THREE.AmbientLight( 0xffffff, 0.1)
@@ -45,81 +65,114 @@ export const makeScene = (domEl: HTMLDivElement) => {
   backLight.target.position.set(0, 0, 0)
   scene.add(backLight)
 
-  // controls = new OrbitControls(camera, domEl)
-  // controls.enablePan = false
-  // controls.enableZoom = false
-  //
-  // controls.enableDamping = true
-  // controls.dampingFactor = 0.05
-  // controls.minAzimuthAngle = -Math.PI / 4
-  // controls.maxAzimuthAngle = Math.PI / 4
-  // controls.minPolarAngle = -Math.PI
-  // controls.maxPolarAngle = Math.PI / 1.5
-
   return {
     scene, camera
-    // controls
   }
 }
 
-export const renderModels = (model: string, domEl: HTMLDivElement, noAnimation?: boolean, playOnce?: boolean) => {
+export const addModelToScene = (model: string, domEl: HTMLDivElement, noAnimation = false) => {
   const gltfLoader = new GLTFLoader()
 
-  // console.log(model)
+  gltfLoader.load(model,
+    (gltf: GLTFLoader) => {
+      const { scene, camera } = makeScene2()
+      const model = gltf.scene
+      const clock = new THREE.Clock()
+      const mixer = new THREE.AnimationMixer(model)
+      let hasAnimation = false
 
-  gltfLoader.load(model, (gltf: GLTFLoader) => {
-    const renderElement = domEl
-    const { scene, camera } = makeScene(domEl)
-    const model = gltf.scene
-    const clock = new THREE.Clock()
-    const mixer = new THREE.AnimationMixer(model)
-    const hasAnimation = false
+      if (!noAnimation) {
+        const tl = gsap.timeline({
+          repeat: -1,
+          yoyo: true
+        })
+        const duration = 4
+        const distance = 0.1
 
-    // if (!val.noAnimation) {
-    //   const tl = gsap.timeline({
-    //     repeat: -1,
-    //     yoyo: true
-    //   })
-    //   const duration = 2
-    //   const distance = 0.1
-    //
-    //   tl.fromTo(model.position, {
-    //     y: -distance
-    //   }, {
-    //     y: distance,
-    //     duration: duration,
-    //     ease: 'sine.inOut',
-    //     yoyoEase: true
-    //   })
-    // }
+        tl.fromTo(model.position, {
+          y: -distance
+        }, {
+          y: distance,
+          duration: duration,
+          ease: 'sine.inOut',
+          yoyoEase: true
+        }).fromTo(model.rotation, {
+          y: -0.2
+        }, {
+          y: 0.2,
+          duration: duration,
+          ease: 'sine.inOut',
+          yoyoEase: true
+        }, '<')
+      }
 
-    // Checks if a model has any animation clips
-    // if (gltf.animations[0]) {
-    //   hasAnimation = true
-    //   gltf.animations.forEach(ani => {
-    //     mixer.clipAction(ani).play()
-    //   })
-    // }
 
-    scene.add(model)
+      scene.add(model)
 
-    addScene(renderElement, (time, rect) => {
-      camera.aspect = rect.width / rect.height
-      camera.updateProjectionMatrix()
-      // controls.update()
+      if (gltf.animations[0]) {
+        hasAnimation = true
+        gltf.animations.forEach((ani: THREE.animations) => {
+          mixer.clipAction(ani).play()
+        })
+      }
 
-      // if (hasAnimation) {
-      //   const delta = clock.getDelta()
-      //
-      //   mixer.update(delta)
-      // }
+      addSceneToArray(domEl, (time: number, rect) => {
+        camera.aspect = rect.width / rect.height
+        camera.updateProjectionMatrix()
 
-      renderer.render(scene, camera)
+        if (hasAnimation) {
+          const delta = clock.getDelta()
+
+          mixer.update(delta)
+        }
+
+
+        renderer.render(scene, camera)
+      })
     })
-  },
-  undefined,
-  function(error) {
-    console.error(error)
+}
+
+const resizeRendererToDisplaySize = (renderer: THREE.renderer) => {
+  const canvas = renderer.domElement
+  const width = canvas.clientWidth
+  const height = canvas.clientHeight
+  const needResize = canvas.width !== width || canvas.height !== height
+
+  if (needResize) {
+    renderer.setSize(width, height, false)
   }
-  )
+  return needResize
+}
+const render = (time: number) => {
+  time *= 0.001
+
+  resizeRendererToDisplaySize(renderer)
+
+  renderer.setScissorTest(false)
+  renderer.setClearColor(clearColor, 0)
+  renderer.clear(true, true)
+  renderer.setScissorTest(true)
+
+  renderer.domElement.style.transform = `translateY(${window.scrollY}px)`
+
+  for (const { domEl, fn } of sceneElements) {
+    // get the viewport relative position of this element
+    const rect = domEl.getBoundingClientRect()
+    const { left, right, top, bottom, width, height } = rect
+    const isOffscreen
+        = bottom < 0
+        || top > renderer.domElement.clientHeight
+        || right < 0
+        || left > renderer.domElement.clientWidth
+
+    if (!isOffscreen) {
+      const positiveYUpBottom = renderer.domElement.clientHeight - bottom
+
+      renderer.setScissor(left, positiveYUpBottom, width, height)
+      renderer.setViewport(left, positiveYUpBottom, width, height)
+
+      fn(time, rect)
+    }
+  }
+  requestAnimationFrame(render)
 }

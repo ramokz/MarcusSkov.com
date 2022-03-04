@@ -3,6 +3,7 @@
 import { useStoryblok } from '@storyblok/vue'
 import { useStories } from '~/stores/storyblok'
 import { gsap } from 'gsap'
+import { threeProjectPageInit } from '~/composables/ThreeRenderProjectPage'
 
 const route = useRoute()
 const storyStore = useStories()
@@ -26,14 +27,22 @@ const projectContainer = ref()
 const projectPageCanvas = ref()
 
 onMounted(() => {
+  threeProjectPageInit(projectPageCanvas)
 
-  gsap.set(headerBG.value, {
-    visibility: 'hidden'
-  })
+  // gsap.set(headerBG.value, {
+  //   visibility: 'hidden'
+  // })
 
   gsap.from(projectContainer.value, {
     opacity: 0,
     delay: 0.5
+  })
+
+  gsap.from(headerBG.value, {
+    height: 0,
+    delay: 0.2,
+    ease: 'power2.out',
+    duration: 1
   })
 
   const projectIndex = storyStore.projectData.findIndex((project: object) => project.slug === route.params.project)
@@ -56,10 +65,14 @@ onMounted(() => {
   <div ref="projectContainer">
     <BackButton />
     <div
-      ref="headerBG"
-      class="relative h-3xl m-0 p-0 -z-5"
-      :style="{backgroundColor: projectData.content.color.color}"
-    />
+      class="relative h-3xl -z-5"
+    >
+      <div
+        ref="headerBG"
+        class="h-full"
+        :style="{backgroundColor: projectData.content.color.color}"
+      />
+    </div>
     <div class="mx-auto">
       <div
         class="
@@ -141,6 +154,9 @@ onMounted(() => {
         />
       </div>
     </div>
-    <canvas ref="projectPageCanvas" />
+    <canvas
+      ref="projectPageCanvas"
+      class="absolute left-0 top-0 w-full h-full -z-1 block"
+    />
   </div>
 </template>

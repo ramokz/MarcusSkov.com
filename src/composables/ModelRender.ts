@@ -120,16 +120,35 @@ export const projectPageSetter = (index: number, noAnimation = false) => {
       y: -index * 4 - 0.5
     })
     gsap.set(canvas, {
-      position: 'absolute'
+      position: 'absolute',
+      onStart: () => {
+        gsap.set(canvas, {
+          zIndex: 4
+        })
+      },
+      onComplete: () => {
+        gsap.set(canvas, {
+          position: 'absolute',
+          zIndex: -2,
+          delay: 0.8
+        })
+      }
     })
   }
   else {
     gsap.to(camera.position, {
       y: -index * 4 - 0.5,
       duration: 0.5,
+      onStart: () => {
+        gsap.set(canvas, {
+          zIndex: 4
+        })
+      },
       onComplete: () => {
         gsap.set(canvas, {
-          position: 'absolute'
+          position: 'absolute',
+          zIndex: -2,
+          delay: 0.8
         })
       }
     })
@@ -182,3 +201,5 @@ export const hideProjectModels = () => {
     console.log(projectModels[i])
   }
 }
+
+

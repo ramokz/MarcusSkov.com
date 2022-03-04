@@ -54,7 +54,6 @@ let assetColor = computed(() => {
     :content="content"
   />
 
-  <!--  TODO - Setup with correct -->
   <ProjectContentThree
     v-else-if="mediaType() === assetTypeEnum.three"
     :model="content.asset.filename"
