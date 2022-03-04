@@ -37,7 +37,6 @@ let assetColor = computed(() => {
 
 </script>
 
-
 <template>
   <div
     v-if="mediaType() === assetTypeEnum.image"
@@ -51,14 +50,14 @@ let assetColor = computed(() => {
   </div>
 
   <ProjectContentVideo
-    v-if="mediaType() === assetTypeEnum.video"
+    v-else-if="mediaType() === assetTypeEnum.video"
     :content="content"
   />
 
-<!--  TODO - Setup with correct -->
-<!--  <ProjectContentThree-->
-<!--    v-if="mediaType() === assetTypeEnum.three"-->
-<!--    :content="content"-->
-<!--  />-->
+  <!--  TODO - Setup with correct -->
+  <ProjectContentThree
+    v-else-if="mediaType() === assetTypeEnum.three"
+    :model="content.asset.filename"
+  />
 </template>
 

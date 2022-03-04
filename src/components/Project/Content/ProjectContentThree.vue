@@ -11,11 +11,10 @@ const props = defineProps({
 })
 const threeModelRef = ref()
 
+// console.log(props.content.asset.filename)
+
 onMounted(() => {
-  renderModels({
-    model: props.model,
-    target: threeModelRef.value
-  })
+  // renderModels(props.model, threeModelRef.value)
 })
 
 </script>

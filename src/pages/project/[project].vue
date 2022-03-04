@@ -23,6 +23,7 @@ const projectData = await useStoryblok(`project/${projectRoute}`, {
 })
 const headerBG = ref()
 const projectContainer = ref()
+const projectPageCanvas = ref()
 
 onMounted(() => {
 
@@ -140,5 +141,6 @@ onMounted(() => {
         />
       </div>
     </div>
+    <canvas ref="projectPageCanvas" />
   </div>
 </template>
