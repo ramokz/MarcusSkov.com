@@ -43,7 +43,7 @@ let assetColor = computed(() => {
     :style="{background: assetColor}"
   >
     <img
-      class="max-w-full mx-auto block"
+      class="max-w-full mx-auto block select-none"
       :alt="props.content.asset.alt"
       :src="content.asset.filename"
     >

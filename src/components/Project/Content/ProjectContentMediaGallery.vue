@@ -138,7 +138,8 @@ const mediaModal = (event: Event) => {
 					w-full
 					cursor-pointer
 					object-cover
-					shadow-xl"
+					shadow-xl
+          select-none"
       >
     </div>
   </div>
