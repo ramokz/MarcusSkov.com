@@ -128,10 +128,10 @@ onMounted(() => {
           class="multi-media"
           :content="content"
         />
-        <ProjectContentImageScrollReveal
-          v-if="content.component === 'mediaMulti'"
-          :content="content"
-        />
+<!--        <ProjectContentImageScrollReveal-->
+<!--          v-if="content.component === 'mediaMulti'"-->
+<!--          :content="content"-->
+<!--        />-->
         <ProjectContentMediaGallery
           v-if="content.component === 'mediaGallery'"
           :content="content"
