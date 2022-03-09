@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import { sRGBEncoding } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { gsap } from 'gsap'
+import { useScreenState } from '~/stores/screenState'
 
 let canvas: HTMLCanvasElement
 let renderer: THREE.renderer
@@ -10,12 +11,17 @@ const clearColor = new THREE.Color('#000')
 
 export const threeProjectPageInit = (canvasRef: HTMLCanvasElement) => {
   canvas = unref(canvasRef)
+
+  const screenState = useScreenState()
+  screenState.setScreenStates()
+  
   renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     alpha: true,
     antialias: true
   })
   renderer.outputEncoding = sRGBEncoding
+  renderer.setPixelRatio(screenState.getDevicePixelRatio)
 
   requestAnimationFrame(render)
 }
