@@ -21,12 +21,6 @@ const contentString = computed(() => {
   // Studio name
   if (typeof props.content === 'string') {
     return props.content
-
-    // Platforms
-  }
-  else if (props.showShowIcon) {
-    // TODO - Render platform icons
-    console.log(props.content)
   }
 
   // Roles
@@ -40,7 +34,7 @@ const contentString = computed(() => {
       <h3 class="uppercase">
         {{ title }}
       </h3>
-      <div class="h-2px bg-light mt-2 mb-1 opacity-30" />
+      <div class="h-1px bg-light mt-1 mb-1 opacity-30" />
     </div>
     <h3
       v-if="!props.showShowIcon"

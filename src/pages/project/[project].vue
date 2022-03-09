@@ -56,7 +56,6 @@ onMounted(() => {
       projectIndex: projectIndex
     })
   }
-
 })
 
 </script>
@@ -65,11 +64,11 @@ onMounted(() => {
   <div ref="projectContainer">
     <BackButton />
     <div
-      class="relative h-3xl -z-5"
+      class="relative h-xl -z-5"
     >
       <div
         ref="headerBG"
-        class="h-full"
+        class="h-xl"
         :style="{backgroundColor: projectData.content.color.color}"
       />
     </div>
@@ -110,24 +109,9 @@ onMounted(() => {
           </div>
         </div>
         <div class="w-1/2">
-          <div>
-            <h4 class="h4">
-              About
-            </h4>
-            <p class="body">
-              {{ projectData.content.intro }}
-            </p>
+            <ProjectContentTextField title="About the Project" :richText="projectData.content.intro"/>
+            <ProjectContentTextField class="mt-8" title="My Responsibilities" :richText="projectData.content.responsibilities"/>
           </div>
-
-          <div class="mt-4">
-            <h4 class="h4">
-              Responsibilities
-            </h4>
-            <p class="body">
-              {{ projectData.content.intro }}
-            </p>
-          </div>
-        </div>
       </div>
 
       <div
