@@ -60,11 +60,11 @@ export default defineConfig({
         'textContentHeader': 'text-5xl font-bold font-semibold mb-2',
         'textContentBody': 'text-xl',
         'navbarLinks': 'text-lg text-light no-underline uppercase hover:text-core',
-        'h1': 'font-black text-8xl',
-        'h2': 'font-black text-6xl mb-4',
+        'h1': 'font-bold text-8xl',
+        'h2': 'font-bold text-6xl mb-4',
         'h3': 'font-bold text-lg',
-        'body': 'font-light text-xl',
-        'h4': 'text-lg uppercase'
+        'h4': 'font-semibold text-lg uppercase',
+        'body': 'font-regular text-lg',
       }
     })
   ]
