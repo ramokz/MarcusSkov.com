@@ -18,7 +18,7 @@ export default defineConfig({
     }
   },
   build: {
-    assetsInlineLimit: 80
+    assetsInlineLimit: 0
   },
   base: './',
   plugins: [
