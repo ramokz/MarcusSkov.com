@@ -19,8 +19,9 @@ interface projectInterface {
 // const projectDataComputed = computed(() => {
 //   return storyStore.getProject(projectRoute as string)
 // })
+const version = import.meta.env.DEV ? 'draft' : 'published'
 const projectData = await useStoryblok(`project/${projectRoute}`, {
-  version: 'draft'
+  version: version
 })
 const headerBG = ref()
 const projectContainer = ref()
@@ -109,9 +110,16 @@ onMounted(() => {
           </div>
         </div>
         <div class="w-1/2">
-            <ProjectContentTextField title="About the Project" :richText="projectData.content.intro"/>
-            <ProjectContentTextField class="mt-8" title="My Responsibilities" :richText="projectData.content.responsibilities"/>
-          </div>
+          <ProjectContentTextField
+            title="About the Project"
+            :rich-text="projectData.content.intro"
+          />
+          <ProjectContentTextField
+            class="mt-8"
+            title="My Responsibilities"
+            :rich-text="projectData.content.responsibilities"
+          />
+        </div>
       </div>
 
       <div
@@ -128,10 +136,10 @@ onMounted(() => {
           class="multi-media"
           :content="content"
         />
-<!--        <ProjectContentImageScrollReveal-->
-<!--          v-if="content.component === 'mediaMulti'"-->
-<!--          :content="content"-->
-<!--        />-->
+        <!--        <ProjectContentImageScrollReveal-->
+        <!--          v-if="content.component === 'mediaMulti'"-->
+        <!--          :content="content"-->
+        <!--        />-->
         <ProjectContentMediaGallery
           v-if="content.component === 'mediaGallery'"
           :content="content"
