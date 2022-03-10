@@ -57,6 +57,7 @@ router.beforeEach((to, from) => {
   if (from.name === indexPage && to.name === projectPage) {
     // console.log(stories.projectIndex)
     // console.log('Going to a project page from the index page')
+    projectPageSetter(stories.getProjectIndex(to.params.project))
   }
   else if (from.name === projectPage && to.name === indexPage) {
     // console.log('Returning to the index page from the project page')
@@ -70,6 +71,7 @@ router.beforeEach((to, from) => {
     // console.log('About page')
   }
   else if (to.name === projectPage) {
+    projectPageSetter(stories.getProjectIndex(to.params.project), true)
     // console.log('Opening project page directly or refreshing')
   }
   // else if (to.name === indexPage) {
@@ -93,7 +95,7 @@ router.beforeEach((to, from) => {
 
 <template>
   <div class="antialiasing">
-<!--    <TheHeader />-->
+    <!--    <TheHeader />-->
 
     <RouterView v-slot="{Component}">
       <Transition>

@@ -19,12 +19,12 @@ export const useStories = defineStore('storyblok', {
       // const allProjects = this.projectData
 
       return (slug: string) => this.projectData.find((project: Project) => project.slug === slug)
-    }
+    },
     /////////////////////////////
     // TODO - Try and use this method
     /////////////////////////////
-    // getProjectIndex() {
-    //   return (slug: string) => this.projectData.findIndex((project: Project) => project.slug === slug)
-    // }
+    getProjectIndex() {
+      return (slug: any) => this.projectData.findIndex((project: Project) => project.slug === slug)
+    }
   }
 })

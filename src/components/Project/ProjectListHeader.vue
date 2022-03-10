@@ -29,14 +29,6 @@ const fadeBackground = (hover: boolean) => {
     })
   }
 }
-const emit = defineEmits(['projectListFade'])
-const projectSelect = () => {
-  // console.log(`Selected projcet with index:${props.index}`)
-
-  emit('projectListFade')
-
-  projectPageSetter(props.index as number)
-}
 
 </script>
 
@@ -61,7 +53,6 @@ const projectSelect = () => {
         <RouterLink
           :to="`/project/${story.slug}`"
           class="projectTitle hover:text-core"
-          @click="projectSelect"
           @mouseenter="fadeBackground(true)"
           @mouseleave="fadeBackground(false)"
         >

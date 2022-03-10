@@ -4,6 +4,7 @@ import { useStoryblok } from '@storyblok/vue'
 import { useStories } from '~/stores/storyblok'
 import { gsap } from 'gsap'
 import { threeProjectPageInit } from '~/composables/ThreeRenderProjectPage'
+import { onBeforeRouteLeave } from 'vue-router'
 
 const route = useRoute()
 const storyStore = useStories()
@@ -43,7 +44,12 @@ onMounted(() => {
     height: 0,
     delay: 0.2,
     ease: 'power2.out',
-    duration: 1
+    duration: 1,
+    onComplete: () => {
+      gsap.set(headerBG.value, {
+        height: null
+      })
+    }
   })
 
   const projectIndex = storyStore.projectData.findIndex((project: object) => project.slug === route.params.project)
@@ -57,6 +63,13 @@ onMounted(() => {
       projectIndex: projectIndex
     })
   }
+})
+
+onBeforeRouteLeave(() => {
+  console.log('Leaving')
+  gsap.set(projectContainer.value, {
+    visibility: 'hidden'
+  })
 })
 
 </script>
