@@ -21,7 +21,7 @@ const router = createRouter({
   //     {path: '/:pathMatch(.*)*', component: ErrorPage}
   // ],
   scrollBehavior(to, from, savedPosition) {
-	  if (savedPosition) {
+	  if (savedPosition && from.name === 'project-project') {
       return savedPosition
     }
     else {
