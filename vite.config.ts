@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import Pages from 'vite-plugin-pages'
-import { VitePWA } from 'vite-plugin-pwa'
+// import { VitePWA } from 'vite-plugin-pwa'
 
 import Unocss from 'unocss/vite'
 
@@ -13,14 +13,18 @@ import Unocss from 'unocss/vite'
 export default defineConfig({
   resolve: {
     alias: {
-      '~/': `${path.resolve(__dirname, 'src')}/`
+      '~/': `${path.resolve(__dirname, 'src')}/`,
+      '@': path.resolve(__dirname, './src')
     }
   },
+  build: {
+    assetsInlineLimit: 80
+  },
+  base: './',
   plugins: [
     vue(),
     Pages({
     }),
-    VitePWA(),
     AutoImport({
       imports: [
         'vue',
@@ -64,7 +68,7 @@ export default defineConfig({
         'h2': 'font-bold text-6xl mb-4',
         'h3': 'font-bold text-lg',
         'h4': 'font-semibold text-lg uppercase',
-        'body': 'font-regular text-lg',
+        'body': 'font-regular text-lg'
       }
     })
   ]

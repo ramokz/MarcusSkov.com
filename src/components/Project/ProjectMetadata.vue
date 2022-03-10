@@ -1,5 +1,15 @@
 <script setup lang="ts">
 
+import AndroidIcon from '~/assets/Android-icon.svg'
+import iOSIcon from '~/assets/iOS-icon.svg'
+import PlaystationIcon from '~/assets/Playstation-icon.svg'
+import SteamIcon from '~/assets/Steam-icon.svg'
+import TVIcon from '~/assets/TV-icon.svg'
+import tvOSIcon from '~/assets/tvOS-icon.svg'
+import WebIcon from '~/assets/Web-icon.svg'
+import WindowsIcon from '~/assets/Windows-icon.svg'
+import XboxIcon from '~/assets/Xbox-icon.svg'
+
 const props = defineProps({
   title: {
     type: String,
@@ -26,6 +36,53 @@ const contentString = computed(() => {
   // Roles
   return props.content.join(', ')
 })
+const platformIcon = computed(() => {
+
+  const platformArray = []
+
+  if (props.showShowIcon) {
+    for (let i = 0; i < props.content.length; i++) {
+      switch (props.content[i]) {
+        case 'Android':
+          platformArray.push(AndroidIcon)
+          break
+
+        case 'iOS':
+          platformArray.push(iOSIcon)
+          break
+
+        case 'Playstation':
+          platformArray.push(PlaystationIcon)
+          break
+
+        case 'Steam':
+          platformArray.push(SteamIcon)
+          break
+
+        case 'TV':
+          platformArray.push(TVIcon)
+          break
+
+        case 'tvOS':
+          platformArray.push(tvOSIcon)
+          break
+
+        case 'Web':
+          platformArray.push(WebIcon)
+          break
+
+        case 'Windows':
+          platformArray.push(WindowsIcon)
+          break
+
+        case 'Xbox':
+          platformArray.push(XboxIcon)
+          break
+      }
+    }
+  }
+  return platformArray
+})
 
 </script>
 <template>
@@ -47,10 +104,10 @@ const contentString = computed(() => {
       class="flex space-x-2"
     >
       <img
-        v-for="icon in props.content"
+        v-for="icon in platformIcon"
         :key="icon"
-        :src="`./../../src/assets/${icon}-icon.svg`"
-        :alt="`${icon} icon`"
+        :src="icon"
+        :alt="`${icon}`"
         height="32"
         width="32"
       >
