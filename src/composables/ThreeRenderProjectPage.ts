@@ -13,8 +13,9 @@ export const threeProjectPageInit = (canvasRef: HTMLCanvasElement) => {
   canvas = unref(canvasRef)
 
   const screenState = useScreenState()
+
   screenState.setScreenStates()
-  
+
   renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     alpha: true,
@@ -32,7 +33,7 @@ interface sceneElement {
 }
 
 const sceneElements: sceneElement[] = []
-const addSceneToArray = (domEl: HTMLDivElement, fn) => {
+const addSceneToArray = (domEl: HTMLDivElement, fn: any) => {
   sceneElements.push({
     domEl, fn
   })
@@ -122,7 +123,7 @@ export const addModelToScene = (model: string, domEl: HTMLDivElement, noAnimatio
         })
       }
 
-      addSceneToArray(domEl, (time: number, rect) => {
+      addSceneToArray(domEl, (time: number, rect: any) => {
         camera.aspect = rect.width / rect.height
         camera.updateProjectionMatrix()
 

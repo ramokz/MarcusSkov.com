@@ -53,10 +53,10 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
   /////////////////////////////
   // Light
   /////////////////////////////
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.1)
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.4)
   const keyLight = new THREE.DirectionalLight(0xffffff, 0.5)
 
-  keyLight.position.set(-2, 2, 4)
+  keyLight.position.set(-2, 0, 4)
   scene.add(ambientLight, keyLight)
 
   /////////////////////////////
@@ -68,25 +68,21 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
   })
 
   camera = new THREE.PerspectiveCamera(35, screenState.screenWidth / screenState.screenHeight, 0.1, 100)
-  camera.position.z = 6
+  camera.position.z = 5
 
   screenChange()
 
   scene.add(camera)
 
-  const render = (time: number) => {
-    time *= 0.001
-    // console.log(projectPageModels)
+  const render = () => {
 
     if (projectListPage) {
-      camera.position.y = -scrollY / screenState.screenHeight * modelDistance + 2
+      camera.position.y = -scrollY / screenState.screenHeight * modelDistance // + 2 TODO - Add once header is complete
     }
 
     renderer.render(scene, camera)
     window.requestAnimationFrame(render)
-
   }
-
   requestAnimationFrame(render)
 }
 
@@ -185,9 +181,9 @@ export const addProjectModels = (models: string[]) => {
 
       rotateModel(modelScene)
 
-      // modelScene.scale.x = 1
-      // modelScene.scale.y = 1
-      // modelScene.scale.z = 1
+      modelScene.scale.x = 1
+      modelScene.scale.y = 1
+      modelScene.scale.z = 1
       modelScene.position.y = - modelDistance * index
 
       scene.add(modelScene)
