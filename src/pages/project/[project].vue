@@ -65,11 +65,11 @@ onMounted(() => {
   <div ref="projectContainer">
     <BackButton />
     <div
-      class="relative h-xl -z-5"
+      class="relative -z-5"
     >
       <div
         ref="headerBG"
-        class="h-xl"
+        class="headerBG"
         :style="{backgroundColor: projectData.content.color.color}"
       />
     </div>
@@ -125,7 +125,7 @@ onMounted(() => {
       <div
         v-for="content in projectData.content.projectContent"
         :key="content"
-        class="mb-48"
+        class="mb-48 max-w-full"
       >
         <ProjectContentMedia
           v-if="content.component === 'media'"
@@ -152,3 +152,9 @@ onMounted(() => {
     />
   </div>
 </template>
+
+<style>
+.headerBG {
+  height: 60vh;
+}
+</style>

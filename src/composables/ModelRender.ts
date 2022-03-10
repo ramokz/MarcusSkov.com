@@ -68,7 +68,7 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
   })
 
   camera = new THREE.PerspectiveCamera(35, screenState.screenWidth / screenState.screenHeight, 0.1, 100)
-  camera.position.z = 5
+  camera.position.z = 6
 
   screenChange()
 
@@ -83,6 +83,7 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
     renderer.render(scene, camera)
     window.requestAnimationFrame(render)
   }
+
   requestAnimationFrame(render)
 }
 
@@ -113,7 +114,7 @@ export const projectPageSetter = (index: number, noAnimation = false) => {
 
   if (noAnimation) {
     gsap.set(camera.position, {
-      y: -index * 4 - 0.5
+      y: -index * 4 - 0.75
     })
     gsap.set(canvas, {
       position: 'absolute',
@@ -133,7 +134,7 @@ export const projectPageSetter = (index: number, noAnimation = false) => {
   }
   else {
     gsap.to(camera.position, {
-      y: -index * 4 - 0.5,
+      y: -index * 4 - 0.75,
       duration: 0.5,
       onStart: () => {
         gsap.set(canvas, {
