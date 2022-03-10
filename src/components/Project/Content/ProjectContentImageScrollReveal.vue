@@ -23,13 +23,11 @@ onMounted(() => {
   // console.log(imageMulti.value)
 
   // TODO - Needs proper async await method to check for ref value
-  setTimeout(() => {
-    // console.log(imagesRefs.value)
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: imageMulti.value,
         start: 'center center',
-        end: () => '+=' + imageMulti.value.offsetWidth / 4,
+        end: () => '+=' + imageMulti.value.offsetWidth / 4, 
         // markers: true,
         scrub: true,
         pin: true,
@@ -56,9 +54,7 @@ onMounted(() => {
                 xPercent: 0
               },
               0)
-  }, 500)
-})
-
+  })
 </script>
 
 <template>
