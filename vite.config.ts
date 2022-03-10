@@ -68,7 +68,7 @@ export default defineConfig({
         'h2': 'font-bold text-6xl mb-4',
         'h3': 'font-bold text-lg',
         'h4': 'font-semibold text-lg uppercase',
-        'body': 'font-regular text-lg'
+        'body': 'text-lg'
       }
     })
   ]
