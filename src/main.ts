@@ -15,6 +15,11 @@ const app = createApp(App)
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  // routes: [
+  //     {path: '/', component: Index},
+  //     {path: '/project/:id', component: ProjectPage},
+  //     {path: '/:pathMatch(.*)*', component: ErrorPage}
+  // ],
   scrollBehavior(to, from, savedPosition) {
 	  return {
       top: 0,
