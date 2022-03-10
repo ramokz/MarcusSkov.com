@@ -21,9 +21,14 @@ const router = createRouter({
   //     {path: '/:pathMatch(.*)*', component: ErrorPage}
   // ],
   scrollBehavior(to, from, savedPosition) {
-	  return {
-      top: 0,
-      behavior: 'smooth'
+	  if (savedPosition) {
+      return savedPosition
+    }
+    else {
+      return {
+        top: 0,
+        behavior: 'smooth'
+      }
     }
   }
 })
