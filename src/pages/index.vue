@@ -52,5 +52,6 @@ onBeforeRouteLeave(() => {
       :index="index"
       :story="story"
     />
+    <About/>
   </div>
 </template>

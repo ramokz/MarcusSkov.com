@@ -23,8 +23,7 @@ export default defineConfig({
   base: './',
   plugins: [
     vue(),
-    Pages({
-    }),
+    Pages(),
     AutoImport({
       imports: [
         'vue',
@@ -46,11 +45,12 @@ export default defineConfig({
         colors: {
           dark: '#171717',
           light: '#F2F2F2',
-          grey: '#424242',
+          grey: '#C0C0C0',
           core: '#D32753'
         },
         fontFamily: {
-          sans: ['Kanit', 'sans-serif']
+          sans: ['Kanit', 'sans-serif'],
+          serif: ['Playfair Display', 'serif']
         }
       },
       rules: [
@@ -65,10 +65,12 @@ export default defineConfig({
         'textContentBody': 'text-xl',
         'navbarLinks': 'text-lg text-light no-underline uppercase hover:text-core',
         'h1': 'font-bold text-8xl',
-        'h2': 'font-bold text-6xl mb-4',
-        'h3': 'font-bold text-lg',
-        'h4': 'font-semibold text-lg uppercase',
-        'body': 'text-lg'
+        'h2': 'font-bold text-6xl mb-4 font-serif',
+        'h3': 'font-bold text-2xl uppercase color-grey',
+        'h4': 'font-semibold text-lg font-serif',
+        'h5': 'font-semibold text-md uppercase color-grey',
+        'body': 'text-lg',
+        'divider': 'h-1px bg-grey my-2 opacity-20'
       }
     })
   ]

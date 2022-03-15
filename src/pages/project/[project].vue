@@ -123,11 +123,11 @@ onBeforeRouteLeave(() => {
           </div>
         </div>
         <div class="w-1/2">
-          <ProjectContentTextField
+          <ProjectDescription
             title="About the Project"
             :rich-text="projectData.content.intro"
           />
-          <ProjectContentTextField
+          <ProjectDescription
             class="mt-8"
             title="My Responsibilities"
             :rich-text="projectData.content.responsibilities"
@@ -138,7 +138,6 @@ onBeforeRouteLeave(() => {
       <div
         v-for="content in projectData.content.projectContent"
         :key="content"
-        class="mb-48 max-w-full"
       >
         <ProjectContentMedia
           v-if="content.component === 'media'"
@@ -149,14 +148,13 @@ onBeforeRouteLeave(() => {
           class="multi-media"
           :content="content"
         />
-        <!--        <ProjectContentImageScrollReveal-->
-        <!--          v-if="content.component === 'mediaMulti'"-->
-        <!--          :content="content"-->
-        <!--        />-->
         <ProjectContentMediaGallery
           v-if="content.component === 'mediaGallery'"
           :content="content"
         />
+        <ProjectContentSectionHeader
+          v-if="content.component === 'sectionHeader'"
+          :content="content"/>
       </div>
     </div>
     <canvas

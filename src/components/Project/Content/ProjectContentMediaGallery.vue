@@ -125,20 +125,31 @@ const mediaModal = (event: Event) => {
 </script>
 
 <template>
-  <div class="grid grid-cols-3 gap-6 container mx-auto">
+  <h3 class="h5 text-center mx-auto mt-12 mb-4">Additional images</h3>
+  <div class="
+    container
+    grid
+    grid-cols-3
+    gap-x-6
+    gap-y-6
+    mx-auto
+    mb-32
+    items-center
+    justify-center
+  ">
     <div
       v-for="media in props.content.media"
       :key="media.id"
-      class="h-full w-full mx-auto"
+      class="h-auto w-full mx-auto"
       @click="mediaModal"
     >
       <img
         :src="media.filename"
+        :alt="media.alt"
         class="
 					w-full
 					cursor-pointer
 					object-cover
-					shadow-xl
           select-none"
       >
     </div>
@@ -150,15 +161,7 @@ const mediaModal = (event: Event) => {
   />
   <img
     ref="lightBox"
+    alt=""
     class="lightBox fixed z-2 top-0 pointer-events-none w-11/12 object-contain"
   >
 </template>
-
-
-<style>
-/* .lightBox {
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-} */
-</style>

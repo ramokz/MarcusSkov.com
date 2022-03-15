@@ -4,14 +4,16 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    About: typeof import('./components/About.vue')['default']
     BackButton: typeof import('./components/BackButton.vue')['default']
     ProjectContentImageScrollReveal: typeof import('./components/Project/Content/ProjectContentImageScrollReveal.vue')['default']
     ProjectContentMedia: typeof import('./components/Project/Content/ProjectContentMedia.vue')['default']
     ProjectContentMediaGallery: typeof import('./components/Project/Content/ProjectContentMediaGallery.vue')['default']
     ProjectContentMediaText: typeof import('./components/Project/Content/ProjectContentMediaText.vue')['default']
-    ProjectContentTextField: typeof import('./components/Project/Content/ProjectContentTextField.vue')['default']
+    ProjectContentSectionHeader: typeof import('./components/Project/Content/ProjectContentSectionHeader.vue')['default']
     ProjectContentThree: typeof import('./components/Project/Content/ProjectContentThree.vue')['default']
     ProjectContentVideo: typeof import('./components/Project/Content/ProjectContentVideo.vue')['default']
+    ProjectDescription: typeof import('./components/Project/Content/ProjectDescription.vue')['default']
     ProjectListHeader: typeof import('./components/Project/ProjectListHeader.vue')['default']
     ProjectMetadata: typeof import('./components/Project/ProjectMetadata.vue')['default']
     ProjectModels: typeof import('./components/ProjectModels.vue')['default']

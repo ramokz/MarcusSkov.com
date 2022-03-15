@@ -88,17 +88,17 @@ const platformIcon = computed(() => {
 <template>
   <div class="flex flex-col">
     <div>
-      <h3 class="uppercase">
+      <h3 class="uppercase h5">
         {{ title }}
       </h3>
-      <div class="h-1px bg-light mt-1 mb-1 opacity-30" />
+      <div class="divider" />
     </div>
-    <h3
+    <h4
       v-if="!props.showShowIcon"
-      class="font-bold h3"
+      class="font-bold h4"
     >
       {{ contentString }}
-    </h3>
+    </h4>
     <div
       v-if="props.showShowIcon"
       class="flex space-x-2"

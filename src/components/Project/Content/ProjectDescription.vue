@@ -1,15 +1,3 @@
-<template>
-  <div>
-    <div>
-    <h4 class="h4">
-      {{ title }}
-    </h4>
-      <div class="h-1px bg-light mt-1 mb-1 opacity-30" />
-    </div>
-    <p class="body" v-html="richTextComputed" />
-  </div>
-</template>
-
 <script setup lang="ts">
 
 import { useStoryblokApi } from '@storyblok/vue'
@@ -31,6 +19,19 @@ const richTextComputed = computed(() => {
 })
 
 </script>
+
+<template>
+  <div>
+    <div>
+    <h4 class="h3">
+      {{ title }}
+    </h4>
+      <div class="divider" />
+    </div>
+    <p class="body" v-html="richTextComputed" />
+  </div>
+</template>
+
 
 <style>
 li {
