@@ -8,13 +8,10 @@ const props = defineProps({
     required: true
   }
 })
-
 const modalOpen = ref<boolean>(false)
 const mediaElement = ref<HTMLMediaElement>()
-
 const lightBox = ref<HTMLMediaElement>()
 const lightBoxTarget = ref<HTMLElement>()
-
 const transitionVal = {
   offsetLeft: 0,
   offsetTop: 0,
@@ -23,10 +20,8 @@ const transitionVal = {
   endWidth: 0,
   endHeight: 0
 }
-
 const xPos = () => window.innerWidth / 2 - transitionVal.endWidth / 2
 const yPos = () => window.innerHeight / 2 - transitionVal.endHeight / 2
-
 const mediaModal = (event: Event) => {
 
   if (!modalOpen.value && event.target && lightBox.value) {
@@ -125,22 +120,36 @@ const mediaModal = (event: Event) => {
 </script>
 
 <template>
-  <h3 class="h5 text-center mx-auto mt-12 mb-4">Additional images</h3>
-  <div class="
+  <h3
+    class="
+      h5
+      text-center
+      text-grey
+      opacity-60
+      mx-auto
+      mb-4
+      select-none
+  "
+  >
+    Additional images
+  </h3>
+  <div
+    class="
     container
     grid
     grid-cols-3
-    gap-x-6
-    gap-y-6
     mx-auto
     mb-32
+    gap-x-6
+    gap-y-6
     items-center
-    justify-center
-  ">
+    justify-items-center
+  "
+  >
     <div
       v-for="media in props.content.media"
       :key="media.id"
-      class="h-auto w-full mx-auto"
+      class="h-auto w-full mx-auto flex-size basis-1/4"
       @click="mediaModal"
     >
       <img
@@ -149,7 +158,8 @@ const mediaModal = (event: Event) => {
         class="
 					w-full
 					cursor-pointer
-					object-cover
+					object-contain
+					max-h-72
           select-none"
       >
     </div>
