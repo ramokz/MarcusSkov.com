@@ -14,6 +14,7 @@ defineProps({
     mx-auto
     flex
     space-x-4
+    mt-64
     items-center"
   >
     <div class="w-1/2">
