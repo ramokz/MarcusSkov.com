@@ -97,13 +97,14 @@ onBeforeRouteLeave(() => {
           lg:flex-row
           mt-10
           mb-32
-          items-start"
+          items-start
+      "
       >
         <div class="flex flex-col mr-16 w-1/2">
           <h3 class="text-xl">
             {{ projectData.content.year }}
           </h3>
-          <h1 class="projectTitle">
+          <h1 class="h1">
             {{ projectData.name }}
           </h1>
           <div class="flex mt-6 space-x-8">
@@ -154,7 +155,38 @@ onBeforeRouteLeave(() => {
         />
         <ProjectContentSectionHeader
           v-if="content.component === 'sectionHeader'"
-          :content="content"/>
+          :content="content"
+        />
+      </div>
+      <div
+        class="
+        flex
+        flex-col
+        mx-auto
+        h-128
+        items-center
+        mt-64
+      "
+      >
+        <h3 class="h2 mb-24 select-none opacity-10 color-grey uppercase">
+          Thanks for reading
+        </h3>
+
+        <div
+          class="
+            h5
+            mx-auto
+            p-4
+            border
+            cursor-pointer
+            select-none
+            border-core
+            hover:border
+            hover:border-light"
+          @click="$router.go(-1)"
+        >
+          Back to the project list
+        </div>
       </div>
     </div>
     <canvas
