@@ -27,9 +27,6 @@ onBeforeRouteLeave(() => {
 
 <template>
   <div ref="projectList">
-    <div class="opacity-20 fixed top-12 right-12">
-      Site still work-in-progress
-    </div>
     <!--    <div-->
     <!--      class="-->
     <!--        flex-->
@@ -52,6 +49,6 @@ onBeforeRouteLeave(() => {
       :index="index"
       :story="story"
     />
-    <About/>
+    <About />
   </div>
 </template>
