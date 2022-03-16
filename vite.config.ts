@@ -17,10 +17,15 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')
     }
   },
+  optimizeDeps: {
+    esbuildOptions: {
+      target: 'es2020'
+    }
+  },
   build: {
     assetsInlineLimit: 0
   },
-  base: './',
+  // base: './',
   plugins: [
     vue(),
     Pages(),
@@ -59,7 +64,6 @@ export default defineConfig({
         }]
       ],
       shortcuts: {
-        'projectTitle': 'text-5xl lg:text-6xl text-light uppercase font-bold no-underline',
         'projectYear': 'text-2xl italic',
         'textContentHeader': 'text-5xl font-bold font-semibold mb-2',
         'textContentBody': 'text-xl',
@@ -68,7 +72,7 @@ export default defineConfig({
         'h2': 'font-bold text-6xl mb-4 font-serif',
         'h3': 'font-bold text-2xl uppercase color-grey',
         'h4': 'font-semibold text-lg font-serif',
-        'h5': 'font-semibold text-md uppercase color-grey',
+        'h5': 'font-semibold text-base uppercase color-grey',
         'body': 'text-lg',
         'divider': 'h-1px bg-grey my-2 opacity-20'
       }
