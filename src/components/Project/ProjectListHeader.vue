@@ -15,20 +15,6 @@ const props = defineProps({
 })
 const threeFG = ref(null)
 const mouseEvent = ref<boolean>(false)
-const fadeBackground = (hover: boolean) => {
-  if(hover) {
-    gsap.to(threeFG.value, {
-      opacity: 0,
-      duration: 0.8
-    })
-  }
-  else {
-    gsap.to(threeFG.value, {
-      opacity: 0.5,
-      duration: 0.6
-    })
-  }
-}
 
 </script>
 
@@ -53,13 +39,13 @@ const fadeBackground = (hover: boolean) => {
         <RouterLink
           :to="`/project/${story.slug}`"
           class="projectTitle hover:text-core"
-          @mouseenter="fadeBackground(true)"
-          @mouseleave="fadeBackground(false)"
         >
           <h3 class="projectYear mx-auto text-center">
             ({{ story.content.year }})
           </h3>
-          <h1> {{ story.name }} </h1>
+          <h1 class="h1 text-center">
+            {{ story.name }}
+          </h1>
         </RouterLink>
       </div>
     </div>
