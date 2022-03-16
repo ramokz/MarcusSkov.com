@@ -3,7 +3,7 @@ import App from './App.vue'
 import { StoryblokVue, apiPlugin } from '@storyblok/vue'
 import { createPinia } from 'pinia'
 import { createHead } from '@vueuse/head'
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import routes from '~pages'
 
 // StyleSheet imports
@@ -13,7 +13,7 @@ import './styles/main.sass'
 
 const app = createApp(App)
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
   // routes: [
   //     {path: '/', component: Index},
