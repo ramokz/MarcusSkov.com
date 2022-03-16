@@ -1,14 +1,14 @@
 <script setup lang="ts">
 
-import AndroidIcon from '~/assets/Android-icon.svg'
-import iOSIcon from '~/assets/iOS-icon.svg'
-import PlaystationIcon from '~/assets/Playstation-icon.svg'
-import SteamIcon from '~/assets/Steam-icon.svg'
-import TVIcon from '~/assets/TV-icon.svg'
-import tvOSIcon from '~/assets/tvOS-icon.svg'
-import WebIcon from '~/assets/Web-icon.svg'
-import WindowsIcon from '~/assets/Windows-icon.svg'
-import XboxIcon from '~/assets/Xbox-icon.svg'
+import AndroidIcon from '~/assets/platform/Android-icon.svg'
+import iOSIcon from '~/assets/platform/iOS-icon.svg'
+import PlaystationIcon from '~/assets/platform/Playstation-icon.svg'
+import SteamIcon from '~/assets/platform/Steam-icon.svg'
+import TVIcon from '~/assets/platform/TV-icon.svg'
+import tvOSIcon from '~/assets/platform/tvOS-icon.svg'
+import WebIcon from '~/assets/platform/Web-icon.svg'
+import WindowsIcon from '~/assets/platform/Windows-icon.svg'
+import XboxIcon from '~/assets/platform/Xbox-icon.svg'
 
 const props = defineProps({
   title: {
@@ -25,17 +25,31 @@ const props = defineProps({
     default: false
   }
 })
+// const getPlatformIcon = (iconName: string) => {
+//   return new URL(`./../${iconName}-icon.svg`, import.meta.url)
+// }
+
+// console.log(getPlatformIcon('TV'))
+
 const contentString = computed(() => {
   // Need a type checker to convert array<strings>
 
   // Studio name
-  if (typeof props.content === 'string') {
+  if (typeof props.content as string === 'string') {
     return props.content
   }
 
   // Roles
-  return props.content.join(', ')
+  return props.content.join(' & ')
 })
+
+// console.log(tvOSIcon)
+
+// if (props.showShowIcon) {
+//   console.log(props.content[0])
+//   console.log(getPlatformIcon(props.content[0]))
+// }
+
 const platformIcon = computed(() => {
 
   const platformArray = []
