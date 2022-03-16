@@ -38,7 +38,7 @@ const mouseEvent = ref<boolean>(false)
       <div class="flex mx-auto">
         <RouterLink
           :to="`/project/${story.slug}`"
-          class="projectTitle hover:text-core"
+          class="text-light no-underline hover:text-core"
         >
           <h3 class="projectYear mx-auto text-center">
             ({{ story.content.year }})
