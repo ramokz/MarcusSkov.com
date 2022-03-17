@@ -6,6 +6,8 @@
 import { useStories } from '~/stores/storyblok'
 import { gsap } from 'gsap'
 import { onBeforeRouteLeave } from 'vue-router'
+import TextSplitter from '../components/TextSplitter.vue'
+import { useGlobalStore } from '../stores/GlobalStore'
 
 /////////////////////////////
 // Variables & Refs
@@ -23,26 +25,90 @@ onBeforeRouteLeave(() => {
   })
 })
 
+const globalStore = useGlobalStore()
+
+
+onMounted(() => {
+
+  /////////////////////////////
+  // Plays the intro animation
+  /////////////////////////////
+  if (!globalStore.seenIntro) {
+    const tl = gsap.timeline({
+      delay: 0.2
+    }).timeScale(1)
+
+    tl.from('.intro-header', {
+      y: -30,
+      opacity: 0,
+      duration: 0.25,
+      stagger: 0.04,
+      ease: 'back.out'
+    }).from('#intro-divider', {
+      width: 0,
+      duration: 0.4,
+      ease: 'power1.out',
+      onComplete: (() => {
+        gsap.set('#intro-divider', {
+          width: null
+        })
+      })
+    }).from('.discipline', {
+      y: 50,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.03,
+      ease: 'back.out'
+    }, '-=0.2')
+      .from('.subheader', {
+        y: 30,
+        opacity: 0,
+        duration: 0.3,
+        stagger: 0.015,
+        ease: 'back.out'
+      }, '-=0.1')
+  }
+})
+
 </script>
 
 <template>
   <div ref="projectList">
-    <!--    <div-->
-    <!--      class="-->
-    <!--        flex-->
-    <!--        flex-col-->
-    <!--        items-center-->
-    <!--        justify-center-->
-    <!--        h-screen-1/2-->
-    <!--        shadow-xl"-->
-    <!--    >-->
-    <!--      <h1 class="h1">-->
-    <!--        Hi-->
-    <!--      </h1>-->
-    <!--      <h2 class="h4 mt-12">-->
-    <!--        I'm a UI Designer and Developer working in games-->
-    <!--      </h2>-->
-    <!--    </div>-->
+    <div
+      class="
+            flex
+            container
+            px-12
+            lg:px-0
+            mx-auto
+            flex-col
+            items-left
+            justify-center
+            h-screen
+      "
+    >
+      <TextSplitter
+        string="Hey there"
+        target-class="intro-header"
+        font-class="h2"
+        class="perspect-md"
+      />
+      <div
+        id="intro-divider"
+        class="divider"
+      />
+      <TextSplitter
+        string="I’m a Game UI/UX Designer"
+        target-class="discipline"
+        font-class="h1"
+        class="perspect-md"
+      />
+      <TextSplitter
+        string="who also loves the technical bits"
+        target-class="subheader"
+        font-class="h3"
+      />
+    </div>
     <ProjectListHeader
       v-for="(story, index) in storyStore.projectData"
       :key="story.id"

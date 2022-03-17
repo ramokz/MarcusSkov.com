@@ -1,9 +1,9 @@
 import * as THREE from 'three'
 import { sRGBEncoding } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { gsap } from 'gsap'
 import { useScreenState } from '~/stores/screenState'
+import particleImage from '../assets/particles/circle_01.png'
 
 /////////////////////////////
 // Variables
@@ -74,10 +74,49 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
 
   scene.add(camera)
 
+  const particlesCount = 2000
+  const positions = new Float32Array(particlesCount * 3)
+  const objectsDistance = 6
+  const textureLoader = new THREE.TextureLoader()
+  const particleTexture = textureLoader.load(particleImage)
+
+  for(let i = 0; i < particlesCount; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * 10
+    positions[i * 3 + 1] = objectsDistance * 0.5 + 4 - Math.random() * objectsDistance * 6
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 10
+  }
+
+  const particlesGeometry = new THREE.BufferGeometry()
+
+  particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+
+  // Material
+  const particlesMaterial = new THREE.PointsMaterial({
+    color: 0xc0c0c0,
+    sizeAttenuation: true,
+    size: 0.02
+  })
+
+  particlesMaterial.transparent = true
+  particlesMaterial.alphaMap = particleTexture
+  particlesMaterial.depthTest = false
+
+  // Points
+  const particles = new THREE.Points(particlesGeometry, particlesMaterial)
+
+  scene.add(particles)
+
   const render = () => {
 
+    // const elapsedTime = clock.getElapsedTime()
+    // console.log(elapsedTime)
+
     if (projectListPage) {
-      camera.position.y = -scrollY / screenState.screenHeight * modelDistance // + 2 TODO - Add once header is complete
+      camera.position.y = -scrollY / screenState.screenHeight * modelDistance + 4
+      particles.visible = true
+    }
+    else {
+      particles.visible = false
     }
 
     renderer.render(scene, camera)

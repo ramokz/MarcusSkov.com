@@ -5,6 +5,7 @@ import { useStories } from '~/stores/storyblok'
 import { gsap } from 'gsap'
 import { threeProjectPageInit } from '~/composables/ThreeRenderProjectPage'
 import { onBeforeRouteLeave } from 'vue-router'
+import { useGlobalStore } from '~/stores/GlobalStore'
 
 const route = useRoute()
 const storyStore = useStories()
@@ -71,6 +72,10 @@ onBeforeRouteLeave(() => {
     visibility: 'hidden'
   })
 })
+
+const globalStore = useGlobalStore()
+
+globalStore.seenIntro = true
 
 </script>
 
