@@ -19,7 +19,6 @@ const projectList = ref()
 // Methods
 /////////////////////////////
 onBeforeRouteLeave(() => {
-  console.log('Leaving')
   gsap.set(projectList.value, {
     visibility: 'hidden'
   })
@@ -66,7 +65,7 @@ onMounted(() => {
         duration: 0.3,
         stagger: 0.015,
         ease: 'back.out'
-      }, '-=0.1')
+      }, '+=0.4')
   }
 })
 
