@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import photo from '~/assets/about/Photo.jpeg'
-// import GithubIcon from
 
 </script>
 
@@ -10,7 +9,7 @@ import photo from '~/assets/about/Photo.jpeg'
     <div class="flex flex-col flex-col-reverse items-center md:flex-row md:space-x-12">
       <div class="container md:w-1/2 body">
         <h2 class="h2">
-          Hey there!
+          Hey again
         </h2>
 
         <div class="mt-8 space-y-6 color-grey">
@@ -124,8 +123,3 @@ import photo from '~/assets/about/Photo.jpeg'
     </div>
   </div>
 </template>
-
-
-<style scoped>
-
-</style>
