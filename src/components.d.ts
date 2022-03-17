@@ -17,6 +17,7 @@ declare module 'vue' {
     ProjectListHeader: typeof import('./components/Project/ProjectListHeader.vue')['default']
     ProjectMetadata: typeof import('./components/Project/ProjectMetadata.vue')['default']
     ProjectModels: typeof import('./components/ProjectModels.vue')['default']
+    TextSplitter: typeof import('./components/TextSplitter.vue')['default']
     TheHeader: typeof import('./components/TheHeader.vue')['default']
   }
 }
