@@ -195,8 +195,6 @@ export const projectPageSetter = (index: number, noAnimation = false) => {
 
 export const projectPageExiter = () => {
 
-  console.log('Exiting page')
-
   /////////////////////////////
   // TODO - Make a smoother transition
   /////////////////////////////
