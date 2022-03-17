@@ -3,7 +3,7 @@
 <template>
   <div class="sticky z-1 top-6 container mx-auto h-0">
     <div
-      class="inline-block cursor-pointer select-none ml-6 lg:ml-0"
+      class="inline-block cursor-pointer select-none ml-6 md:ml-0"
       @click="$router.go(-1)"
     >
       <div
