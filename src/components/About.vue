@@ -56,11 +56,11 @@ import photo from '~/assets/about/Photo.jpeg'
             class="object-contain w-full rounded-xl lg:rounded-3xl"
           >
         </div>
-        <div class="flex mt-4 place-content-evenly fill-grey">
+        <div class="flex mt-4 place-content-evenly">
           <a
             href="https://twitter.com/marcusskov"
             target="_blank"
-            class="hover:fill-core"
+            class="fill-grey hover:fill-core"
           >
             <svg
               width="32"
@@ -76,7 +76,7 @@ import photo from '~/assets/about/Photo.jpeg'
           <a
             href="https://www.linkedin.com/in/marcusskov"
             target="_blank"
-            class="hover:fill-core"
+            class="fill-grey hover:fill-core"
           >
             <svg
               width="32"
@@ -91,7 +91,7 @@ import photo from '~/assets/about/Photo.jpeg'
           <a
             href="https://medium.com/@MarcusSkov"
             target="_blank"
-            class="hover:fill-core"
+            class="fill-grey hover:fill-core"
           >
             <svg
               width="32"
@@ -106,7 +106,7 @@ import photo from '~/assets/about/Photo.jpeg'
           <a
             href="https://github.com/MarcusSkov"
             target="_blank"
-            class="hover:fill-core"
+            class="fill-grey hover:fill-core"
           >
             <svg
               width="32"
