@@ -75,7 +75,9 @@ onBeforeRouteLeave(() => {
 </script>
 
 <template>
-  <div ref="projectContainer">
+  <div
+    ref="projectContainer"
+  >
     <BackButton />
     <div
       class="relative -z-5"
@@ -86,7 +88,7 @@ onBeforeRouteLeave(() => {
         :style="{backgroundColor: projectData.content.color.color}"
       />
     </div>
-    <div class="mx-auto">
+    <div class="mx-auto px-6">
       <div
         class="
           project-header
@@ -100,14 +102,14 @@ onBeforeRouteLeave(() => {
           items-start
       "
       >
-        <div class="flex flex-col mr-16 w-1/2">
+        <div class="flex flex-col mr-16 mb-12 lg:mb-0 lg:w-1/2">
           <h3 class="text-xl">
             {{ projectData.content.year }}
           </h3>
           <h1 class="h1">
             {{ projectData.name }}
           </h1>
-          <div class="flex mt-6 space-x-8">
+          <div class="flex mt-6 flex-col space-y-8 lg:space-y-0 lg:flex-row lg:space-x-8">
             <ProjectMetadata
               :title="'Role'"
               :content="projectData.content.role"
@@ -123,7 +125,7 @@ onBeforeRouteLeave(() => {
             />
           </div>
         </div>
-        <div class="w-1/2">
+        <div class="lg:w-1/2">
           <ProjectDescription
             title="About the Project"
             :rich-text="projectData.content.intro"
@@ -165,10 +167,23 @@ onBeforeRouteLeave(() => {
         mx-auto
         h-128
         items-center
-        mt-64
+        mt-32
+        lg:mt-64
       "
       >
-        <h3 class="h2 mb-24 select-none opacity-10 color-grey uppercase">
+        <h3
+          class="
+            text-5xl
+            lg:text-6xl
+            font-serif
+            mb-24
+            select-none
+            text-center
+            opacity-10
+            color-grey
+            uppercase
+          "
+        >
           Thanks for reading
         </h3>
 

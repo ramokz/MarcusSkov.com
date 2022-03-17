@@ -2,7 +2,6 @@
 
 import { useStoryblokApi } from '@storyblok/vue'
 const storyblokApi = useStoryblokApi()
-
 const props = defineProps({
   title: {
     type: String,
@@ -13,7 +12,6 @@ const props = defineProps({
     required: false
   }
 })
-
 const richTextComputed = computed(() => {
   return storyblokApi.richTextResolver.render(props.richText)
 })
@@ -23,12 +21,15 @@ const richTextComputed = computed(() => {
 <template>
   <div>
     <div>
-    <h4 class="h3">
-      {{ title }}
-    </h4>
+      <h4 class="h3">
+        {{ title }}
+      </h4>
       <div class="divider" />
     </div>
-    <p class="body" v-html="richTextComputed" />
+    <p
+      class="body"
+      v-html="richTextComputed"
+    />
   </div>
 </template>
 
@@ -36,6 +37,6 @@ const richTextComputed = computed(() => {
 <style>
 li {
   list-style-type: square;
-  margin-bottom: 5px;
+  margin: 0 20px 10px 20px;
 }
 </style>

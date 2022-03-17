@@ -6,7 +6,7 @@ import photo from '~/assets/about/Photo.jpeg'
 
 
 <template>
-  <div class="container pt-24 mb-64 mx-auto">
+  <div class="container pt-24 mb-64 mx-auto px-6 lg:px-0">
     <div class="flex flex-col flex-col-reverse items-center md:flex-row md:space-x-12">
       <div class="container md:w-1/2 body">
         <h2 class="h2">
@@ -49,12 +49,12 @@ import photo from '~/assets/about/Photo.jpeg'
           </div>
         </div>
       </div>
-      <div class="container md:w-1/2 flex flex-col self-center md:self-start">
+      <div class="container md:w-1/2 flex flex-col mb-12 lg:mb-0 self-center md:self-start">
         <div>
           <img
             :src="photo"
             alt="Photo of Marcus"
-            class="object-contain w-full rounded-3xl"
+            class="object-contain w-full rounded-xl lg:rounded-3xl"
           >
         </div>
         <div class="flex mt-4 place-content-evenly fill-grey">

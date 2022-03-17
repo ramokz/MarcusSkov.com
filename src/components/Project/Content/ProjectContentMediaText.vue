@@ -13,11 +13,17 @@ defineProps({
     class="container
     mx-auto
     flex
-    space-x-4
-    mt-64
+    flex-col
+    flex-col-reverse
+    mb-32
+    text-center
+    lg:text-left
+    lg:flex-row
+    lg:space-x-4
+    lg:mt-64
     items-center"
   >
-    <div class="w-1/2">
+    <div class="w-full h-full lg:mt-0 lg:w-1/2">
       <h2 class="h2">
         {{ content.header }}
       </h2>
@@ -25,7 +31,7 @@ defineProps({
         {{ content.text }}
       </p>
     </div>
-    <div class="w-1/2">
+    <div class="w-full h-full lg:w-1/2">
       <ProjectContentMedia :content="content" />
     </div>
   </div>

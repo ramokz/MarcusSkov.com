@@ -52,7 +52,7 @@ const richTextComputed = computed(() => {
     </h3>
     <p
       v-if="richTextComputed"
-      class="body max-w-1/2 mx-auto mb-2 text-center"
+      class="body lg:max-w-1/2 mx-auto mb-2 text-center"
       v-html="richTextComputed"
     />
 
