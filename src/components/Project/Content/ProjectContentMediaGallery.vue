@@ -20,7 +20,7 @@ const transitionVal = {
   endWidth: 0,
   endHeight: 0
 }
-const xPos = () => window.innerWidth / 2 - transitionVal.endWidth / 2
+const xPos = () => window.innerWidth / 2 - transitionVal.endWidth / 2 - 25 // -25 to make the transition cleaner
 const yPos = () => window.innerHeight / 2 - transitionVal.endHeight / 2
 const mediaModal = (event: Event) => {
 
