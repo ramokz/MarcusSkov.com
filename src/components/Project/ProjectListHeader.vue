@@ -28,7 +28,7 @@ const props = defineProps({
     >
       <RouterLink
         :to="`/project/${story.slug}`"
-        class="text-core no-underline flex mx-auto hover:text-light"
+        class="text-light no-underline flex mx-auto"
       >
         <div class="mx-auto mb-64 p-4 bg-dark border border-core hover:border-light">
           <h3 class="projectYear mx-auto text-center">

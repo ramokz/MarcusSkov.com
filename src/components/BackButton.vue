@@ -15,7 +15,7 @@
           border
           border-core
           hover:border-light
-          stroke-core
+          stroke-light
           hover:stroke-light
           text-lg
           text-light
