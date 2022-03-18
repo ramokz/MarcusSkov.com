@@ -5,29 +5,24 @@ import { useStories } from '~/stores/storyblok'
 import { gsap } from 'gsap'
 import { threeProjectPageInit } from '~/composables/ThreeRenderProjectPage'
 import { onBeforeRouteLeave } from 'vue-router'
-import { useGlobalStore } from '~/stores/GlobalStore'
+import { useGlobalStore } from '~/stores/globalStore'
 
 const route = useRoute()
+const router = useRouter()
 const storyStore = useStories()
 const projectRoute: string = route.params.project as string
-
-interface projectInterface {
-  content: object
-  projectContent: {
-    role: string
-  }
-}
-
-// const projectDataComputed = computed(() => {
-//   return storyStore.getProject(projectRoute as string)
-// })
 const version = import.meta.env.DEV ? 'draft' : 'published'
 const projectData = await useStoryblok(`project/${projectRoute}`, {
   version: version
+}).catch( () => {
+  router.push({
+    name: '404'
+  })
 })
 const headerBG = ref()
 const projectContainer = ref()
 const projectPageCanvas = ref()
+const projectContent = ref()
 
 onMounted(() => {
   threeProjectPageInit(projectPageCanvas)
@@ -36,9 +31,9 @@ onMounted(() => {
   //   visibility: 'hidden'
   // })
 
-  gsap.from(projectContainer.value, {
+  gsap.from([projectContainer.value], {
     opacity: 0,
-    delay: 0.5
+    delay: 1.5
   })
 
   gsap.from(headerBG.value, {
@@ -67,7 +62,6 @@ onMounted(() => {
 })
 
 onBeforeRouteLeave(() => {
-  console.log('Leaving')
   gsap.set(projectContainer.value, {
     visibility: 'hidden'
   })
@@ -82,10 +76,11 @@ globalStore.seenIntro = true
 <template>
   <div
     ref="projectContainer"
+    class="-z-4"
   >
     <BackButton />
     <div
-      class="relative -z-5"
+      class="relative -z-5 headerBG"
     >
       <div
         ref="headerBG"
@@ -93,7 +88,10 @@ globalStore.seenIntro = true
         :style="{backgroundColor: projectData.content.color.color}"
       />
     </div>
-    <div class="mx-auto px-6">
+    <div
+      ref="projectContent"
+      class="mx-auto px-6"
+    >
       <div
         class="
           project-header
@@ -143,28 +141,30 @@ globalStore.seenIntro = true
         </div>
       </div>
 
-      <div
-        v-for="content in projectData.content.projectContent"
-        :key="content"
-      >
-        <ProjectContentMedia
-          v-if="content.component === 'media'"
-          :content="content"
-        />
-        <ProjectContentMediaText
-          v-if="content.component === 'mediaText'"
-          class="multi-media"
-          :content="content"
-        />
-        <ProjectContentMediaGallery
-          v-if="content.component === 'mediaGallery'"
-          :content="content"
-        />
-        <ProjectContentSectionHeader
-          v-if="content.component === 'sectionHeader'"
-          :content="content"
-        />
-      </div>
+      <section ref="projectContent">
+        <div
+          v-for="content in projectData.content.projectContent"
+          :key="content"
+        >
+          <ProjectContentMedia
+            v-if="content.component === 'media'"
+            :content="content"
+          />
+          <ProjectContentMediaText
+            v-if="content.component === 'mediaText'"
+            class="multi-media"
+            :content="content"
+          />
+          <ProjectContentMediaGallery
+            v-if="content.component === 'mediaGallery'"
+            :content="content"
+          />
+          <ProjectContentSectionHeader
+            v-if="content.component === 'sectionHeader'"
+            :content="content"
+          />
+        </div>
+      </section>
       <div
         class="
         flex
@@ -192,8 +192,9 @@ globalStore.seenIntro = true
           Thanks for reading
         </h3>
 
-        <div
-          class="
+        <router-link to="/">
+          <div
+            class="
             h5
             mx-auto
             p-4
@@ -203,10 +204,10 @@ globalStore.seenIntro = true
             border-core
             hover:border
             hover:border-light"
-          @click="$router.go(-1)"
-        >
-          Back to the project list
-        </div>
+          >
+            Back to the project list
+          </div>
+        </router-link>
       </div>
     </div>
     <canvas
