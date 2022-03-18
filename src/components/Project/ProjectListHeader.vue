@@ -1,8 +1,5 @@
 <script setup lang="ts">
 
-import { gsap } from 'gsap'
-import { projectPageSetter } from '~/composables/ModelRender'
-
 const props = defineProps({
   story: {
     type: Object,
@@ -13,17 +10,11 @@ const props = defineProps({
     required: true
   }
 })
-const threeFG = ref(null)
-const mouseEvent = ref<boolean>(false)
 
 </script>
 
 <template>
   <div class="relative">
-    <div
-      ref="threeFG"
-      class="bg-dark w-full h-full absolute top-0 opacity-60 -z-1"
-    />
     <div
       class="
         container
@@ -31,23 +22,23 @@ const mouseEvent = ref<boolean>(false)
         mx-auto
         flex
         lg:flex-row
-        items-center
+        items-end
         h-screen
         even:flex-row-reverse"
     >
-      <div class="flex mx-auto">
-        <RouterLink
-          :to="`/project/${story.slug}`"
-          class="text-light no-underline hover:text-core"
-        >
+      <RouterLink
+        :to="`/project/${story.slug}`"
+        class="text-core no-underline flex mx-auto hover:text-light"
+      >
+        <div class="mx-auto mb-64 p-4 bg-dark border border-core hover:border-light">
           <h3 class="projectYear mx-auto text-center">
             ({{ story.content.year }})
           </h3>
           <h1 class="h1 text-center">
             {{ story.name }}
           </h1>
-        </RouterLink>
-      </div>
+        </div>
+      </RouterLink>
     </div>
   </div>
 </template>
