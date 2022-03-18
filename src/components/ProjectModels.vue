@@ -39,7 +39,7 @@ onMounted(() => {
   useThreeInit(canvasRef.value)
   addProjectModels(modelArr.models)
 
-  if (storyStore.projectIndex < 0 && route.name === 'project-project') {
+  if (storyStore.projectIndex < 0 && route.name === 'project') {
 
     const projectIndex = data.stories.findIndex((project: object) => project.slug === route.params.project)
 
@@ -56,6 +56,6 @@ onMounted(() => {
 <template>
   <canvas
     ref="canvasRef"
-    class="fixed top-0 outline-none -z-2"
+    class="fixed top-0 outline-none -z-2 pointer-events-none"
   />
 </template>

@@ -1,5 +1,9 @@
 <script setup lang="ts">
 
+import { projectPageSetter, projectPageExiter } from '~/composables/ModelRender'
+import { useStories } from '~/stores/storyblok'
+import { useGlobalStore } from './stores/globalStore'
+
 useHead({
   title: 'Marcus Skov',
   meta: [
@@ -10,30 +14,9 @@ useHead({
 })
 
 
-import { projectPageSetter, projectPageExiter } from '~/composables/ModelRender'
-import { useStories } from '~/stores/storyblok'
 
+const globalStore = useGlobalStore()
 const router = useRouter()
-// const route = useRoute()
-
-// function onEnter(el, done) {
-//   switch(route.name){
-//     // TODO - Figure out how to get a clean route name for project slugs
-//     case 'project-project':
-//       // console.log('Entering project page')
-//       break
-//
-//     case 'about':
-//       // console.log('Entering about page')
-//       break
-//
-//     default:
-//       // console.log('Entering index page')
-//       break
-//   }
-//   done()
-// }
-
 /////////////////////////////
 // Stores
 /////////////////////////////
@@ -42,7 +25,7 @@ const stories = useStories()
 // Page Names
 /////////////////////////////
 const indexPage = 'index'
-const projectPage = 'project-project'
+const projectPage = 'project'
 const aboutPage = 'about'
 
 router.beforeEach((to, from) => {
@@ -51,12 +34,10 @@ router.beforeEach((to, from) => {
     projectSlug: to.params.project
   })
 
-  /////////////////////////////
-  // TODO - Check if needed
-  /////////////////////////////
-  if (from.name === indexPage && to.name === projectPage) {
-    // console.log(stories.projectIndex)
+  if (from.name === indexPage && to.params.project) {
     // console.log('Going to a project page from the index page')
+    globalStore.projectListScrollY = window.scrollY
+
     projectPageSetter(stories.getProjectIndex(to.params.project))
   }
   else if (from.name === projectPage && to.name === indexPage) {
@@ -74,22 +55,9 @@ router.beforeEach((to, from) => {
     projectPageSetter(stories.getProjectIndex(to.params.project), true)
     // console.log('Opening project page directly or refreshing')
   }
-  // else if (to.name === indexPage) {
-  //   console.log('Opening index page directly or refreshing')
-  // }
-
-  // if (stories.projectIndex >= 0) {
-  //   if (to.name === projectPage) {
-  //     projectPageSetter(stories.projectIndex)
-  //   }
-  // }
-
-  // console.log(from)
-  // console.log(`Coming from ${String(from.name)}`)
-  // console.log(`Going to ${String(to.name)}`)
-  // console.log(to)
-  // console.log(to.params.project)
 })
+
+
 
 </script>
 

@@ -7,7 +7,7 @@ import { useStories } from '~/stores/storyblok'
 import { gsap } from 'gsap'
 import { onBeforeRouteLeave } from 'vue-router'
 import TextSplitter from '../components/TextSplitter.vue'
-import { useGlobalStore } from '../stores/GlobalStore'
+import { useGlobalStore } from '../stores/globalStore'
 
 /////////////////////////////
 // Variables & Refs
@@ -72,7 +72,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="projectList">
+  <div
+    ref="projectList"
+  >
     <div
       class="
             flex

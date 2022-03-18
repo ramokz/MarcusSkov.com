@@ -5,6 +5,9 @@ import { createPinia } from 'pinia'
 import { createHead } from '@vueuse/head'
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from '~pages'
+import Index from './pages/index.vue'
+import { useStories } from './stores/storyblok'
+import { useGlobalStore } from './stores/globalStore'
 
 // StyleSheet imports
 import 'uno.css'
@@ -14,23 +17,63 @@ import './styles/main.sass'
 const app = createApp(App)
 const router = createRouter({
   history: createWebHistory(),
-  routes,
-  // routes: [
-  //     {path: '/', component: Index},
-  //     {path: '/project/:id', component: ProjectPage},
-  //     {path: '/:pathMatch(.*)*', component: ErrorPage}
-  // ],
+  // routes,
+  routes: [
+    {
+      path: '/', name: 'index', component: Index
+    },
+    {
+      path: '/project/:project',
+      name: 'project',
+      component: () => import('./pages/project/[project].vue'),
+      beforeEnter(to, from) {
+        const stories = useStories()
+
+        if (stories.projectData.length > 0) {
+
+          const projectPageExists = stories.getProject(to.params.project)
+
+          if (!projectPageExists) {
+            return {
+              name: '404'
+            }
+          }
+        }
+      }
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: '404',
+      component: () => import('./pages/404.vue')
+    }
+  ],
   scrollBehavior(to, from, savedPosition) {
-	  if (savedPosition && from.name === 'project-project') {
-      return savedPosition
+
+    if (to.name === 'project') {
+      return {
+        top: 0
+      }
     }
     else {
+      const globalStore = useGlobalStore()
+
       return {
-        top: 0,
-        behavior: 'smooth'
+        top: globalStore.projectListScrollY
+        // behavior: 'smooth'
       }
     }
   }
+  // scrollBehavior(to, from, savedPosition) {
+  //   if (savedPosition && from.name === 'project') {
+  //     return savedPosition
+  //   }
+  //   else {
+  //     return {
+  //       top: 0,
+  //       behavior: 'smooth'
+  //     }
+  //   }
+  // }
 })
 
 app
