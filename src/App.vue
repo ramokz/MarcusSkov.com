@@ -13,8 +13,6 @@ useHead({
   ]
 })
 
-
-
 const globalStore = useGlobalStore()
 const router = useRouter()
 /////////////////////////////
@@ -56,9 +54,6 @@ router.beforeEach((to, from) => {
     // console.log('Opening project page directly or refreshing')
   }
 })
-
-
-
 </script>
 
 <template>

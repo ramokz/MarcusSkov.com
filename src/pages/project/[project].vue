@@ -20,23 +20,17 @@ const projectData = await useStoryblok(`project/${projectRoute}`, {
   })
 })
 const headerBG = ref()
+const projectHeader = ref()
 const projectContainer = ref()
 const projectPageCanvas = ref()
-const projectContent = ref()
 
 onMounted(() => {
   threeProjectPageInit(projectPageCanvas)
 
-  // gsap.set(headerBG.value, {
-  //   visibility: 'hidden'
-  // })
 
-  gsap.from([projectContainer.value], {
-    opacity: 0,
-    delay: 1.5
-  })
+  const tl = gsap.timeline()
 
-  gsap.from(headerBG.value, {
+  tl.from(headerBG.value, {
     height: 0,
     delay: 0.2,
     ease: 'power2.out',
@@ -46,7 +40,12 @@ onMounted(() => {
         height: null
       })
     }
-  })
+  }).from(projectHeader.value, {
+    opacity: 0,
+    y: 80,
+    ease: 'power3.out',
+    duration: 0.7
+  }, '-=0.2 ')
 
   const projectIndex = storyStore.projectData.findIndex((project: object) => project.slug === route.params.project)
 
@@ -89,10 +88,10 @@ globalStore.seenIntro = true
       />
     </div>
     <div
-      ref="projectContent"
       class="mx-auto px-6"
     >
       <div
+        ref="projectHeader"
         class="
           project-header
           container
