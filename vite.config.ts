@@ -17,11 +17,11 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')
     }
   },
-  optimizeDeps: {
-    esbuildOptions: {
-      target: 'es2020'
-    }
-  },
+  // optimizeDeps: {
+  //   esbuildOptions: {
+  //     target: 'es2020'
+  //   }
+  // },
   build: {
     assetsInlineLimit: 0
   },
