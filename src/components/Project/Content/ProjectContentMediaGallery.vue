@@ -9,9 +9,9 @@ const props = defineProps({
   }
 })
 const modalOpen = ref<boolean>(false)
-const mediaElement = ref<HTMLMediaElement>()
-const lightBox = ref<HTMLMediaElement>()
-const lightBoxTarget = ref<HTMLElement>()
+const mediaElement = ref<HTMLImageElement>(null)
+const lightBox = ref<HTMLImageElement>(null)
+const lightBoxAlt = ref<string>(null)
 const transitionVal = {
   offsetLeft: 0,
   offsetTop: 0,
@@ -35,6 +35,7 @@ const mediaModal = (event: Event) => {
     transitionVal.endHeight = window.innerHeight / 100 * 90
 
     lightBox.value.src = mediaElement.value.src
+    lightBoxAlt.value = mediaElement.value.alt
 
     gsap.fromTo(lightBox.value, {
       width: transitionVal.mediaElementWidth,
@@ -67,7 +68,6 @@ const mediaModal = (event: Event) => {
         })
       },
       onComplete: () => {
-
         gsap.set(lightBox.value, {
           width: '90vw',
           height: '90vh',
@@ -166,13 +166,14 @@ const mediaModal = (event: Event) => {
     </div>
   </div>
   <div
-    v-if="modalOpen"
+    v-show="modalOpen"
     class="fixed z-1 top-0 left-0 opacity-80 w-screen h-screen bg-dark cursor-pointer"
     @click="mediaModal"
   />
   <img
     ref="lightBox"
-    alt=""
+    src=""
+    :alt="lightBoxAlt"
     class="lightBox fixed z-2 top-0 pointer-events-none w-11/12 object-contain"
   >
 </template>
