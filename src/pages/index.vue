@@ -34,7 +34,7 @@ onMounted(() => {
   /////////////////////////////
   if (!globalStore.seenIntro) {
     const tl = gsap.timeline({
-      delay: 0.2
+      delay: 1
     }).timeScale(1)
 
     tl.from('.intro-header', {
@@ -55,17 +55,17 @@ onMounted(() => {
     }).from('.discipline', {
       y: 50,
       opacity: 0,
-      duration: 0.6,
+      duration: 0.8,
       stagger: 0.03,
       ease: 'back.out'
-    }, '-=0.2')
+    }, '+=0.2')
       .from('.subheader', {
         y: 30,
         opacity: 0,
         duration: 0.3,
         stagger: 0.015,
         ease: 'back.out'
-      }, '+=0.4')
+      }, '+=0.6')
   }
 })
 
