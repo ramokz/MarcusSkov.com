@@ -45,7 +45,7 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
     camera.aspect = screenState.screenWidth / screenState.screenHeight
     camera.updateProjectionMatrix()
 
-    renderer.setSize(screenState.screenWidth, screenState.screenHeight)
+    renderer.setSize(screenState.screenWidth - 30, screenState.screenHeight) // TODO - find a fix for "- 30" solution
 
     renderer.setPixelRatio(screenState.getDevicePixelRatio)
 
