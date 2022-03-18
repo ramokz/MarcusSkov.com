@@ -149,8 +149,6 @@ export const projectPageSetter = (index: number, noAnimation = false) => {
 
   screenState.setScreenStates()
 
-  // console.log(camera.position.y)
-
   if (noAnimation) {
     gsap.set(camera.position, {
       y: -index * 4 - 0.75
@@ -183,8 +181,11 @@ export const projectPageSetter = (index: number, noAnimation = false) => {
       onComplete: () => {
         gsap.set(canvas, {
           position: 'absolute',
-          zIndex: -2,
           delay: 0.8
+        })
+        gsap.set(canvas, {
+          zIndex: -2,
+          delay: 2
         })
       }
     })
