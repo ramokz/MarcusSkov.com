@@ -12,6 +12,7 @@ const modalOpen = ref<boolean>(false)
 const mediaElement = ref<HTMLImageElement>(null)
 const lightBox = ref<HTMLImageElement>(null)
 const lightBoxAlt = ref<string>(null)
+const lightBoxOverlay = ref<HTMLDivElement>(null)
 const transitionVal = {
   offsetLeft: 0,
   offsetTop: 0,
@@ -54,6 +55,11 @@ const mediaModal = (event: Event) => {
 
         modalOpen.value = true
 
+        gsap.to(lightBoxOverlay.value, {
+          opacity: 0.8,
+          duration: 0.2
+        })
+
         gsap.set(lightBox.value, {
           src: mediaElement.value.src,
           visibility: 'inherit'
@@ -81,6 +87,15 @@ const mediaModal = (event: Event) => {
     })
   }
   else {
+
+    gsap.to(lightBoxOverlay.value, {
+      opacity: 0,
+      duration: 0.1,
+      onComplete: ()=> {
+        modalOpen.value = false
+      }
+    })
+
     gsap.fromTo(lightBox.value, {
       width: transitionVal.endWidth,
       height: transitionVal.endHeight,
@@ -95,8 +110,6 @@ const mediaModal = (event: Event) => {
       height: mediaElement.value?.clientHeight,
       duration: 0.2,
       onComplete: () => {
-
-        modalOpen.value = false
 
         gsap.set('body', {
           overflow: 'inherit'
@@ -168,7 +181,8 @@ const mediaModal = (event: Event) => {
   </div>
   <div
     v-show="modalOpen"
-    class="fixed z-1 top-0 left-0 opacity-80 w-screen h-screen bg-dark cursor-pointer"
+    ref="lightBoxOverlay"
+    class="fixed z-1 top-0 left-0 opacity-0 w-screen h-screen bg-dark cursor-pointer"
     @click="mediaModal"
   />
   <img
