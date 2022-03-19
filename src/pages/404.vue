@@ -8,8 +8,8 @@
       to="/"
       class="no-underline"
     >
-      <div class="border border-core p-4">
-        <h3 class="h3 text-core hover:text-core">
+      <div class="border border-core hover:border-light p-4">
+        <h3 class="h3 text-light">
           Return to home page
         </h3>
       </div>
