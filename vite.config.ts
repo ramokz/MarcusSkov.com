@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import Pages from 'vite-plugin-pages'
-// import { VitePWA } from 'vite-plugin-pwa'
+import { VitePWA } from 'vite-plugin-pwa'
 
 import Unocss from 'unocss/vite'
 
@@ -29,6 +29,7 @@ export default defineConfig({
   plugins: [
     vue(),
     Pages(),
+    VitePWA(),
     AutoImport({
       imports: [
         'vue',
