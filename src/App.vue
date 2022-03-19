@@ -49,10 +49,10 @@ router.beforeEach((to, from) => {
   else if (to.name !== projectPage && to.name !== indexPage) {
     // console.log('About page')
   }
-  else if (to.name === projectPage) {
-    projectPageSetter(stories.getProjectIndex(to.params.project), true)
-    // console.log('Opening project page directly or refreshing')
-  }
+  // else if (to.name === projectPage) {
+  //   projectPageSetter(stories.getProjectIndex(to.params.project), true)
+  //   // console.log('Opening project page directly or refreshing')
+  // }
 })
 </script>
 
