@@ -61,11 +61,9 @@ router.beforeEach((to, from) => {
     <!--    <TheHeader />-->
 
     <RouterView v-slot="{Component}">
-      <Transition>
-        <Suspense>
-          <component :is="Component" />
-        </Suspense>
-      </Transition>
+      <Suspense>
+        <component :is="Component" />
+      </Suspense>
     </RouterView>
     <Suspense>
       <ProjectModels />
