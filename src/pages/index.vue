@@ -26,7 +26,6 @@ onBeforeRouteLeave(() => {
 
 const globalStore = useGlobalStore()
 
-
 onMounted(() => {
 
   /////////////////////////////
@@ -68,13 +67,10 @@ onMounted(() => {
       }, '+=0.6')
   }
 })
-
 </script>
 
 <template>
-  <div
-    ref="projectList"
-  >
+  <div ref="projectList">
     <div
       class="
             flex
@@ -111,7 +107,7 @@ onMounted(() => {
       />
     </div>
     <ProjectListHeader
-      v-for="(story, index) in storyStore.projectData"
+      v-for="(story, index) in storyStore.getAllProjects"
       :key="story.id"
       :index="index"
       :story="story"

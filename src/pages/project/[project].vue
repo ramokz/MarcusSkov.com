@@ -27,7 +27,6 @@ const projectPageCanvas = ref()
 onMounted(() => {
   threeProjectPageInit(projectPageCanvas)
 
-
   const tl = gsap.timeline()
 
   tl.from(headerBG.value, {
@@ -47,11 +46,13 @@ onMounted(() => {
     duration: 0.7
   }, '-=0.2 ')
 
-  const projectIndex = storyStore.projectData.findIndex((project: object) => project.slug === route.params.project)
+  const projectIndex = storyStore.getAllProjects.findIndex((project: object) => project.slug === route.params.project)
 
-  // console.log(`ProjectIndex is ${projectIndex}`)
-  // console.log(`StoreIndex is ${storyStore.projectIndex}`)
-  // console.log(projectIndex === storyStore.projectIndex)
+  if (projectIndex < 0) {
+    router.push({
+      name: '404'
+    })
+  }
 
   if (projectIndex !== storyStore.projectIndex) {
     storyStore.$patch({

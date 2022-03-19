@@ -15,13 +15,21 @@ export const useStories = defineStore('storyblok', {
     }
   },
   getters: {
+    getAllProjects(): Array {
+      if (localStorage.getItem('illusionaryWall') === import.meta.env.VITE_ILLUSION) {
+        return this.projectData
+      }
+      else {
+        return this.projectData.filter(data => !data.content.illusionaryWall )
+      }
+    },
     getProject(): object {
       // const allProjects = this.projectData
 
-      return (slug: string) => this.projectData.find((project: Project) => project.slug === slug)
+      return (slug: string) => this.getAllProjects.find((project: Project) => project.slug === slug)
     },
     getProjectIndex() {
-      return (slug: any) => this.projectData.findIndex((project: Project) => project.slug === slug)
+      return (slug: any) => this.getAllProjects.findIndex((project: Project) => project.slug === slug)
     }
   }
 })

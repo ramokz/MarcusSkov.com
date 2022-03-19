@@ -4,7 +4,7 @@
 // Data Fetching and Setup
 /////////////////////////
 import { useStories } from '~/stores/storyblok'
-import { useStoryblokBridge, useStoryblokApi } from '@storyblok/vue'
+import { useStoryblokApi } from '@storyblok/vue'
 import { addProjectModels, projectPageSetter, useThreeInit } from '../composables/ModelRender'
 const storyblokApi = useStoryblokApi()
 const version = import.meta.env.DEV ? 'draft' : 'published'
@@ -32,7 +32,7 @@ const modelArr = reactive({
   models: []
 })
 
-data.stories.forEach((story: object) => modelArr.models.push(story.content.projectHeader.filename))
+storyStore.getAllProjects.forEach((story: object) => modelArr.models.push(story.content.projectHeader.filename))
 
 onMounted(() => {
   // useStoryblokBridge(story.value.id, (evStory) => (story.value = evStory))
@@ -41,7 +41,7 @@ onMounted(() => {
 
   if (storyStore.projectIndex < 0 && route.name === 'project') {
 
-    const projectIndex = data.stories.findIndex((project: object) => project.slug === route.params.project)
+    const projectIndex = storyStore.getAllProjects.findIndex((project: object) => project.slug === route.params.project)
 
     storyStore.$patch({
       projectIndex: projectIndex

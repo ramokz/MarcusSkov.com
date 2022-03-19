@@ -42,6 +42,15 @@ const router = createRouter({
       }
     },
     {
+      path: `/${import.meta.env.VITE_ILLUSION}`,
+      redirect: to => {
+        localStorage.setItem('illusionaryWall', import.meta.env.VITE_ILLUSION as string)
+        return {
+          path: '/'
+        }
+      }
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: '404',
       component: () => import('./pages/404.vue')
@@ -63,17 +72,6 @@ const router = createRouter({
       }
     }
   }
-  // scrollBehavior(to, from, savedPosition) {
-  //   if (savedPosition && from.name === 'project') {
-  //     return savedPosition
-  //   }
-  //   else {
-  //     return {
-  //       top: 0,
-  //       behavior: 'smooth'
-  //     }
-  //   }
-  // }
 })
 
 app
