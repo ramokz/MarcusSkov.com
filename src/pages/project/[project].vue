@@ -23,41 +23,44 @@ const headerBG = ref()
 const projectHeader = ref()
 const projectContainer = ref()
 const projectPageCanvas = ref()
+const projectIndex = storyStore.getAllProjects.findIndex((project: object) => project.slug === route.params.project)
 
 onMounted(() => {
-  threeProjectPageInit(projectPageCanvas)
-
-  const tl = gsap.timeline()
-
-  tl.from(headerBG.value, {
-    height: 0,
-    delay: 0.2,
-    ease: 'power2.out',
-    duration: 1,
-    onComplete: () => {
-      gsap.set(headerBG.value, {
-        height: null
-      })
-    }
-  }).from(projectHeader.value, {
-    opacity: 0,
-    y: 80,
-    ease: 'power3.out',
-    duration: 0.7
-  }, '-=0.2 ')
-
-  const projectIndex = storyStore.getAllProjects.findIndex((project: object) => project.slug === route.params.project)
 
   if (projectIndex < 0) {
     router.push({
       name: '404'
     })
   }
+  else {
 
-  if (projectIndex !== storyStore.projectIndex) {
-    storyStore.$patch({
-      projectIndex: projectIndex
-    })
+    threeProjectPageInit(projectPageCanvas)
+
+    const tl = gsap.timeline()
+
+    tl.from(headerBG.value, {
+      height: 0,
+      delay: 0.2,
+      ease: 'power2.out',
+      duration: 1,
+      onComplete: () => {
+        gsap.set(headerBG.value, {
+          height: null
+        })
+      }
+    }).from(projectHeader.value, {
+      opacity: 0,
+      y: 80,
+      ease: 'power3.out',
+      duration: 0.7
+    }, '-=0.2 ')
+
+
+    if (projectIndex !== storyStore.projectIndex) {
+      storyStore.$patch({
+        projectIndex: projectIndex
+      })
+    }
   }
 })
 
