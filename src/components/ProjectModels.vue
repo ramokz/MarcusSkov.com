@@ -39,6 +39,8 @@ onMounted(() => {
   useThreeInit(canvasRef.value)
   addProjectModels(modelArr.models)
 
+  console.log(storyStore.projectIndex)
+  console.log(route.name)
   if (storyStore.projectIndex < 0 && route.name === 'project') {
 
     const projectIndex = storyStore.getAllProjects.findIndex((project: object) => project.slug === route.params.project)
