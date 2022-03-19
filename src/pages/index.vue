@@ -64,7 +64,7 @@ onMounted(() => {
         duration: 0.3,
         stagger: 0.015,
         ease: 'back.out'
-      }, '+=0.6')
+      })
   }
 })
 </script>
