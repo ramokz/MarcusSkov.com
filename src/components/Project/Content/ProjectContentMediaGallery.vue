@@ -20,7 +20,8 @@ const transitionVal = {
   endWidth: 0,
   endHeight: 0
 }
-const xPos = () => window.innerWidth / 2 - transitionVal.endWidth / 2 - 25 // -25 to make the transition cleaner
+const galleryXOffset = 25 // -25 to make the transition cleaner
+const xPos = () => window.innerWidth / 2 - transitionVal.endWidth / 2 - galleryXOffset
 const yPos = () => window.innerHeight / 2 - transitionVal.endHeight / 2
 const mediaModal = (event: Event) => {
 
@@ -88,7 +89,7 @@ const mediaModal = (event: Event) => {
       left: null,
       top: null
     }, {
-      x: mediaElement.value?.getBoundingClientRect().left,
+      x: mediaElement.value?.getBoundingClientRect().left - galleryXOffset,
       y: mediaElement.value?.getBoundingClientRect().top,
       width: mediaElement.value?.clientWidth,
       height: mediaElement.value?.clientHeight,
