@@ -191,7 +191,10 @@ globalStore.seenIntro = true
           Thanks for reading
         </h3>
 
-        <router-link to="/">
+        <router-link
+          to="/"
+          class="no-underline"
+        >
           <div
             class="
             h5
