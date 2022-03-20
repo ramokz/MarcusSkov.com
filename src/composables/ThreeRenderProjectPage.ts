@@ -9,24 +9,6 @@ let renderer: THREE.renderer
 const projectScenes = []
 const clearColor = new THREE.Color('#000')
 
-export const threeProjectPageInit = (canvasRef: HTMLCanvasElement) => {
-  canvas = unref(canvasRef)
-
-  const screenState = useScreenState()
-
-  screenState.setScreenStates()
-
-  renderer = new THREE.WebGLRenderer({
-    canvas: canvas,
-    alpha: true,
-    antialias: true
-  })
-  renderer.outputEncoding = sRGBEncoding
-  renderer.setPixelRatio(screenState.getDevicePixelRatio)
-
-  requestAnimationFrame(render)
-}
-
 interface sceneElement {
   domEl: HTMLDivElement
   fn: any
@@ -38,7 +20,66 @@ const addSceneToArray = (domEl: HTMLDivElement, fn: any) => {
     domEl, fn
   })
 }
-const makeScene2 = () => {
+const resizeRendererToDisplaySize = (renderer: THREE.renderer) => {
+  const canvas = renderer.domElement
+  const width = canvas.clientWidth
+  const height = canvas.clientHeight
+  const needResize = canvas.width !== width || canvas.height !== height
+
+  if (needResize) {
+    renderer.setSize(width, height, false)
+  }
+  return needResize
+}
+const render = (time: number) => {
+  time *= 0.001
+
+  resizeRendererToDisplaySize(renderer)
+
+  renderer.setScissorTest(false)
+  renderer.setClearColor(clearColor, 0)
+  renderer.clear(true, true)
+  renderer.setScissorTest(true)
+
+  renderer.domElement.style.transform = `translateY(${window.scrollY}px)`
+
+  for (const { domEl, fn } of sceneElements) {
+    // get the viewport relative position of this element
+    const rect = domEl.getBoundingClientRect()
+    const { left, right, top, bottom, width, height } = rect
+    const isOffscreen
+        = bottom < 0
+        || top > renderer.domElement.clientHeight
+        || right < 0
+        || left > renderer.domElement.clientWidth
+
+    if (!isOffscreen) {
+      const positiveYUpBottom = renderer.domElement.clientHeight - bottom
+
+      renderer.setScissor(left, positiveYUpBottom, width, height)
+      renderer.setViewport(left, positiveYUpBottom, width, height)
+
+      fn(time, rect)
+    }
+  }
+  requestAnimationFrame(render)
+}
+
+export const threeProjectPageInit = (canvasRef: HTMLCanvasElement) => {
+  canvas = unref(canvasRef)
+
+  renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    alpha: true,
+    antialias: true
+  })
+  renderer.outputEncoding = sRGBEncoding
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+  requestAnimationFrame(render)
+}
+
+const makeScene = () => {
   const scene = new THREE.Scene()
   const fov = 45
   const aspect = 2
@@ -82,7 +123,7 @@ export const addModelToScene = (model: string, domEl: HTMLDivElement, noAnimatio
 
   gltfLoader.load(model,
     (gltf: GLTFLoader) => {
-      const { scene, camera } = makeScene2()
+      const { scene, camera } = makeScene()
       const model = gltf.scene
       const clock = new THREE.Clock()
       const mixer = new THREE.AnimationMixer(model)
@@ -137,49 +178,4 @@ export const addModelToScene = (model: string, domEl: HTMLDivElement, noAnimatio
         renderer.render(scene, camera)
       })
     })
-}
-
-const resizeRendererToDisplaySize = (renderer: THREE.renderer) => {
-  const canvas = renderer.domElement
-  const width = canvas.clientWidth
-  const height = canvas.clientHeight
-  const needResize = canvas.width !== width || canvas.height !== height
-
-  if (needResize) {
-    renderer.setSize(width, height, false)
-  }
-  return needResize
-}
-const render = (time: number) => {
-  time *= 0.001
-
-  resizeRendererToDisplaySize(renderer)
-
-  renderer.setScissorTest(false)
-  renderer.setClearColor(clearColor, 0)
-  renderer.clear(true, true)
-  renderer.setScissorTest(true)
-
-  renderer.domElement.style.transform = `translateY(${window.scrollY}px)`
-
-  for (const { domEl, fn } of sceneElements) {
-    // get the viewport relative position of this element
-    const rect = domEl.getBoundingClientRect()
-    const { left, right, top, bottom, width, height } = rect
-    const isOffscreen
-        = bottom < 0
-        || top > renderer.domElement.clientHeight
-        || right < 0
-        || left > renderer.domElement.clientWidth
-
-    if (!isOffscreen) {
-      const positiveYUpBottom = renderer.domElement.clientHeight - bottom
-
-      renderer.setScissor(left, positiveYUpBottom, width, height)
-      renderer.setViewport(left, positiveYUpBottom, width, height)
-
-      fn(time, rect)
-    }
-  }
-  requestAnimationFrame(render)
 }

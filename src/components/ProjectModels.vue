@@ -55,6 +55,6 @@ onMounted(() => {
 <template>
   <canvas
     ref="canvasRef"
-    class="fixed top-0 outline-none -z-2 pointer-events-none"
+    class="fixed top-0 -z-2 pointer-events-none"
   />
 </template>

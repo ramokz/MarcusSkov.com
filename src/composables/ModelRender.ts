@@ -2,7 +2,6 @@ import * as THREE from 'three'
 import { sRGBEncoding } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { gsap } from 'gsap'
-import { useScreenState } from '~/stores/screenState'
 import particleImage from '../assets/particles/circle_01.png'
 
 /////////////////////////////
@@ -23,11 +22,6 @@ const modelDistance = 4
 export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
 
   canvas = unref(canvasRef)
-
-  const screenState = useScreenState()
-
-  screenState.setScreenStates()
-
   /////////////////////////////
   // Initial Setup
   /////////////////////////////
@@ -40,14 +34,13 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
   scene = new THREE.Scene()
 
   const screenChange = () => {
-    screenState.setScreenStates()
 
-    camera.aspect = screenState.screenWidth / screenState.screenHeight
+    camera.aspect = document.documentElement.clientWidth / document.documentElement.clientHeight
     camera.updateProjectionMatrix()
 
-    renderer.setSize(screenState.screenWidth - 30, screenState.screenHeight) // TODO - find a fix for "- 30" solution
+    renderer.setSize(document.documentElement.clientWidth, document.documentElement.clientHeight)
 
-    renderer.setPixelRatio(screenState.getDevicePixelRatio)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
   }
   /////////////////////////////
@@ -67,7 +60,7 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
     scrollY = window.scrollY
   })
 
-  camera = new THREE.PerspectiveCamera(35, screenState.screenWidth / screenState.screenHeight, 0.1, 100)
+  camera = new THREE.PerspectiveCamera(35, document.documentElement.clientWidth / document.documentElement.clientHeight, 0.1, 100)
   camera.position.z = 6
 
   screenChange()
@@ -112,7 +105,7 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
     // console.log(elapsedTime)
 
     if (projectListPage) {
-      camera.position.y = -scrollY / screenState.screenHeight * modelDistance + 4
+      camera.position.y = -scrollY / document.documentElement.clientHeight * modelDistance + 2.5
       particles.visible = true
     }
     else {
@@ -144,10 +137,6 @@ export const rotateModel = (modelScene: GLTFLoader) => {
 export const projectPageSetter = (index: number, noAnimation = false) => {
   // console.log(projectModels[index])
   projectListPage = false
-
-  const screenState = useScreenState()
-
-  screenState.setScreenStates()
 
   if (noAnimation) {
     gsap.set(camera.position, {
