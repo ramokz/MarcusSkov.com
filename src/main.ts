@@ -12,7 +12,7 @@ import { useGlobalStore } from './stores/globalStore'
 // StyleSheet imports
 import 'uno.css'
 import '@unocss/reset/eric-meyer.css'
-import './styles/main.sass'
+import './styles/main.scss'
 
 const app = createApp(App)
 const router = createRouter({
