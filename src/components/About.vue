@@ -1,11 +1,24 @@
 <script setup lang="ts">
 import photo from '~/assets/about/Photo.jpeg'
+import { gsap } from 'gsap'
+
+const aboutMe = ref<HTMLDivElement>(null)
+
+onMounted(() => {
+  gsap.from(aboutMe.value, {
+    opacity: 0,
+    delay: 3
+  })
+})
 
 </script>
 
 
 <template>
-  <div class="container pt-24 mb-64 mx-auto px-6 lg:px-0">
+  <div
+    ref="aboutMe"
+    class="container pt-24 mb-64 mx-auto px-6 lg:px-0"
+  >
     <div class="flex flex-col flex-col-reverse items-center md:flex-row md:space-x-12">
       <div class="container md:w-1/2 body">
         <h2 class="h2">
