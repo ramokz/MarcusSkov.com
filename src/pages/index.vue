@@ -88,7 +88,6 @@ onMounted(() => {
         string="Hey there"
         target-class="intro-header"
         font-class="h2"
-        class="perspect-md"
       />
       <div
         id="intro-divider"
@@ -106,12 +105,24 @@ onMounted(() => {
         font-class="h3"
       />
     </div>
-    <ProjectListHeader
-      v-for="(story, index) in storyStore.getAllProjects"
-      :key="story.id"
-      :index="index"
-      :story="story"
-    />
+    <div class="project-list-header">
+      <ProjectListHeader
+        v-for="(story, index) in storyStore.getAllProjects"
+        :key="story.id"
+        :index="index"
+        :story="story"
+      />
+    </div>
     <About />
   </div>
 </template>
+
+<style lang="scss">
+.project-list-header {
+  margin-top: -30vh;
+
+  @media only screen and (max-width: 1280px) {
+    margin-top: -20vh;
+  }
+}
+</style>
