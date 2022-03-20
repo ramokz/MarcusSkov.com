@@ -35,17 +35,12 @@ const modelArr = reactive({
 storyStore.getAllProjects.forEach((story: object) => modelArr.models.push(story.content.projectHeader.filename))
 
 onMounted(() => {
-  // useStoryblokBridge(story.value.id, (evStory) => (story.value = evStory))
   useThreeInit(canvasRef.value)
   addProjectModels(modelArr.models)
 
-  console.log(storyStore.projectIndex)
-  console.log(route)
-  console.log(route.name)
-  console.log(route.params.project)
-  if (storyStore.projectIndex < 0 && route.name === 'project') {
+  if (storyStore.projectIndex < 0 && storyStore.projectSlug) {
 
-    const projectIndex = storyStore.getAllProjects.findIndex((project: object) => project.slug === route.params.project)
+    const projectIndex = storyStore.getAllProjects.findIndex((project: object) => project.slug === storyStore.projectSlug)
 
     storyStore.$patch({
       projectIndex: projectIndex

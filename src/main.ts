@@ -17,7 +17,6 @@ import './styles/main.sass'
 const app = createApp(App)
 const router = createRouter({
   history: createWebHistory(),
-  // routes,
   routes: [
     {
       path: '/', name: 'index', component: Index
@@ -76,10 +75,10 @@ const router = createRouter({
 
 app
   .use(createPinia())
+  .use(router)
   .use(StoryblokVue, {
     accessToken: import.meta.env.VITE_ACCESS_TOKEN,
     use: [apiPlugin]
   })
   .use(createHead())
-  .use(router)
   .mount('#app')

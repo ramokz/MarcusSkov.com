@@ -157,7 +157,7 @@ export const projectPageSetter = (index: number, noAnimation = false) => {
       position: 'absolute',
       onStart: () => {
         gsap.set(canvas, {
-          zIndex: 4
+          zIndex: 0
         })
       },
       onComplete: () => {
@@ -175,7 +175,7 @@ export const projectPageSetter = (index: number, noAnimation = false) => {
       duration: 0.5,
       onStart: () => {
         gsap.set(canvas, {
-          zIndex: 4
+          zIndex: 0
         })
       },
       onComplete: () => {

@@ -46,9 +46,6 @@ router.beforeEach((to, from) => {
     // console.log(stories.projectIndex)
     // console.log('Navigating with history keys')
   }
-  else if (to.name !== projectPage && to.name !== indexPage) {
-    // console.log('About page')
-  }
   // else if (to.name === projectPage) {
   //   projectPageSetter(stories.getProjectIndex(to.params.project), true)
   //   // console.log('Opening project page directly or refreshing')

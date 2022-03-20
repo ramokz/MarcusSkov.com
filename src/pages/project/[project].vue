@@ -19,48 +19,44 @@ const projectData = await useStoryblok(`project/${projectRoute}`, {
     name: '404'
   })
 })
+/////////////////////////////
+// DOM Refs
+/////////////////////////////
 const headerBG = ref()
 const projectHeader = ref()
 const projectContainer = ref()
 const projectPageCanvas = ref()
-const projectIndex = storyStore.getAllProjects.findIndex((project: object) => project.slug === route.params.project)
 
 onMounted(() => {
 
-  if (projectIndex < 0) {
-    router.push({
-      name: '404'
-    })
-  }
-  else {
+  const projectIndex = storyStore.getAllProjects.findIndex((project: object) => project.slug === route.params.project)
 
-    threeProjectPageInit(projectPageCanvas)
+  threeProjectPageInit(projectPageCanvas)
 
-    const tl = gsap.timeline()
+  const tl = gsap.timeline()
 
-    tl.from(headerBG.value, {
-      height: 0,
-      delay: 0.2,
-      ease: 'power2.out',
-      duration: 1,
-      onComplete: () => {
-        gsap.set(headerBG.value, {
-          height: null
-        })
-      }
-    }).from(projectHeader.value, {
-      opacity: 0,
-      y: 80,
-      ease: 'power3.out',
-      duration: 0.7
-    }, '-=0.2 ')
-
-
-    if (projectIndex !== storyStore.projectIndex) {
-      storyStore.$patch({
-        projectIndex: projectIndex
+  tl.from(headerBG.value, {
+    height: 0,
+    delay: 0.2,
+    ease: 'power2.out',
+    duration: 1,
+    onComplete: () => {
+      gsap.set(headerBG.value, {
+        height: null
       })
     }
+  }).from(projectHeader.value, {
+    opacity: 0,
+    y: 80,
+    ease: 'power3.out',
+    duration: 0.7
+  }, '-=0.2 ')
+
+
+  if (projectIndex !== storyStore.projectIndex) {
+    storyStore.$patch({
+      projectIndex: projectIndex
+    })
   }
 })
 
