@@ -40,7 +40,9 @@ onMounted(() => {
   addProjectModels(modelArr.models)
 
   console.log(storyStore.projectIndex)
+  console.log(route)
   console.log(route.name)
+  console.log(route.params.project)
   if (storyStore.projectIndex < 0 && route.name === 'project') {
 
     const projectIndex = storyStore.getAllProjects.findIndex((project: object) => project.slug === route.params.project)
