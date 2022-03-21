@@ -66,6 +66,7 @@ const playVideo = () => {
       <video
         ref="video"
         class="flex max-h-screen-md mx-auto max-w-full cursor-pointer"
+        :style="[pauseOverlay ? {'opacity': 1} : {'opacity': 0.2}]"
         loop
         muted
         controls
@@ -79,7 +80,7 @@ const playVideo = () => {
         v-show="!pauseOverlay"
       >
         <div
-          class="absolute opacity-80 top-0 bg-dark w-full h-full cursor-pointer"
+          class="absolute top-0 w-full h-full cursor-pointer"
           @click="playVideo"
         />
         <svg
