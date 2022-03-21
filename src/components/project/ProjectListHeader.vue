@@ -30,7 +30,7 @@ const props = defineProps({
         :to="`/project/${story.slug}`"
         class="text-light no-underline flex mx-auto"
       >
-        <div class="mx-auto mb-64 p-4 bg-dark border border-core hover:border-light">
+        <div class="mx-auto mb-64 p-4 bg-dark border-2 border-core hover:border-light">
           <h3 class="projectYear mx-auto text-center">
             ({{ story.content.year }})
           </h3>

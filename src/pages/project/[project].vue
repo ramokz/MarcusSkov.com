@@ -200,11 +200,10 @@ globalStore.seenIntro = true
             h5
             mx-auto
             p-4
-            border
+            border-2
             cursor-pointer
             select-none
             border-core
-            hover:border
             hover:border-light"
           >
             Back to the project list

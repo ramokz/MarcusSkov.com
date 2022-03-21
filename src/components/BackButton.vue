@@ -12,7 +12,7 @@
           px-2
           bg-dark
           hover:bg-dark
-          border
+          border-2
           border-core
           hover:border-light
           stroke-light

@@ -119,14 +119,6 @@ onMounted(() => {
 
 <style lang="scss">
 .project-list-header {
-  margin-top: -40vh;
-
-  @media only screen and (max-height: 1080px) {
-    margin-top: -30vh;
-  }
-
-  @media only screen and (max-height: 920px) {
-    margin-top: -15vh;
-  }
+  margin-top: -33.333vh;
 }
 </style>
