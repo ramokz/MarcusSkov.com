@@ -92,7 +92,7 @@ const playVideo = () => {
             cx="16"
             cy="16"
             r="14.5"
-            class="stroke-2 stroke-core"
+            class="stroke stroke-core"
           />
           <path
             d="M23.7876 16.1416L11.8938 23.0085L11.8938 9.27469L23.7876 16.1416Z"
