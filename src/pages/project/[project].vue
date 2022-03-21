@@ -218,7 +218,7 @@ globalStore.seenIntro = true
   </div>
 </template>
 
-<style>
+<style scoped>
 .headerBG {
   height: 60vh;
 }

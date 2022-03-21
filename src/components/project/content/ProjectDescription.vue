@@ -34,7 +34,7 @@ const richTextComputed = computed(() => {
 </template>
 
 
-<style>
+<style scoped>
 li {
   list-style-type: square;
   margin: 0 20px 10px 20px;

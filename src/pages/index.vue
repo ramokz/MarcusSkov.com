@@ -117,7 +117,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .project-list-header {
   margin-top: -33.333vh;
 }
