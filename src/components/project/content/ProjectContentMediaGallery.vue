@@ -175,7 +175,8 @@ const mediaModal = (event: Event) => {
 					cursor-pointer
 					object-contain
 					max-h-72
-          select-none"
+          select-none
+        "
       >
     </div>
   </div>
@@ -189,6 +190,6 @@ const mediaModal = (event: Event) => {
     ref="lightBox"
     src=""
     :alt="lightBoxAlt"
-    class="lightBox fixed z-2 top-0 pointer-events-none w-11/12 object-contain"
+    class="lightBox fixed z-2 top-0 pointer-events-none w-11/12 object-contain select-none"
   >
 </template>
