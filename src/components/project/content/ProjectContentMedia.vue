@@ -56,7 +56,7 @@ const richTextComputed = computed(() => {
       v-html="richTextComputed"
     />
 
-    <div class="mt-4 mb-12">
+    <div class="mt-4 mb-24 lg:mb-18">
       <div
         v-if="mediaType() === assetTypeEnum.image"
         :style="{background: assetColor}"
@@ -80,4 +80,3 @@ const richTextComputed = computed(() => {
     </div>
   </div>
 </template>
-

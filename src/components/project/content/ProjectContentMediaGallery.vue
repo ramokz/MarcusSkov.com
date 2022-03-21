@@ -154,7 +154,7 @@ const mediaModal = (event: Event) => {
     grid-cols-3
     mx-auto
     mb-12
-    lg:mb-48
+    lg:mb-32
     gap-x-6
     gap-y-6
     items-center
