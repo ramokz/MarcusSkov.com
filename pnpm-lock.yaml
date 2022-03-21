@@ -14,6 +14,7 @@ specifiers:
   pinia: ^2.0.12
   pug: ^3.0.2
   sass: ^1.49.9
+  stats.js: ^0.17.0
   three: ^0.138.3
   typescript: ^4.6.2
   unocss: ^0.29.3
@@ -45,6 +46,7 @@ devDependencies:
   eslint-plugin-vue: 8.5.0_eslint@8.11.0
   pug: 3.0.2
   sass: 1.49.9
+  stats.js: 0.17.0
   typescript: 4.6.2
   unocss: 0.29.3
   unplugin-auto-import: 0.6.6_vite@2.8.6
@@ -3992,6 +3994,10 @@ packages:
 
   /sourcemap-codec/1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
+
+  /stats.js/0.17.0:
+    resolution: {integrity: sha1-scPcRtlEmLV4t/05hbgaznExzH0=}
+    dev: true
 
   /storyblok-js-client/4.2.1:
     resolution: {integrity: sha512-TQfsyBJ6WcjpHFGKYXHy5kef4jXOI/j54wrJmw4Ld13e76dr81EvqZIrwehKPTcRID9+a4rbA0ykn3r3aBpArw==}

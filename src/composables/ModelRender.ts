@@ -3,6 +3,18 @@ import { sRGBEncoding } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { gsap } from 'gsap'
 import particleImage from '../assets/particles/circle_01.png'
+import Stats from 'stats.js'
+
+let stats: Stats
+
+if (import.meta.env.DEV) {
+  console.log('Running dev')
+
+  stats = new Stats()
+
+  stats.showPanel(0) // 0: fps, 1: ms, 2: mb, 3+: custom
+  document.body.appendChild(stats.dom)
+}
 
 /////////////////////////////
 // Variables
@@ -101,6 +113,10 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
 
   const render = () => {
 
+    if (import.meta.env.DEV) {
+      stats.begin()
+    }
+
     // const elapsedTime = clock.getElapsedTime()
     // console.log(elapsedTime)
 
@@ -114,6 +130,10 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
 
     renderer.render(scene, camera)
     window.requestAnimationFrame(render)
+
+    if (import.meta.env.DEV) {
+      stats.end()
+    }
   }
 
   requestAnimationFrame(render)
