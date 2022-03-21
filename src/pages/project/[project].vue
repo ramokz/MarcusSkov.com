@@ -169,7 +169,7 @@ globalStore.seenIntro = true
         flex
         flex-col
         mx-auto
-        h-128
+        h-64
         items-center
         mt-32
         lg:mt-64
@@ -180,7 +180,7 @@ globalStore.seenIntro = true
             text-5xl
             lg:text-6xl
             font-serif
-            mb-24
+            mb-12
             select-none
             text-center
             opacity-10
