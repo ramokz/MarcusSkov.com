@@ -154,23 +154,26 @@ export const rotateModel = (modelScene: GLTFLoader) => {
   })
 }
 
+let projectSetterTL: GSAPTimeline
+
 export const projectPageSetter = (index: number, noAnimation = false) => {
-  // console.log(projectModels[index])
+
+  projectSetterTL = gsap.timeline()
   projectListPage = false
 
   if (noAnimation) {
-    gsap.set(camera.position, {
+    projectSetterTL.set(camera.position, {
       y: -index * 4 - 0.75
     })
-    gsap.set(canvas, {
+    projectSetterTL.set(canvas, {
       position: 'absolute',
       onStart: () => {
-        gsap.set(canvas, {
+        projectSetterTL.set(canvas, {
           zIndex: 0
         })
       },
       onComplete: () => {
-        gsap.set(canvas, {
+        projectSetterTL.set(canvas, {
           position: 'absolute',
           zIndex: -2,
           delay: 0.8
@@ -179,20 +182,20 @@ export const projectPageSetter = (index: number, noAnimation = false) => {
     })
   }
   else {
-    gsap.to(camera.position, {
+    projectSetterTL.to(camera.position, {
       y: -index * 4 - 0.75,
       duration: 0.5,
       onStart: () => {
-        gsap.set(canvas, {
+        projectSetterTL.set(canvas, {
           zIndex: 0
         })
       },
       onComplete: () => {
-        gsap.set(canvas, {
+        projectSetterTL.set(canvas, {
           position: 'absolute',
           delay: 0.8
         })
-        gsap.set(canvas, {
+        projectSetterTL.set(canvas, {
           zIndex: -2,
           delay: 2
         })
@@ -205,13 +208,17 @@ export const projectPageSetter = (index: number, noAnimation = false) => {
 
 export const projectPageExiter = () => {
 
+  projectSetterTL.kill()
+
   /////////////////////////////
   // TODO - Make a smoother transition
   /////////////////////////////
   projectListPage = true
   gsap.set(canvas, {
-    position: 'fixed'
+    position: 'fixed',
+    zIndex: -2
   })
+
 }
 
 export const addProjectModels = (models: string[]) => {
