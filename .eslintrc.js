@@ -76,7 +76,7 @@ module.exports = {
       'error',
 
       {
-        blankLine: 'always', prev: ['const', 'let', 'var', 'case', 'class', 'default'], next: '*'
+        blankLine: 'any', prev: ['const', 'let', 'var', 'case', 'class', 'default'], next: '*'
       },
       {
         blankLine: 'never', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var']
