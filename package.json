@@ -9,9 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@unocss/reset": "^0.29.3",
+    "@unocss/reset": "^0.29.6",
     "@vueuse/head": "^0.7.5",
-    "gsap": "^3.9.1",
+    "gsap": "^3.10.0",
     "pinia": "^2.0.12",
     "three": "^0.138.3",
     "vue": "^3.2.31",
@@ -19,22 +19,22 @@
   },
   "devDependencies": {
     "@storyblok/vue": "^6.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.15.0",
-    "@typescript-eslint/parser": "^5.15.0",
-    "@vitejs/plugin-vue": "^2.2.4",
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
+    "@vitejs/plugin-vue": "^2.3.1",
     "critters": "^0.0.16",
-    "eslint": "^8.11.0",
+    "eslint": "^8.12.0",
     "eslint-plugin-vue": "^8.5.0",
     "pug": "^3.0.2",
     "sass": "^1.49.9",
     "stats.js": "^0.17.0",
-    "typescript": "^4.6.2",
-    "unocss": "^0.29.3",
-    "unplugin-auto-import": "^0.6.6",
-    "unplugin-vue-components": "^0.18.1",
-    "vite": "^2.8.6",
+    "typescript": "^4.6.3",
+    "unocss": "^0.29.6",
+    "unplugin-auto-import": "^0.6.8",
+    "unplugin-vue-components": "^0.18.5",
+    "vite": "^2.9.0",
     "vite-plugin-pages": "^0.22.0",
     "vite-plugin-pwa": "^0.11.13",
-    "vue-tsc": "^0.33.2-patch.1"
+    "vue-tsc": "^0.33.9"
   }
 }
