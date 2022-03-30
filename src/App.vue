@@ -80,6 +80,7 @@ router.beforeEach((to, from) => {
         color-grey
         fill-grey
         opacity-20 hover:opacity-80
+        transition-opacity duration-300
     "
       >
         <svg
