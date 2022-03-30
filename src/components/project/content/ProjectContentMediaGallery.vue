@@ -164,18 +164,22 @@ const mediaModal = (event: Event) => {
     <div
       v-for="media in props.content.media"
       :key="media.id"
-      class="h-auto w-full mx-auto flex-size basis-1/4"
+      class="h-auto w-full mx-auto flex justify-center flex-size basis-1/4"
       @click="mediaModal"
     >
       <img
         :src="media.filename"
         :alt="media.alt"
         class="
-					w-full
+          max-w-full
 					cursor-pointer
 					object-contain
 					max-h-72
           select-none
+          hover:scale-105
+          shadow-lg hover:shadow-2xl
+          transition-transform
+          duration-300
         "
       >
     </div>
