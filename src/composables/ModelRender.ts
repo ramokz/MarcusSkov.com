@@ -220,7 +220,7 @@ export const addProjectModels = (models: [{ model: String; texture: String }]) =
   // Draco Loader
   /////////////////////////////
   const dracoLoader = new DRACOLoader()
-  dracoLoader.setDecoderPath('./draco/gltf/')
+  dracoLoader.setDecoderPath('/draco/gltf/')
   dracoLoader.setDecoderConfig({
     type: 'js'
   })
