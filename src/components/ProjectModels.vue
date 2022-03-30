@@ -27,12 +27,18 @@ storyStore.$patch({
 /////////////////////////////
 // Sets up the three renderer
 /////////////////////////////
+
 const canvasRef = ref<HTMLCanvasElement>(null)
 const modelArr = reactive({
   models: []
 })
 
-storyStore.getAllProjects.forEach((story: object) => modelArr.models.push(story.content.projectHeader.filename))
+storyStore.getAllProjects.forEach((story: object) => modelArr.models.push(
+  {
+    model: story.content.projectModel.filename,
+    texture: story.content.projectModelTexture.filename
+  }
+))
 
 onMounted(() => {
   useThreeInit(canvasRef.value)

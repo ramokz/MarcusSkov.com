@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { sRGBEncoding } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { gsap } from 'gsap'
 import particleImage from '../assets/particles/circle_01.png'
 import Stats from 'stats.js'
@@ -55,14 +56,6 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
   }
-  /////////////////////////////
-  // Light
-  /////////////////////////////
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.4)
-  const keyLight = new THREE.DirectionalLight(0xffffff, 0.5)
-
-  keyLight.position.set(-2, 0, 4)
-  scene.add(ambientLight, keyLight)
 
   /////////////////////////////
   // Event Listeners
@@ -221,24 +214,55 @@ export const projectPageExiter = () => {
 
 }
 
-export const addProjectModels = (models: string[]) => {
+export const addProjectModels = (models: [{ model: String; texture: String }]) => {
 
+  /////////////////////////////
+  // Draco Loader
+  /////////////////////////////
+  const dracoLoader = new DRACOLoader()
+  // dracoLoader.setDecoderPath('./node_modules/three/examples/js/libs/draco/gltf/')
+  dracoLoader.setDecoderPath('./draco/gltf/')
+  dracoLoader.setDecoderConfig({
+    type: 'js'
+  })
+
+  /////////////////////////////
+  // GLTF Loader
+  /////////////////////////////
   const gltfLoader = new GLTFLoader()
+  gltfLoader.setDRACOLoader(dracoLoader)
+
+  /////////////////////////////
+  // Texture Loader
+  /////////////////////////////
+  const textureLoader = new THREE.TextureLoader()
 
   for (let index = 0; index < models.length; index++) {
-    const model = models[index]
+    const model = models[index].model
+    const texture = models[index].texture
+    const loadedTexture = textureLoader.load(texture)
+    loadedTexture.flipY = false
+    loadedTexture.encoding = THREE.sRGBEncoding
+
+    const materialTexture = new THREE.MeshBasicMaterial({
+      map: loadedTexture
+    })
+    materialTexture.alphaMap = loadedTexture
 
     gltfLoader.load(model, (gltf: GLTFLoader) => {
 
       const modelScene = gltf.scene
+      modelScene.traverse((child: any) => {
+        child.material = materialTexture
+      })
 
       projectModels.push(modelScene)
 
       rotateModel(modelScene)
 
-      modelScene.scale.x = 1
-      modelScene.scale.y = 1
-      modelScene.scale.z = 1
+      // modelScene.scale.x = 2.5
+      // modelScene.scale.y = 2.5
+      // modelScene.scale.z = 2.5
       modelScene.position.y = - modelDistance * index
 
       scene.add(modelScene)
