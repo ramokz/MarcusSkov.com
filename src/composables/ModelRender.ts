@@ -114,7 +114,7 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
     // console.log(elapsedTime)
 
     if (projectListPage) {
-      camera.position.y = -scrollY / document.documentElement.clientHeight * modelDistance + 2.5
+      camera.position.y = -scrollY / document.documentElement.clientHeight * modelDistance + 4
       particles.visible = true
     }
     else {
@@ -220,7 +220,6 @@ export const addProjectModels = (models: [{ model: String; texture: String }]) =
   // Draco Loader
   /////////////////////////////
   const dracoLoader = new DRACOLoader()
-  // dracoLoader.setDecoderPath('./node_modules/three/examples/js/libs/draco/gltf/')
   dracoLoader.setDecoderPath('./draco/gltf/')
   dracoLoader.setDecoderConfig({
     type: 'js'

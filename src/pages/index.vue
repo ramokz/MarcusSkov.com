@@ -5,15 +5,19 @@
 /////////////////////////////
 import { useStories } from '~/stores/storyblok'
 import { gsap } from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { onBeforeRouteLeave } from 'vue-router'
 import TextSplitter from '../components/TextSplitter.vue'
 import { useGlobalStore } from '../stores/globalStore'
+
+gsap.registerPlugin(ScrollToPlugin)
 
 /////////////////////////////
 // Variables & Refs
 /////////////////////////////
 const storyStore = useStories()
-const projectList = ref()
+const projectList = ref<HTMLDivElement>()
+const projectListHeaders = ref<HTMLDivElement>()
 
 /////////////////////////////
 // Methods
@@ -25,6 +29,21 @@ onBeforeRouteLeave(() => {
 })
 
 const globalStore = useGlobalStore()
+const scrollToProjectListHeaders = () => {
+  if (projectListHeaders.value) {
+    gsap.to(window, {
+      scrollTo: {
+        y: projectListHeaders.value,
+        offsetY: -100 // 32
+      },
+      duration: 0.6,
+      ease: 'power2.out'
+    })
+    // projectListHeaders.value.scrollIntoView({
+    //   behavior: 'smooth'
+    // })
+  }
+}
 
 onMounted(() => {
 
@@ -105,7 +124,19 @@ onMounted(() => {
         font-class="h3"
       />
     </div>
-    <div class="project-list-header">
+    <div
+      class="-mt-32 mx-auto container flex justify-center"
+    >
+      <div
+        class="opacity-20 hover:opacity-100 transition-opacity duration-300"
+        @click="scrollToProjectListHeaders"
+      >
+        <div class="text-3xl lg:text-6xl font-serif font-bold uppercase text-center select-none cursor-pointer">
+          My Work
+        </div>
+      </div>
+    </div>
+    <div ref="projectListHeaders">
       <ProjectListHeader
         v-for="(story, index) in storyStore.getAllProjects"
         :key="story.id"
@@ -116,9 +147,3 @@ onMounted(() => {
     <About />
   </div>
 </template>
-
-<style lang="scss" scoped>
-.project-list-header {
-  margin-top: -33.333vh;
-}
-</style>
