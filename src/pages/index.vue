@@ -45,7 +45,6 @@ const scrollToProjectListHeaders = () => {
 }
 
 onMounted(() => {
-
   /////////////////////////////
   // Plays the intro animation
   /////////////////////////////
@@ -57,7 +56,7 @@ onMounted(() => {
     tl.from('.intro-header', {
       y: -30,
       opacity: 0,
-      duration: 0.25,
+      duration: 0.4,
       stagger: 0.04,
       ease: 'back.out'
     }).from('#intro-divider', {
@@ -69,7 +68,7 @@ onMounted(() => {
           width: null
         })
       })
-    }).from('.discipline', {
+    }, '-=0.4').from('.discipline', {
       y: 50,
       opacity: 0,
       duration: 0.8,
@@ -83,6 +82,12 @@ onMounted(() => {
         stagger: 0.015,
         ease: 'back.out'
       })
+      .from('.my-work', {
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        ease: 'back.out'
+      }, '+=0.6')
   }
 })
 </script>
@@ -124,7 +129,7 @@ onMounted(() => {
       />
     </div>
     <div
-      class="-mt-32 mx-auto container flex justify-center"
+      class="-mt-32 mx-auto container flex justify-center my-work"
     >
       <div
         class="opacity-20 hover:opacity-100 transition-opacity duration-300"
