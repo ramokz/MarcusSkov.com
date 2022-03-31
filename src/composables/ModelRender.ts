@@ -28,6 +28,19 @@ let projectListPage = true
 const projectModels: object[] = []
 let scrollY: number = window.scrollY
 const modelDistance = 4
+const setModelXPos = (model: any, index: number) => {
+  if (window.innerWidth >= 1024) {
+    if (projectListPage) {
+      model.position.x = index % 2 ? -1.25 : 1.25
+    }
+    // model.position.x = 1.5
+    model.position.y = - modelDistance * index + 0.2
+  }
+  else {
+    model.position.x = 0
+    model.position.y = - modelDistance * index + 0.6
+  }
+}
 
 /////////////////////////////
 // Define the main 3D scene
@@ -47,6 +60,12 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
   scene = new THREE.Scene()
 
   const screenChange = () => {
+
+    if (projectModels.length > 0) {
+      for (let index = 0; index < projectModels.length; index++) {
+        setModelXPos(projectModels[index], index)
+      }
+    }
 
     camera.aspect = document.documentElement.clientWidth / document.documentElement.clientHeight
     camera.updateProjectionMatrix()
@@ -150,15 +169,14 @@ export const rotateModel = (modelScene: GLTFLoader) => {
 let projectSetterTL: GSAPTimeline
 
 export const projectPageSetter = (index: number, noAnimation = false) => {
-
   projectSetterTL = gsap.timeline()
   projectListPage = false
 
   if (noAnimation) {
+
     projectSetterTL.set(camera.position, {
-      y: -index * 4 - 0.75
-    })
-    projectSetterTL.set(canvas, {
+      y: -index * 4 - 0.5
+    }).set(canvas, {
       position: 'absolute',
       onStart: () => {
         projectSetterTL.set(canvas, {
@@ -176,7 +194,7 @@ export const projectPageSetter = (index: number, noAnimation = false) => {
   }
   else {
     projectSetterTL.to(camera.position, {
-      y: -index * 4 - 0.75,
+      y: -index * 4 - 0.5,
       duration: 0.5,
       onStart: () => {
         projectSetterTL.set(canvas, {
@@ -193,7 +211,9 @@ export const projectPageSetter = (index: number, noAnimation = false) => {
           delay: 2
         })
       }
-    })
+    }).to(projectModels[index].position, {
+      x: 0
+    }, '0')
   }
   // camera.position.y =
   // console.log(camera.position.y)
@@ -211,6 +231,10 @@ export const projectPageExiter = () => {
     position: 'fixed',
     zIndex: -2
   })
+
+  for (let index = 0; index < projectModels.length; index++) {
+    setModelXPos(projectModels[index], index)
+  }
 
 }
 
@@ -255,14 +279,14 @@ export const addProjectModels = (models: [{ model: String; texture: String }]) =
         child.material = materialTexture
       })
 
-      projectModels.push(modelScene)
+      projectModels[index] = modelScene
 
       rotateModel(modelScene)
+      setModelXPos(modelScene, index)
 
       // modelScene.scale.x = 2.5
       // modelScene.scale.y = 2.5
       // modelScene.scale.z = 2.5
-      modelScene.position.y = - modelDistance * index
 
       scene.add(modelScene)
     })

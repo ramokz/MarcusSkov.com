@@ -102,10 +102,10 @@ globalStore.seenIntro = true
           mt-10
           mb-32
           items-start
-      "
+        "
       >
         <div class="flex flex-col mr-16 mb-12 lg:mb-0 lg:w-1/2">
-          <h3 class="text-xl">
+          <h3 class="h3">
             {{ projectData.content.year }}
           </h3>
           <h1 class="h1">

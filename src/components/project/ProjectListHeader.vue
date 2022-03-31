@@ -14,31 +14,40 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="relative">
-    <div
-      class="
+  <div
+    class="
         container
-        project-header
         mx-auto
         flex
-        lg:flex-row
-        items-end
+        items-center
+        text-center lg:text-left lg:odd:text-right
         h-screen
-        even:flex-row-reverse"
+        justify-center lg:justify-start lg:even:justify-end
+    "
+  >
+    <RouterLink
+      :to="`/project/${story.slug}`"
+      class="
+        text-light
+        no-underline
+        mt-84 lg:mt-0
+        mx-6
+        bg-dark lg:bg-transparent
+        border-2 lg:border-none
+        border-core lg:border-transparent
+        hover:text-core
+        hover:text-underline
+        lg:w-1/2
+      "
     >
-      <RouterLink
-        :to="`/project/${story.slug}`"
-        class="text-light no-underline flex mx-auto"
-      >
-        <div class="mx-auto mb-64 p-4 bg-dark border-2 border-core hover:border-light">
-          <h3 class="projectYear mx-auto text-center">
-            ({{ story.content.year }})
-          </h3>
-          <h1 class="h1 text-center">
-            {{ story.name }}
-          </h1>
-        </div>
-      </RouterLink>
-    </div>
+      <div class="p-4">
+        <h3 class="h3">
+          {{ story.content.year }}
+        </h3>
+        <h1 class="h1">
+          {{ story.name }}
+        </h1>
+      </div>
+    </RouterLink>
   </div>
 </template>

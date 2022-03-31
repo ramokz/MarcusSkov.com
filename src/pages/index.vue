@@ -33,8 +33,7 @@ const scrollToProjectListHeaders = () => {
   if (projectListHeaders.value) {
     gsap.to(window, {
       scrollTo: {
-        y: projectListHeaders.value,
-        offsetY: -100 // 32
+        y: projectListHeaders.value
       },
       duration: 0.6,
       ease: 'power2.out'
