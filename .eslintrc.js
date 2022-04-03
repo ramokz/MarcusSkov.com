@@ -79,7 +79,7 @@ module.exports = {
         blankLine: 'any', prev: ['const', 'let', 'var', 'case', 'class', 'default'], next: '*'
       },
       {
-        blankLine: 'never', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var']
+        blankLine: 'never', prev: ['const', 'let', 'var'], next: ['singleline-const', 'singleline-let', 'singleline-var']
       }],
 
     // Test
