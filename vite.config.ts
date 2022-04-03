@@ -65,9 +65,6 @@ export default defineConfig({
         }]
       ],
       shortcuts: {
-        'projectYear': 'text-2xl italic',
-        'textContentHeader': 'text-5xl font-bold font-semibold mb-2',
-        'textContentBody': 'text-xl',
         'navbarLinks': 'text-lg text-light no-underline uppercase hover:text-core',
         'h1': 'font-bold text-5xl lg:text-8xl',
         'h2': 'font-bold text-5xl lg:text-6xl mb-4 font-serif',
