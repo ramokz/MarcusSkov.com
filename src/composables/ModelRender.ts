@@ -4,6 +4,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { gsap } from 'gsap'
 import particleImage from '../assets/particles/circle_01.png'
+import { useGlobalStore } from '../stores/globalStore'
 import Stats from 'stats.js'
 
 let stats: Stats
@@ -173,7 +174,6 @@ export const projectPageSetter = (index: number, noAnimation = false) => {
   projectListPage = false
 
   if (noAnimation) {
-
     projectSetterTL.set(camera.position, {
       y: -index * 4 - 0.5
     }).set(canvas, {
@@ -193,27 +193,30 @@ export const projectPageSetter = (index: number, noAnimation = false) => {
     })
   }
   else {
-    projectSetterTL.to(camera.position, {
-      y: -index * 4 - 0.5,
-      duration: 0.5,
-      onStart: () => {
-        projectSetterTL.set(canvas, {
-          zIndex: 0
-        })
-      },
-      onComplete: () => {
-        projectSetterTL.set(canvas, {
-          position: 'absolute',
-          delay: 0.8
-        })
-        projectSetterTL.set(canvas, {
-          zIndex: -2,
-          delay: 2
-        })
-      }
-    }).to(projectModels[index].position, {
-      x: 0
-    }, '0')
+    projectSetterTL.set('#projectList', {
+      visibility: 'hidden'
+    })
+      .to(camera.position, {
+        y: -index * 4 - 0.5,
+        duration: 0.5,
+        onStart: () => {
+          projectSetterTL.set(canvas, {
+            zIndex: 0
+          })
+        },
+        onComplete: () => {
+          projectSetterTL.set(canvas, {
+            position: 'absolute',
+            delay: 0.8
+          })
+          projectSetterTL.set(canvas, {
+            zIndex: -2,
+            delay: 2
+          })
+        }
+      }).to(projectModels[index].position, {
+        x: 0
+      }, '0')
   }
   // camera.position.y =
   // console.log(camera.position.y)
@@ -240,8 +243,15 @@ export const projectPageExiter = () => {
 
 export const addProjectModels = (models: [{ model: String; texture: String }]) => {
 
+  document.body.style.overflow = 'hidden'
+
   /////////////////////////////
-  // Draco Loader
+  // Variables
+  /////////////////////////////
+  const globalStore = useGlobalStore()
+  const loadingBar: HTMLDivElement = document.querySelector('#loading-progress') as HTMLDivElement
+  /////////////////////////////
+  // Loaders
   /////////////////////////////
   const dracoLoader = new DRACOLoader()
   dracoLoader.setDecoderPath('/draco/gltf/')
@@ -249,20 +259,30 @@ export const addProjectModels = (models: [{ model: String; texture: String }]) =
     type: 'js'
   })
 
-  /////////////////////////////
-  // GLTF Loader
-  /////////////////////////////
-  const gltfLoader = new GLTFLoader()
+  const loadingManager = new THREE.LoadingManager(
+    // Loaded
+    () => {
+      console.log('loaded')
+      document.body.style.overflow = 'visible'
+      globalStore.modelsLoaded = true
+    },
+    // Progress
+    (itemUrl: string, itemsLoaded: number, itemsTotal: number) => {
+      if (loadingBar) {
+        window.setTimeout(() => {
+          const progressRatio = itemsLoaded / itemsTotal
+          loadingBar.style.transform = `scaleX(${progressRatio}`
+        }, 500)
+      }
+    }
+  )
+  const gltfLoader = new GLTFLoader(loadingManager)
   gltfLoader.setDRACOLoader(dracoLoader)
+  const textureLoader = new THREE.TextureLoader(loadingManager)
 
-  /////////////////////////////
-  // Texture Loader
-  /////////////////////////////
-  const textureLoader = new THREE.TextureLoader()
-
-  for (let index = 0; index < models.length; index++) {
-    const model = models[index].model
-    const texture = models[index].texture
+  for (let i = 0; i < models.length; i++) {
+    const model = models[i].model
+    const texture = models[i].texture
     const loadedTexture = textureLoader.load(texture)
     loadedTexture.flipY = false
     loadedTexture.encoding = THREE.sRGBEncoding
@@ -279,10 +299,10 @@ export const addProjectModels = (models: [{ model: String; texture: String }]) =
         child.material = materialTexture
       })
 
-      projectModels[index] = modelScene
+      projectModels[i] = modelScene
 
       rotateModel(modelScene)
-      setModelXPos(modelScene, index)
+      setModelXPos(modelScene, i)
 
       // modelScene.scale.x = 2.5
       // modelScene.scale.y = 2.5

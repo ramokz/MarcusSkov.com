@@ -26,6 +26,8 @@ const ProjectContentSectionHeader = defineAsyncComponent(() => import('../../com
 const route = useRoute()
 const router = useRouter()
 const storyStore = useStories()
+const globalStore = useGlobalStore()
+globalStore.seenIntro = true
 const projectRoute: string = route.params.project as string
 const version = import.meta.env.DEV ? 'draft' : 'published'
 const projectData = await useStoryblok(`project/${projectRoute}`, {
@@ -84,10 +86,6 @@ onBeforeRouteLeave(() => {
   })
 })
 
-const globalStore = useGlobalStore()
-
-globalStore.seenIntro = true
-
 </script>
 
 <template>
@@ -95,7 +93,7 @@ globalStore.seenIntro = true
     ref="projectContainer"
     class="-z-4"
   >
-    <BackButton />
+    <BackButton v-if="globalStore.loadingComplete" />
     <div
       class="relative -z-5 headerBG"
     >

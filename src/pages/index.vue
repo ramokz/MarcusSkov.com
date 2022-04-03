@@ -9,9 +9,12 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { onBeforeRouteLeave } from 'vue-router'
 import TextSplitter from '../components/TextSplitter.vue'
 import { useGlobalStore } from '../stores/globalStore'
-
 gsap.registerPlugin(ScrollToPlugin)
 
+/////////////////////////////
+// Dynamic Imports
+/////////////////////////////
+const About = defineAsyncComponent(() => import('../components/About.vue'))
 /////////////////////////////
 // Variables & Refs
 /////////////////////////////
@@ -23,7 +26,7 @@ const projectListHeaders = ref<HTMLDivElement>()
 // Methods
 /////////////////////////////
 onBeforeRouteLeave(() => {
-  gsap.set(projectList.value, {
+  gsap.set(projectList.value as HTMLDivElement, {
     visibility: 'hidden'
   })
 })
@@ -45,66 +48,89 @@ const scrollToProjectListHeaders = () => {
 }
 
 onMounted(() => {
+
+  if (!globalStore.seenIntro) {
+    gsap.set(projectList.value as HTMLDivElement, {
+      visibility: 'hidden'
+    })
+  }
+
   /////////////////////////////
   // Plays the intro animation
   /////////////////////////////
-  if (!globalStore.seenIntro) {
-    const tl = gsap.timeline({
-      delay: 1
-    }).timeScale(1)
+  globalStore.$subscribe(() => {
+    if (globalStore.loadingComplete) {
 
-    tl.from('.intro-header', {
-      y: -30,
-      opacity: 0,
-      duration: 0.4,
-      stagger: 0.04,
-      ease: 'back.out'
-    }).from('#intro-divider', {
-      width: 0,
-      duration: 0.4,
-      ease: 'power1.out',
-      onComplete: (() => {
-        gsap.set('#intro-divider', {
-          width: null
+      gsap.set(projectList.value as HTMLDivElement, {
+        visibility: 'visible'
+      })
+
+      if (!globalStore.seenIntro) {
+        const tl = gsap.timeline({
+          delay: 0.3,
+          onComplete: () => {
+            globalStore.seenIntro = true
+          }
         })
-      })
-    }, '-=0.4').from('.discipline', {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.03,
-      ease: 'back.out'
-    }, '+=0.2')
-      .from('.subheader', {
-        y: 30,
-        opacity: 0,
-        duration: 0.3,
-        stagger: 0.015,
-        ease: 'back.out'
-      })
-      .from('.my-work', {
-        y: 30,
-        opacity: 0,
-        duration: 0.6,
-        ease: 'back.out'
-      }, '+=0.6')
-  }
+
+        tl.from('.intro-header', {
+          y: -30,
+          opacity: 0,
+          duration: 0.4,
+          stagger: 0.04,
+          ease: 'back.out'
+        }).from('#intro-divider', {
+          width: 0,
+          duration: 0.4,
+          ease: 'power1.out',
+          onComplete: (() => {
+            gsap.set('#intro-divider', {
+              width: null
+            })
+          })
+        }, '-=0.4').from('.discipline', {
+          y: 50,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.03,
+          ease: 'back.out'
+        }, '+=0.2')
+          .from('.subheader', {
+            y: 30,
+            opacity: 0,
+            duration: 0.3,
+            stagger: 0.015,
+            ease: 'back.out'
+          })
+          .from('.my-work', {
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: 'back.out'
+          }, '+=0.6')
+      }
+    }
+
+  })
 })
 </script>
 
 <template>
-  <div ref="projectList">
+  <div
+    id="projectList"
+    ref="projectList"
+  >
     <div
       class="
-            flex
-            container
-            px-12
-            lg:px-0
-            mx-auto
-            flex-col
-            items-left
-            justify-center
-            h-screen
+        flex
+        container
+        px-12
+        lg:px-0
+        mx-auto
+        flex-col
+        items-left
+        justify-center
+        h-screen
       "
     >
       <TextSplitter

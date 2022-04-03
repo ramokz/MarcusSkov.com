@@ -55,8 +55,6 @@ router.beforeEach((to, from) => {
 
 <template>
   <div class="antialiasing">
-    <!--    <TheHeader />-->
-
     <RouterView v-slot="{Component}">
       <Suspense>
         <component :is="Component" />
@@ -96,4 +94,5 @@ router.beforeEach((to, from) => {
       </a>
     </div>
   </div>
+  <LoadingBar />
 </template>
