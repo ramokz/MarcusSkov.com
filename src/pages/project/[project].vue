@@ -1,5 +1,8 @@
 <script setup lang="ts">
 
+/////////////////////////////
+// Imports
+/////////////////////////////
 import { useStoryblok } from '@storyblok/vue'
 import { useStories } from '~/stores/storyblok'
 import { gsap } from 'gsap'
@@ -7,6 +10,19 @@ import { threeProjectPageInit } from '~/composables/ThreeRenderProjectPage'
 import { onBeforeRouteLeave } from 'vue-router'
 import { useGlobalStore } from '~/stores/globalStore'
 
+/////////////////////////////
+// Dynamic Imports
+/////////////////////////////
+const BackButton = defineAsyncComponent(() => import('../../components/BackButton.vue'))
+const ProjectMetadata = defineAsyncComponent(() => import('../../components/project/ProjectMetadata.vue'))
+const ProjectDescription = defineAsyncComponent(() => import('../../components/project/content/ProjectDescription.vue'))
+const ProjectContentMedia = defineAsyncComponent(() => import('../../components/project/content/ProjectContentMedia.vue'))
+const ProjectContentMediaText = defineAsyncComponent(() => import('../../components/project/content/ProjectContentMediaText.vue'))
+const ProjectContentMediaGallery = defineAsyncComponent(() => import('../../components/project/content/ProjectContentMediaGallery.vue'))
+const ProjectContentSectionHeader = defineAsyncComponent(() => import('../../components/project/content/ProjectContentSectionHeader.vue'))
+/////////////////////////////
+// Variables
+/////////////////////////////
 const route = useRoute()
 const router = useRouter()
 const storyStore = useStories()
@@ -27,8 +43,10 @@ const projectHeader = ref()
 const projectContainer = ref()
 const projectPageCanvas = ref()
 
+/////////////////////////////
+// Lifecycle Hooks
+/////////////////////////////
 onMounted(() => {
-
   const projectIndex = storyStore.getAllProjects.findIndex((project: object) => project.slug === route.params.project)
 
   threeProjectPageInit(projectPageCanvas)
