@@ -23,8 +23,7 @@ globalStore.$subscribe(() => {
       delay: 0.3,
       onComplete: () => {
         globalStore.loadingComplete = true
-        document.body.style.overflow = 'visible'
-        console.log('Animation complete')
+        document.body.style.overflowY = 'visible'
       }
     })
 
@@ -33,7 +32,7 @@ globalStore.$subscribe(() => {
     })
 
     const largestScreenAspect = Math.max(window.innerWidth, window.innerHeight) * 1.5
-    document.body.style.overflow = 'hidden'
+    document.body.style.overflowY = 'hidden'
 
     tl.set(loadingProgress.value as HTMLDivElement, {
       visibility: 'hidden'

@@ -70,7 +70,7 @@ const mediaModal = (event: Event) => {
           visibility: 'hidden'
         })
 
-        document.body.style.overflow = 'hidden'
+        document.body.style.overflowY = 'hidden'
       },
       onComplete: () => {
         gsap.set(lightBox.value, {
@@ -109,7 +109,7 @@ const mediaModal = (event: Event) => {
       duration: 0.2,
       onComplete: () => {
 
-        document.body.style.overflow = 'visible'
+        document.body.style.overflowY = 'visible'
 
         gsap.set(lightBox.value, {
           src: null,
