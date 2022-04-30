@@ -30,16 +30,36 @@ const projectModels: object[] = []
 let scrollY: number = window.scrollY
 const modelDistance = 4
 const setModelXPos = (model: any, index: number) => {
-  if (window.innerWidth >= 1024) {
+
+  // Changes the 3D layout depending on the screen orientation
+  if(window.innerWidth / window.innerHeight <= 1) { // Portrait Mode
+    console.log('Portrait')
+    if (projectListPage) {
+      model.position.x = 0
+      if (window.innerHeight >= 768) {
+        // model.position.y = -modelDistance * index - 0.1
+        model.position.y = -modelDistance * index - (index * 0.1) + 0.4
+      }
+      else {
+        model.position.y = -modelDistance * index - (index * 0.5)
+      }
+    }
+    else {
+      model.position.y = -modelDistance * index + 0.1
+    }
+  }
+  // Landscape Mode
+  else {
     if (projectListPage) {
       model.position.x = index % 2 ? -1.25 : 1.25
     }
-    // model.position.x = 1.5
-    model.position.y = - modelDistance * index + 0.2
-  }
-  else {
-    model.position.x = 0
-    model.position.y = - modelDistance * index + 0.6
+
+    if (window.innerHeight >= 1024) {
+      model.position.y = -modelDistance * index - 0.1 + (index * 0.05)
+    }
+    else {
+      model.position.y = -modelDistance * index - 0.1 + (index * 0.05) // TODO - Needs a proper fix for, at least, Safari on iOS devices
+    }
   }
 }
 
@@ -262,7 +282,6 @@ export const addProjectModels = (models: [{ model: String; texture: String }]) =
   const loadingManager = new THREE.LoadingManager(
     // Loaded
     () => {
-      console.log('loaded')
       document.body.style.overflow = 'visible'
       globalStore.modelsLoaded = true
     },

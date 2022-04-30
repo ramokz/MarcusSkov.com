@@ -24,7 +24,6 @@ globalStore.$subscribe(() => {
       onComplete: () => {
         globalStore.loadingComplete = true
         document.body.style.overflow = 'visible'
-        console.log('Animation complete')
       }
     })
 
@@ -94,8 +93,6 @@ onMounted(() => {
 })
 
 </script>
-
-<!--    v-if="!modelsLoaded"-->
 
 <template>
   <div

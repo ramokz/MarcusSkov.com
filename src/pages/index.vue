@@ -120,8 +120,9 @@ onMounted(() => {
     id="projectList"
     ref="projectList"
   >
-    <div
-      class="
+    <div class="h-screen">
+      <div
+        class="
         flex
         container
         px-12
@@ -130,39 +131,45 @@ onMounted(() => {
         flex-col
         items-left
         justify-center
-        h-screen
+        h-full
       "
-    >
-      <TextSplitter
-        string="Hey there"
-        target-class="intro-header"
-        font-class="h2"
-      />
-      <div
-        id="intro-divider"
-        class="divider"
-      />
-      <TextSplitter
-        string="I’m a Game UI/UX Designer"
-        target-class="discipline"
-        font-class="h1"
-        class="perspect-md"
-      />
-      <TextSplitter
-        string="who also loves the technical bits"
-        target-class="subheader"
-        font-class="h3"
-      />
-    </div>
-    <div
-      class="-mt-32 mx-auto container flex justify-center my-work"
-    >
-      <div
-        class="opacity-20 hover:opacity-100 transition-opacity duration-300"
-        @click="scrollToProjectListHeaders"
       >
-        <div class="text-3xl lg:text-6xl font-serif font-bold uppercase text-center select-none cursor-pointer">
-          My Work
+        <TextSplitter
+          string="Hey there"
+          target-class="intro-header"
+          font-class="h2"
+        />
+        <div
+          id="intro-divider"
+          class="divider"
+        />
+        <TextSplitter
+          string="I’m a Game UI/UX Designer"
+          target-class="discipline"
+          font-class="h1"
+          class="perspect-md"
+        />
+        <TextSplitter
+          string="who also loves the technical bits"
+          target-class="subheader"
+          font-class="h3"
+        />
+      </div>
+      <div
+        class="
+          absolute
+          bottom-6
+          left-1/2
+          -translate-x-1/2
+          my-work"
+      >
+        <div
+          class="opacity-20 hover:opacity-100 transition-opacity duration-300"
+          @click="scrollToProjectListHeaders"
+        >
+          <div class="text-3xl lg:text-6xl font-serif font-bold uppercase text-center select-none cursor-pointer">
+            My Work
+          </div>
         </div>
       </div>
     </div>

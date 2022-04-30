@@ -38,12 +38,26 @@ const projectData = await useStoryblok(`project/${projectRoute}`, {
   })
 })
 /////////////////////////////
-// DOM Refs
+// Refs
 /////////////////////////////
-const headerBG = ref()
-const projectHeader = ref()
-const projectContainer = ref()
-const projectPageCanvas = ref()
+const projectContainer = ref<HTMLDivElement>()
+const headerBG = ref<HTMLDivElement>()
+const headerBGHeight = ref<Number>(0)
+const projectHeader = ref<HTMLDivElement>()
+const projectContent = ref<HTMLDivElement>()
+const projectPageCanvas = ref<HTMLCanvasElement>()
+
+/////////////////////////////
+// Methods
+/////////////////////////////
+const headerBGHeightCalc = () => {
+  headerBGHeight.value = document.documentElement.clientHeight / 100 * 60
+}
+headerBGHeightCalc()
+
+window.addEventListener('resize', () => {
+  headerBGHeightCalc()
+})
 
 /////////////////////////////
 // Lifecycle Hooks
@@ -58,26 +72,28 @@ onMounted(() => {
   tl.from(headerBG.value, {
     height: 0,
     delay: 0.2,
-    ease: 'power2.out',
     duration: 1,
-    onComplete: () => {
-      gsap.set(headerBG.value, {
-        height: null
-      })
-    }
+    ease: 'power2.out'
   }).from(projectHeader.value, {
     opacity: 0,
     y: 80,
-    ease: 'power3.out',
-    duration: 0.7
+    duration: 0.7,
+    ease: 'power3.out'
   }, '-=0.2 ')
-
+    .from(projectContent.value, {
+      opacity: 0,
+      duration: 0.3
+    })
 
   if (projectIndex !== storyStore.projectIndex) {
     storyStore.$patch({
       projectIndex: projectIndex
     })
   }
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', headerBGHeightCalc)
 })
 
 onBeforeRouteLeave(() => {
@@ -99,8 +115,7 @@ onBeforeRouteLeave(() => {
     >
       <div
         ref="headerBG"
-        class="headerBG"
-        :style="{backgroundColor: projectData.content.color.color}"
+        :style="{backgroundColor: projectData.content.color.color, height: headerBGHeight + 'px'}"
       />
     </div>
     <div
@@ -233,9 +248,3 @@ onBeforeRouteLeave(() => {
     />
   </div>
 </template>
-
-<style scoped>
-.headerBG {
-  height: 60vh;
-}
-</style>
