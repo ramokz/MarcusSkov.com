@@ -282,7 +282,7 @@ export const addProjectModels = (models: [{ model: String; texture: String }]) =
   const loadingManager = new THREE.LoadingManager(
     // Loaded
     () => {
-      document.body.style.overflow = 'visible'
+      document.body.style.overflowY = 'visible'
       globalStore.modelsLoaded = true
     },
     // Progress
