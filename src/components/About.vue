@@ -13,13 +13,21 @@ onMounted(() => {
 
 </script>
 
-
 <template>
   <div
     ref="aboutMe"
     class="container pt-32 mb-12 mx-auto px-6 lg:px-0"
   >
-    <div class="flex flex-col flex-col-reverse items-center md:flex-row md:space-x-12">
+    <div
+      class="
+        flex
+        flex-col
+        landscape:flex-row
+        flex-col-reverse
+        items-center
+        landscape:space-x-12
+      "
+    >
       <div class="container md:w-1/2 body">
         <h2 class="h2">
           Hey again
@@ -61,7 +69,7 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <div class="container md:w-1/2 flex flex-col mb-12 lg:mb-0 self-center md:self-start">
+      <div class="container md:w-1/2 flex flex-col mb-12 lg:mb-0 self-center landscape:self-start">
         <div>
           <img
             :src="photo"

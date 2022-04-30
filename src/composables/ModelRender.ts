@@ -53,13 +53,7 @@ const setModelXPos = (model: any, index: number) => {
     if (projectListPage) {
       model.position.x = index % 2 ? -1.25 : 1.25
     }
-
-    if (window.innerHeight >= 1024) {
-      model.position.y = -modelDistance * index - 0.1 + (index * 0.05)
-    }
-    else {
-      model.position.y = -modelDistance * index - 0.1 + (index * 0.05) // TODO - Needs a proper fix for, at least, Safari on iOS devices
-    }
+    model.position.y = -modelDistance * index + 0.1
   }
 }
 
@@ -88,10 +82,10 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
       }
     }
 
-    camera.aspect = document.documentElement.clientWidth / document.documentElement.clientHeight
+    camera.aspect = window.innerWidth / window.innerHeight
     camera.updateProjectionMatrix()
 
-    renderer.setSize(document.documentElement.clientWidth, document.documentElement.clientHeight)
+    renderer.setSize(window.innerWidth, window.innerHeight)
 
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
@@ -105,7 +99,7 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
     scrollY = window.scrollY
   })
 
-  camera = new THREE.PerspectiveCamera(35, document.documentElement.clientWidth / document.documentElement.clientHeight, 0.1, 100)
+  camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerWidth, 0.1, 100)
   camera.position.z = 6
 
   screenChange()
@@ -154,7 +148,7 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
     // console.log(elapsedTime)
 
     if (projectListPage) {
-      camera.position.y = -scrollY / document.documentElement.clientHeight * modelDistance + 4
+      camera.position.y = -scrollY / window.innerHeight * modelDistance + 4
       particles.visible = true
     }
     else {

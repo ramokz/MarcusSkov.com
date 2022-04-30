@@ -120,7 +120,7 @@ onMounted(() => {
     id="projectList"
     ref="projectList"
   >
-    <div class="h-screen">
+    <div class="h-screen flex flex-col">
       <div
         class="
         flex
@@ -156,12 +156,7 @@ onMounted(() => {
         />
       </div>
       <div
-        class="
-          absolute
-          bottom-6
-          left-1/2
-          -translate-x-1/2
-          my-work"
+        class="my-work -translate-y-32 md:-translate-y-24"
       >
         <div
           class="opacity-20 hover:opacity-100 transition-opacity duration-300"

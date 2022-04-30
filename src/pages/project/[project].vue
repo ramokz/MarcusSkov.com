@@ -51,7 +51,7 @@ const projectPageCanvas = ref<HTMLCanvasElement>()
 // Methods
 /////////////////////////////
 const headerBGHeightCalc = () => {
-  headerBGHeight.value = document.documentElement.clientHeight / 100 * 60
+  headerBGHeight.value = document.documentElement.clientHeight / 100 * 65
 }
 headerBGHeightCalc()
 
@@ -129,20 +129,30 @@ onBeforeRouteLeave(() => {
           mx-auto
           flex
           flex-col
-          lg:flex-row
+          landscape:flex-row
           mt-10
           mb-32
           items-start
         "
       >
-        <div class="flex flex-col mr-16 mb-12 lg:mb-0 lg:w-1/2">
+        <div class="flex flex-col landscape:mr-16 mb-12 landscape:mb-0 landscape:w-1/2">
           <h3 class="h3">
             {{ projectData.content.year }}
           </h3>
           <h1 class="h1">
             {{ projectData.name }}
           </h1>
-          <div class="flex mt-6 flex-col space-y-8 lg:space-y-0 lg:flex-row lg:space-x-8">
+          <div
+            class="
+            flex
+            mt-6
+            flex-col
+            landscape:md:flex-row
+            w-full
+            space-y-8 landscape:md:space-y-0
+            landscape:md:space-x-8
+          "
+          >
             <ProjectMetadata
               :title="'Role'"
               :content="projectData.content.role"
