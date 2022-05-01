@@ -182,7 +182,7 @@ onBeforeRouteLeave(() => {
       </div>
 
       <section ref="projectContent">
-        <div
+        <template
           v-for="content in projectData.content.projectContent"
           :key="content"
         >
@@ -203,7 +203,7 @@ onBeforeRouteLeave(() => {
             v-if="content.component === 'sectionHeader'"
             :content="content"
           />
-        </div>
+        </template>
       </section>
       <div
         class="

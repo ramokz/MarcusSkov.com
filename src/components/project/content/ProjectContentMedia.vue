@@ -62,7 +62,7 @@ const richTextComputed = computed(() => {
         :style="{background: assetColor}"
       >
         <img
-          class="max-w-full mx-auto block select-none"
+          class="max-w-full mx-auto block select-none max-h-256"
           :alt="props.content.asset.alt"
           :src="content.asset.filename"
         >

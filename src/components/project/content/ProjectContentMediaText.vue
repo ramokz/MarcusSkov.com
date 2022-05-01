@@ -10,18 +10,19 @@ defineProps({
 
 <template>
   <div
-    class="container
-    mx-auto
-    flex
-    flex-col
-    flex-col-reverse
-    mb-32
-    text-center
-    lg:text-left
-    lg:flex-row
-    lg:space-x-4
-    lg:mt-64
-    items-center"
+    class="
+      container
+      mx-auto
+      flex
+      flex-row-reverse
+      even:lg:flex-row
+      items-center
+      mb-32
+      text-center lg:text-left
+      lg:space-x-12
+      odd:lg:space-x-reverse
+      lg:mt-64
+    "
   >
     <div class="w-full h-full lg:mt-0 lg:w-1/2">
       <h2 class="h2">
