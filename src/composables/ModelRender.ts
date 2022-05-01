@@ -98,7 +98,7 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
     scrollY = window.scrollY
   })
 
-  camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerWidth, 0.1, 100)
+  camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 100)
   camera.position.z = 6
 
   screenChange()
@@ -147,7 +147,7 @@ export const useThreeInit = (canvasRef: HTMLCanvasElement) => {
     // console.log(elapsedTime)
 
     if (projectListPage) {
-      camera.position.y = -scrollY / window.innerHeight * modelDistance + 4
+      camera.position.y = -scrollY / document.documentElement.clientHeight * modelDistance + 4.2
       particles.visible = true
     }
     else {
