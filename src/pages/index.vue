@@ -46,10 +46,11 @@ const scrollToProjectListHeaders = () => {
     // })
   }
 }
-const ShowMyWork = ref<Boolean>(window.innerHeight >= 640)
+const heightLimit = 480
+const ShowMyWork = ref<Boolean>(window.innerHeight >= heightLimit)
 
 window.addEventListener('resize', () => {
-  ShowMyWork.value = window.innerHeight >= 640
+  ShowMyWork.value = window.innerHeight >= heightLimit
 })
 
 
