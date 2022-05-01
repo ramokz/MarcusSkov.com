@@ -33,7 +33,6 @@ const setModelXPos = (model: any, index: number) => {
 
   // Changes the 3D layout depending on the screen orientation
   if(window.innerWidth / window.innerHeight <= 1) { // Portrait Mode
-    console.log('Portrait')
     if (projectListPage) {
       model.position.x = 0
       if (window.innerHeight >= 768) {

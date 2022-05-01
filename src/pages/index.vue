@@ -46,6 +46,12 @@ const scrollToProjectListHeaders = () => {
     // })
   }
 }
+const ShowMyWork = ref<Boolean>(window.innerHeight >= 640)
+
+window.addEventListener('resize', () => {
+  ShowMyWork.value = window.innerHeight >= 640
+})
+
 
 onMounted(() => {
 
@@ -102,12 +108,14 @@ onMounted(() => {
             stagger: 0.015,
             ease: 'back.out'
           })
-          .from('.my-work', {
+        if (ShowMyWork.value) {
+          tl.from('.my-work', {
             y: 30,
             opacity: 0,
             duration: 0.6,
             ease: 'back.out'
           }, '+=0.6')
+        }
       }
     }
 
@@ -156,6 +164,7 @@ onMounted(() => {
         />
       </div>
       <div
+        v-if="ShowMyWork"
         class="my-work -translate-y-32 md:-translate-y-24"
       >
         <div
