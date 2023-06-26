@@ -65,7 +65,7 @@ router.beforeEach((to, from) => {
     </Suspense>
     <div class="flex mx-auto container justify-center mb-6">
       <a
-        href="https://github.com/MarcusSkov/MarcusSkov.com"
+        href="https://github.com/ramokz/MarcusSkov.com"
         target="_blank"
         class="
         container

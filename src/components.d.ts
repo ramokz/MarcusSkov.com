@@ -7,7 +7,6 @@ declare module 'vue' {
     About: typeof import('./components/About.vue')['default']
     BackButton: typeof import('./components/BackButton.vue')['default']
     LoadingBar: typeof import('./components/LoadingBar.vue')['default']
-    ProjectContentImageScrollReveal: typeof import('./components/project/content/ProjectContentImageScrollReveal.vue')['default']
     ProjectContentMedia: typeof import('./components/project/content/ProjectContentMedia.vue')['default']
     ProjectContentMediaGallery: typeof import('./components/project/content/ProjectContentMediaGallery.vue')['default']
     ProjectContentMediaText: typeof import('./components/project/content/ProjectContentMediaText.vue')['default']

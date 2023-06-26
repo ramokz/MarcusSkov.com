@@ -42,11 +42,7 @@ onMounted(() => {
             <p>
               Honestly, too many things and not enough of each.
               <br>
-              I’m a <span class="color-light">Technical UI/UX Designer</span> working in the video game industry, currently at <span class="color-light"> Sumo Leamington in the UK. </span>
-            </p>
-            <br>
-            <p>
-              In practical terms, it means that I design user interfaces (UIs) while also prioritising the user experiences (UX) of said UIs so they feel nice to use again and again. As the “technical” part of the title implies, I’m also involved with implementing the code that brings the UIs to life for the end-user.
+              I’m a <span class="color-light">UX/UI Designer</span> working in the video game industry, currently at <span class="color-light"> Rare in the UK. </span>
             </p>
           </div>
 
@@ -125,7 +121,7 @@ onMounted(() => {
             </svg>
           </a>
           <a
-            href="https://github.com/MarcusSkov"
+            href="https://github.com/ramokz"
             target="_blank"
           >
             <svg
