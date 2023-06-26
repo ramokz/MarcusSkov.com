@@ -63,6 +63,38 @@ onMounted(() => {
               Later on I made the jump to game development at <span class="text-light">Frontier Development</span> in 2019.
             </p>
           </div>
+          <div>
+            <h5 class="h5">
+              Contact
+            </h5>
+            <div class="divider" />
+            <p>
+              Feel free to reach out if you're interested in collaboration or consultation of any sort.
+              <br>
+              Always happy to help!
+              <br>
+              <br>
+            </p>
+            <div class="flex">
+              <a
+                class="font-semibold text-light no-underline"
+                href="mailto:&#72;&#101;&#108;&#108;&#111;&#64;&#77;&#97;&#114;&#99;&#117;&#115;&#115;&#107;&#111;&#118;&#46;&#99;&#111;&#109;"
+              >
+                <div
+                  class="
+                    mx-auto
+                    p-4
+                    border-2
+                    cursor-pointer
+                    border-core
+                    hover:border-light
+                  "
+                >
+                  &#72;&#101;&#108;&#108;&#111;&#64;&#77;&#97;&#114;&#99;&#117;&#115;&#115;&#107;&#111;&#118;&#46;&#99;&#111;&#109;
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <div class="container md:w-1/2 flex flex-col mb-12 lg:mb-0 self-center landscape:self-start">
