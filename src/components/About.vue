@@ -42,7 +42,7 @@ onMounted(() => {
             <p>
               Honestly, too many things and not enough of each.
               <br>
-              I’m currently working from London (UK) as a <span class="color-light">Principal UI/UX Designer</span> in the video game industry at a Californian-based studio called
+              I’m currently working from Jutland (Denmark) as a <span class="color-light">Principal UI/UX Designer</span> in the video game industry at a Californian-based studio called
               <span class="color-light">
                 <a
                   class="color-light"
