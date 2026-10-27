@@ -42,13 +42,13 @@ onMounted(() => {
             <p>
               Honestly, too many things and not enough of each.
               <br>
-              I’m currently working from Jutland (Denmark) as a <span class="color-light">Principal UI/UX Designer</span> in the video game industry at a Californian-based studio called
+              I’m currently working from Jutland (Denmark) as a <span class="color-light">UI/UX Designer</span> in the video game industry at a Danish-based studio called
               <span class="color-light">
                 <a
                   class="color-light"
-                  href="https://www.thegameband.com/"
+                  href="https://www.fundaygames.dk/"
                   target="_blank"
-                >The Game Band</a>.
+                >Funday Games</a>.
               </span>
             </p>
           </div>
